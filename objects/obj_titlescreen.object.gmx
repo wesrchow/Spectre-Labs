@@ -25,27 +25,23 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>timer1 = 0;
+            <string>// timers randomly control glitching effects
+timer1 = 0;
 timer2 = 0;
 timer3 = 0;
 
-/* didnt use
-newleft = 0;
-newtop = 0;
-newwidth = 0;
-newheight = 0;*/
 
-newxtitle = 0;
-newytitle = 0;
-randomrgbtitle = 0;
-randomalphatitle = 0;
+newxtitle = 0; // new x position for glitched title
+newytitle = 0; // new y position for glitched title
+randomrgbtitle = 0; // random rgb for title
+randomalphatitle = 0; // random alpha for title
 
-newxmsg = 0;
-newymsg = 0;
-randomrgbmsg = 0;
-randomalphamsg = 0;
+newxmsg = 0; // new x position for glitched message
+newymsg = 0; // new y position for glitched message
+randomrgbmsg = 0; // random rgb for message
+randomalphamsg = 0; // random alpha for message
 
-randomsound = 0;
+randomsound = 0; // random glitch sound to play
 </string>
           </argument>
         </arguments>
@@ -68,7 +64,8 @@ randomsound = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if keyboard_check_pressed(vk_space) {
+            <string>// when space pressed start game
+if keyboard_check_pressed(vk_space) {
     global.startselection = 1
     global.fadein = 1
     instance_create(0,0,obj_fade);
@@ -97,12 +94,12 @@ randomsound = 0;
             <kind>1</kind>
             <string>/// titlescreen glitch
 timer1 += irandom_range(1,3);
-timer2 += irandom_range(0,2);
+timer2 += irandom_range(0,1);
 timer3 += irandom_range(0,1);
 
 if surface_exists(application_surface) {
     
-    //title glitch
+    // title glitch timer 1 
     if timer1 &lt;=100 and timer1 &lt;= 105 {
         randomsound = choose(snd_glitch1,snd_glitch2,snd_glitch3,snd_glitch4,snd_glitch5,snd_glitch6,snd_glitch4,snd_glitch5,snd_glitch6);
         
@@ -155,7 +152,7 @@ if surface_exists(application_surface) {
         timer1 = 0;
     }
     
-    // title glitch pt 2
+    // title glitch timer 2 
     if timer2 &lt;=100 and timer2 &lt;= 105 {
         randomsound = choose(snd_glitch1,snd_glitch2,snd_glitch3,snd_glitch4,snd_glitch5,snd_glitch6);
         
@@ -192,7 +189,7 @@ if surface_exists(application_surface) {
         timer2 = 0;
     }
     
-    // titlescreen message glitch
+    // title message glitch
     if timer3 &lt;=10 and timer3 &lt;= 15 {
         randomsound = choose(snd_glitch1,snd_glitch2,snd_glitch3,snd_glitch4,snd_glitch5,snd_glitch6);
         

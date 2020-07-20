@@ -43,6 +43,7 @@ postdialoguetimer = 0;
 closemessage = "'C' to exit"
 closemessageprint = ""
 
+// dialogue boxes per level using a list
 if room = room_level1 {
     box[1] = "Speaker: So, have you figured out how to use the device? Make sure #you're comfortable with it before you move on."
 
@@ -176,7 +177,8 @@ if keyboard_check(ord('C')) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// control room control ///
+            <string>/// control room controlled dialogue ///
+
 if room = room_control_room  {
     if printedline &lt; 2 or printedline &gt;= 3 {
         if holdingdialogue = false {
@@ -197,20 +199,13 @@ if room = room_control_room  {
             }
         }
         
-        // removing barrier block to exit room
-        
+        // allow player to shoot gun
         if printedline = 12 {
             global.lasergun = true;
-            with obj_barrier_block2 {
-                if y &lt; 432 {
-                    instance_destroy();
-                }
-            }
         }
+
     }
 }
-
-
 </string>
           </argument>
         </arguments>
@@ -265,7 +260,7 @@ if room = room_boss {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// outside dialogue control ///
+            <string>/// outside room dialogue control ///
 if room = room_outside {
     if holdingdialogue = false {
         postdialoguetimer ++;
@@ -310,9 +305,9 @@ if room = room_outside {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// dialogue control start ///
+            <string>/// dialogue control ///
 
-// if room is level1 //
+// draw scrolling dialogue
 if dialoguecontrol = true {
     
     draw_set_halign(fa_left);
@@ -322,68 +317,66 @@ if dialoguecontrol = true {
 
     draw_sprite(spr_dialogue_bg,0,0,649);
     
-        scrolltimer ++;        
+    scrolltimer ++;        
 
-        // if scroll timer &gt;= 3 // 
-            if scrolltimer &gt;= 2 {
-                
-                // character to be added = list(printedline, strcharpos) //
-                // printed phrase = current printed phrase + character //
-                //character = ds_list_find_value(printedline, strcharpos);
-                printed = string_copy(box[printedline],1,strcharpos + 1)
-                
-                strcharpos ++;
-                scrolltimer = 0;
-                
-                holdingdialogue = true;
+    if scrolltimer &gt;= 2 {
+        
+        // character to be added = list(printedline, strcharpos) //
+        // printed phrase = current printed phrase + character //
+        // character = ds_list_find_value(printedline, strcharpos);
+        printed = string_copy(box[printedline],1,strcharpos + 1)
+        
+        strcharpos ++;
+        scrolltimer = 0;
+        
+        holdingdialogue = true;
 
-                if room = room_boss and printedline != 9 or room = room_outside {
-                
-                } else {
-                    global.movecontrollock = true;
-                }
-            }
+        if room = room_boss and printedline != 9 or room = room_outside {
         
-        // if list position &gt;= size of printing list, reset variables //
-        if strcharpos &gt;= string_length(box[printedline]) {
-            
-            scrolltimer = 0;
-            strcharpos = 0;
-            dialoguecontrol = false;
-        
-        }
-        draw_text(20,653,printed);
-}                 
-
-    if holdingdialogue = true {
-        
-        draw_set_halign(fa_left);
-        draw_set_valign(fa_left);
-        draw_set_colour(c_white);
-        draw_set_font(fnt_start_cut);
-        
-        draw_sprite(spr_dialogue_bg,0,0,649);
-        draw_text(20,653,printed);
-        
-        if dialoguecontrol = false {
-        
-            draw_set_font(fnt_dialogue_close);
-        
-            scrolltimer ++;
-            
-            if scrolltimer &gt;= 2 {
-                closemessageprint = string_copy(closemessage,1,strcharpos + 1)
-                
-                strcharpos ++;
-                scrolltimer = 0;
-            }
-            
-            draw_text(851,683,closemessageprint);
-            
+        } else {
+            global.movecontrollock = true;
         }
     }
+        
+    // if list position &gt;= size of printing list, reset variables //
+    if strcharpos &gt;= string_length(box[printedline]) {
+        
+        scrolltimer = 0;
+        strcharpos = 0;
+        dialoguecontrol = false;
+    
+    }
+    draw_text(20,653,printed);
+}                 
 
-/// dialogue control end ///
+// when text is finished printing, print close message
+if holdingdialogue = true {
+    
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_left);
+    draw_set_colour(c_white);
+    draw_set_font(fnt_start_cut);
+    
+    draw_sprite(spr_dialogue_bg,0,0,649);
+    draw_text(20,653,printed);
+    
+    if dialoguecontrol = false {
+    
+        draw_set_font(fnt_dialogue_close);
+    
+        scrolltimer ++;
+        
+        if scrolltimer &gt;= 2 {
+            closemessageprint = string_copy(closemessage,1,strcharpos + 1)
+            
+            strcharpos ++;
+            scrolltimer = 0;
+        }
+        
+        draw_text(851,683,closemessageprint);
+        
+    }
+}
 </string>
           </argument>
         </arguments>

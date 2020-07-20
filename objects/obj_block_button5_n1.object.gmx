@@ -62,12 +62,14 @@ if place_meeting(x,y,obj_pushblock1) {
     global.button5_n1state = true;
     buttontimer = 0;
     
-    with obj_button5_n1 {
-        buttontimer = 0;
-    }
     with obj_block_button5_n1 {
         buttontimer = 0;
     }
+    
+    with obj_button5_n1 {
+        buttontimer = 0;
+    }
+
 }
 
 /// button activate end ///

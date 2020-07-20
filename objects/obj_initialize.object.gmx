@@ -61,6 +61,7 @@ global.bosspart = 1;
 
 global.playerhealth = 100;
 
+// allows player to shoot gun when initialize created in boss room
 if room = room_boss {
     global.lasergun = true;
 } else {
@@ -71,10 +72,10 @@ global.restarting = false; // restarting game or not //
 
 randomize(); // randomize seed for random numbers //
 
-// if room is start cut //
+// in room start cut setup start dialogue
 if room = room_start_cut {
 
-    // set text parameters //
+    // set text parameters
     draw_set_halign(fa_left);
     draw_set_valign(fa_left);
     draw_set_font(fnt_start_cut);
@@ -87,8 +88,7 @@ if room = room_start_cut {
     scrolltimer = 0 // timer to control text holding and rate of scrolling of text
     printed = "&gt;" // the text to be printed
     
-    // create lists of text by letter for each line //
-    
+    // variables with stored dialogue text
     page1 = "&gt;  Welcome to Spectre Labs.
     #     
     #You've signed up to be a prototype tester for an
@@ -148,7 +148,7 @@ if room = room_start_cut {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// draw recording effects ////
+            <string>/// draw recording effects ///
 
 with obj_player {
     if recording = true {
@@ -216,6 +216,7 @@ if room = room_vent {
             <kind>1</kind>
             <string>/// draw player healthbar ///
 
+// draws player hp in top right with rectangle sizes multiplied by 3 since hp bar is 300px wide
 if global.bosswave &gt;= 1 {
     var drawinghealth = global.playerhealth * 3
     
@@ -312,7 +313,9 @@ if room = room_game_restart {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*/// title screen drawing ///
+            <string>// titlescreen selector drawing taken out of game
+/*
+/// title screen drawing ///
 if room = room_title_screen {
     draw_set_halign(fa_center);
     draw_set_valign(fa_center);
@@ -330,7 +333,6 @@ if room = room_title_screen {
     }
 }
 
-/* taken out of game
 // draws out selections in the title screen, create selector reference //
 if room = room_title_screen {
     draw_set_halign(fa_middle);
@@ -460,7 +462,7 @@ if room = room_start_cut {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// drawing player while recording start ///
+            <string>/// drawing player while recording ///
 
 with obj_player {
     if recording = true {
@@ -469,10 +471,6 @@ with obj_player {
         draw_set_alpha(1);
     }
 }
-
-/// drawing player while recording end ///
-
-
 </string>
           </argument>
         </arguments>

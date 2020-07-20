@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if room = room_title_screen {
+            <string>/// setting up music for room changes
+// fade out past music
+
+if room = room_title_screen {
     audio_play_sound(snd_intro_music,1,true);
     audio_sound_gain(snd_intro_music,0,0);
     audio_sound_gain(snd_intro_music,1,1500);
@@ -72,7 +75,9 @@ laserbeamstop = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if audio_sound_get_gain(snd_intro_music) &lt;= 0 {
+            <string>/// stopping music that faded out
+
+if audio_sound_get_gain(snd_intro_music) &lt;= 0 {
     audio_stop_sound(snd_intro_music);
 }
 
@@ -84,6 +89,7 @@ if audio_sound_get_gain(snd_bg_boss_music) &lt;= 0 {
     audio_stop_sound(snd_bg_boss_music);
 }
 
+// makes sure to stop laser beam sound
 if audio_is_playing(snd_laser_beam) {
     laserbeamstop ++;
     

@@ -25,13 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// setup start ///
-
-movement = 1; // 0 disabled // 1 enabled //
-movetimer = 0; // to stall player movement //
-slidetimer = 0; // smooth animation sliding of block //
-
-/// setup start ///
+            <string>movement = 1; // 0 disabled // 1 enabled
+movetimer = 0; // to stall player movement
+slidetimer = 0; // smooth animation sliding of block
 </string>
           </argument>
         </arguments>
@@ -54,7 +50,8 @@ slidetimer = 0; // smooth animation sliding of block //
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scr_movement_sliding(2,16);
+            <string>/// movement control
+scr_movement_sliding(2,16);
 </string>
           </argument>
         </arguments>
@@ -77,47 +74,29 @@ slidetimer = 0; // smooth animation sliding of block //
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*
-if place_meeting(x+32,y,obj_metal_floor) {
-show_debug_message('player');
-    if place_meeting(x-32,y,obj_player) {
-        show_debug_message('blockstuck set1');
+            <string>/// stops player when pushblock cannot move direction anymore
+
+global.block1stuckdir = 0;
+
+if place_meeting(x-32,y,obj_player) {
+    if place_meeting(x+32,y,obj_metal_floor) or place_meeting(x+32,y,obj_barrier_block3) {
         global.block1stuckdir = 1
-        
     }
 }
-
-else if place_meeting(x,y-32,obj_metal_floor)
-    or place_meeting(x,y-32,obj_door_left_red)
-    or place_meeting(x,y+32,obj_door_right_red) {
-show_debug_message('player');
-    if place_meeting(x,y+32,obj_player) {
-        show_debug_message('blockstuck set2');
+else if place_meeting(x,y+32,obj_player) {
+    if place_meeting(x,y-32,obj_metal_floor) or place_meeting(x,y-32,obj_barrier_block3) {
         global.block1stuckdir = 2
-    
     }
 } 
-
-else if place_meeting(x-32,y,obj_metal_floor) {
-show_debug_message('player');
-    if place_meeting(x+32,y,obj_player) {
-        show_debug_message('blockstuck set3');
+else if place_meeting(x+32,y,obj_player) {
+    if place_meeting(x-32,y,obj_metal_floor) or place_meeting(x-32,y,obj_barrier_block3) {
         global.block1stuckdir = 3
-        
     }
 }
-
-else if place_meeting(x,y+32,obj_metal_floor)
-    or place_meeting(x,y+32,obj_door_left_red)
-    or place_meeting(x,y+32,obj_door_right_red) {
-show_debug_message('player');
-    if place_meeting(x,y-32,obj_player) {
-        show_debug_message('blockstuck set4');
+else if place_meeting(x,y-32,obj_player) {
+    if place_meeting(x,y+32,obj_metal_floor) or place_meeting(x,y+32,obj_barrier_block3) {
         global.block1stuckdir = 4
-    
     }   
-} else {
-    global.block1stuckdir = 0;
 }
 </string>
           </argument>
@@ -139,8 +118,9 @@ show_debug_message('player');
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// player push checking start ///
+            <string>/// player push checking ///
 
+// when recording block doesnt move
 with obj_player {
     if recording = true {
         global.blockmovelock = true
@@ -149,84 +129,78 @@ with obj_player {
     }
 }
 
-// checks for meeting obj_player and not meeting obj_metal_floor in next position //
-// sets alarm, slidetimer, movement, movetimer //
+// checks for meeting obj_player and not meeting obj_metal_floor or barrier in next position
 if global.blockmovelock = false {
-
-if place_meeting(x,y,obj_player) and obj_player.direction = 0 
-or place_meeting(x-1,y,obj_ghost) {
-    if movement = 1 {
-        direction = 0;
-        
-        if !place_meeting(x+32,y,obj_metal_floor) {
-            slidetimer = 0;
-            alarm[0] = 1;
+    
+    if place_meeting(x,y,obj_player) and obj_player.direction = 0 
+    or place_meeting(x-1,y,obj_ghost) {
+        if movement = 1 {
+            direction = 0;
             
-            movement = 0;
-            movetimer = 16;
-        } else {
-            global.block1stuck = false
+            if !place_meeting(x+32,y,obj_metal_floor) and !place_meeting(x+32,y,obj_barrier_block3) {
+                slidetimer = 0;
+                alarm[0] = 1;
+                
+                movement = 0;
+                movetimer = 16;
+            } else {
+                global.block1stuck = false
+            }
         }
     }
-}
-
-if place_meeting(x,y,obj_player) and obj_player.direction = 180 
-or place_meeting(x+1,y,obj_ghost) {
-    if movement = 1 {
-        direction = 180;
-        
-        if !place_meeting(x-32,y,obj_metal_floor) {
-            slidetimer = 0;
-            alarm[0] = 1;
+    
+    if place_meeting(x,y,obj_player) and obj_player.direction = 180 
+    or place_meeting(x+1,y,obj_ghost) {
+        if movement = 1 {
+            direction = 180;
             
-            movement = 0;
-            movetimer = 16;
-        } else {
-            global.block1stuck = false
+            if !place_meeting(x-32,y,obj_metal_floor) and !place_meeting(x-32,y,obj_barrier_block3) {
+                slidetimer = 0;
+                alarm[0] = 1;
+                
+                movement = 0;
+                movetimer = 16;
+            } else {
+                global.block1stuck = false
+            }
         }
     }
-}
-
-if place_meeting(x,y,obj_player) and obj_player.direction = 270
-or place_meeting(x,y-3,obj_ghost){
-    if movement = 1 {
-        direction = 270;
-        
-        if !place_meeting(x,y+32,obj_metal_floor)
-        and !place_meeting(x,y+32,obj_door_left_red)
-        and !place_meeting(x,y+32,obj_door_right_red) {
-            slidetimer = 0;
-            alarm[0] = 1;
+    
+    if place_meeting(x,y,obj_player) and obj_player.direction = 270
+    or place_meeting(x,y-3,obj_ghost){
+        if movement = 1 {
+            direction = 270;
             
-            movement = 0;
-            movetimer = 16;
-        } else {
-            global.block1stuck = false
+            if !place_meeting(x,y+32,obj_metal_floor) and !place_meeting(x,y+32,obj_barrier_block3) {
+                slidetimer = 0;
+                alarm[0] = 1;
+                
+                movement = 0;
+                movetimer = 16;
+            } else {
+                global.block1stuck = false
+            }
         }
     }
-}
-
-if place_meeting(x,y,obj_player) and obj_player.direction = 90
-or place_meeting(x,y+3,obj_ghost){
-    if movement = 1 {
-        direction = 90;
-        
-        if !place_meeting(x,y-32,obj_metal_floor)
-        and !place_meeting(x,y-32,obj_door_left_red)
-        and !place_meeting(x,y-32,obj_door_right_red) {
-            slidetimer = 0;
-            alarm[0] = 1;
+    
+    if place_meeting(x,y,obj_player) and obj_player.direction = 90
+    or place_meeting(x,y+3,obj_ghost){
+        if movement = 1 {
+            direction = 90;
             
-            movement = 0;
-            movetimer = 16;
-        } else {
-            global.block1stuck = false
+            if !place_meeting(x,y-32,obj_metal_floor) and !place_meeting(x,y-32,obj_barrier_block3) {
+                slidetimer = 0;
+                alarm[0] = 1;
+                
+                movement = 0;
+                movetimer = 16;
+            } else {
+                global.block1stuck = false
+            }
         }
     }
-}
 
 }
-/// player push checking end ///
 </string>
           </argument>
         </arguments>

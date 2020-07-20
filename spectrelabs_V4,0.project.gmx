@@ -146,10 +146,6 @@
         <sprite>sprites\spr_door_bot_yellow</sprite>
       </sprites>
     </sprites>
-    <sprites name="titlescreen">
-      <sprite>sprites\spr_titlescreen_selector</sprite>
-      <sprite>sprites\spr_titlescreen_selector_flash</sprite>
-    </sprites>
     <sprites name="room_structure">
       <sprite>sprites\spr_metal_floor</sprite>
       <sprite>sprites\spr_metal_floor2</sprite>
@@ -230,6 +226,7 @@
   <objects name="objects">
     <objects name="setup">
       <object>objects\obj_initialize</object>
+      <object>objects\obj_barrier_block_control</object>
       <object>objects\obj_titlescreen</object>
       <object>objects\obj_music</object>
       <object>objects\obj_fade</object>
@@ -238,7 +235,7 @@
       <object>objects\obj_boss_control</object>
       <object>objects\obj_enemy_health_bar_draw</object>
       <object>objects\obj_outside</object>
-      <object>objects\obj_end</object>
+      <object>objects\obj_end_title</object>
     </objects>
     <objects name="player">
       <object>objects\obj_player</object>
@@ -312,12 +309,6 @@
         <object>objects\obj_door_bot_yellow</object>
       </objects>
     </objects>
-    <objects name="titlescreen">
-      <object>objects\obj_titlescreen_selector_ref_bot</object>
-      <object>objects\obj_titlescreen_selector_ref_top</object>
-      <object>objects\obj_titlescreen_selector_left</object>
-      <object>objects\obj_titlescreen_selector_right</object>
-    </objects>
     <objects name="room_structure">
       <object>objects\obj_level_complete</object>
       <object>objects\obj_metal_floor</object>
@@ -349,6 +340,7 @@
       <object>objects\obj_grass_block</object>
       <object>objects\obj_barrier_block</object>
       <object>objects\obj_barrier_block2</object>
+      <object>objects\obj_barrier_block3</object>
       <objects name="floor_oneway">
         <object>objects\obj_metal_floor_oneway_top</object>
         <object>objects\obj_metal_floor_oneway_bot</object>
@@ -376,6 +368,7 @@
       <room>rooms\room_start_cut</room>
       <room>rooms\room_level1</room>
       <room>rooms\room_level2</room>
+      <room>rooms\room_level3</room>
       <room>rooms\room_vent</room>
       <room>rooms\room_control_room</room>
       <room>rooms\room_boss</room>
