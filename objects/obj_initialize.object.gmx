@@ -58,6 +58,8 @@ global.enemies3 = 0; // enemy3 count //
 
 global.playerhealth = 100;
 
+global.restarting = false; // restarting game or not //
+
 randomize(); // randomize seed for random numbers //
 
 // if room is start cut //
@@ -87,14 +89,14 @@ if room = room_start_cut {
     #windows and drove you off to an unknown location.
     #You were escorted through the maze-like building by
     #speakers hidden in the walls. You now find yourself
-    #in an enclosed, clean looking facility, surrounded
+    #in an enclosed, clean-looking facility, surrounded
     #by thick metal walls..."
     
-    page2 = "You find an advanced looking device on the
+    page2 = "You find an advanced-looking device on the
     #floor in front of you and decide to take a look.
-    #The multiple straps on the gadget suggested it was
+    #The multiple straps on the gadget suggest it is
     #meant to be worn. When you put it on your arm, the
-    #straps automatically tightened and the device is
+    #straps automatically tighten and the device is
     #now secured to yourself.
     #     
     #Voice from speaker: So you figured out how to put it
@@ -104,14 +106,14 @@ if room = room_start_cut {
     
     page3 = "Speaker: You're able to control your spectral
     #counterpart of yourself with that. To activate and
-    #record your movements in spectral form press 'Q'. The
-    #device allows you to record for five seconds before
-    #automatically returning yourself to your original
-    #body. To playback your recording in the form of your
-    #spectral body press 'E'. Your recording will be
-    #saved in the device to play as many times as you like
-    #until you create a new recording. Now enough talk
-    #from me, go ahead and try it out!"
+    #record your movements in spectral form, press 'Q'.
+    #The device allows you to record for five seconds
+    #before automatically returning yourself to your
+    #original body. To playback your recording in the form
+    #of your spectral body, press 'E'. Your recording will
+    #be saved in the device to play as many times as you
+    #like until you create a new recording. Now enough
+    #talk from me, go ahead and try it out!"
 
     printedline = page1; // set the current printing line
 }
@@ -185,11 +187,11 @@ if global.bosswave &gt;= 1 {
         draw_sprite(spr_player_health_bar_bg,-1,10,10);
         
         if global.playerhealth &gt;= 57 {
-            draw_set_colour(make_colour_rgb(101, 205, 41))
+            draw_set_colour(make_colour_rgb(101, 205, 41));
         } else if global.playerhealth &lt; 57 and global.playerhealth &gt;= 30 {
-            draw_set_colour(make_colour_rgb(204, 206, 24))
+            draw_set_colour(make_colour_rgb(204, 206, 24));
         } else if global.playerhealth &lt; 30 {
-            draw_set_colour(make_colour_rgb(155, 8, 58))
+            draw_set_colour(make_colour_rgb(155, 8, 58));
         }
         
         if drawinghealth &gt;= 172 {
@@ -202,7 +204,13 @@ if global.bosswave &gt;= 1 {
             draw_rectangle(20,20,drawinghealth+19,34,false);
             
         }
-    
+        
+        if global.playerhealth &lt;= 0 {
+            global.playerhealth = 0;
+            global.restarting = true
+            global.fadein = 1;
+            instance_create(0,0,obj_fade);
+        }
         draw_sprite(spr_player_health_bar,-1,17,17);
     }
 }

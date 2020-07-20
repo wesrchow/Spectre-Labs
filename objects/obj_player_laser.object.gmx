@@ -47,12 +47,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// collision with walls //
+            <string>/// collision with walls or forcefields ///
 if place_meeting(x,y,obj_metal_wall_bk1)
 or place_meeting(x,y,obj_metal_wall_r1)
 or place_meeting(x,y,obj_metal_wall_l1)
 or place_meeting(x,y,obj_metal_wall_fr1) 
-or place_meeting(x,y,obj_server) {
+or place_meeting(x,y,obj_barrier_block)
+or place_meeting(x,y,obj_forcefield) {
+    effect_create_above(ef_explosion,x,y,1,c_dkgray);
     instance_destroy();
 }
 </string>

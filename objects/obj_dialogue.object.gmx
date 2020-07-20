@@ -56,6 +56,12 @@ if room = room_level2 {
     box[3] = ""
 }
 
+if room = room_boss {
+    box[1] = ".... testing"
+    
+    box[2] = "test2......................."
+}
+
 printedline = 0;
 </string>
           </argument>
@@ -79,9 +85,14 @@ printedline = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if keyboard_check(ord('C')) {
+            <string>/// close dialogue ///
+if keyboard_check(ord('C')) {
     if dialoguecontrol = false {
-        global.movecontrollock = false;
+        if room = room_boss {
+        
+        } else {
+            global.movecontrollock = false;
+        }
         holdingdialogue = false;
         
         scrolltimer = 0;
@@ -116,7 +127,10 @@ printedline = 0;
 
 // if room is level1 //
 if dialoguecontrol = true {
-
+    
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_left);
+    draw_set_colour(c_white);
     draw_set_font(fnt_start_cut);
 
     draw_sprite(spr_dialogue_bg,0,0,649);
@@ -135,8 +149,11 @@ if dialoguecontrol = true {
                 scrolltimer = 0;
                 
                 holdingdialogue = true;
+                if room = room_boss {
                 
-                global.movecontrollock = true
+                } else {
+                    global.movecontrollock = true;
+                }
             }
         
         // if list position &gt;= size of printing list, reset variables //
@@ -151,7 +168,10 @@ if dialoguecontrol = true {
 }                 
 
     if holdingdialogue = true {
-    
+        
+        draw_set_halign(fa_left);
+        draw_set_valign(fa_left);
+        draw_set_colour(c_white);
         draw_set_font(fnt_start_cut);
         
         draw_sprite(spr_dialogue_bg,0,0,649);

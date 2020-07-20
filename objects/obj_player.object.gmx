@@ -200,7 +200,7 @@ if global.movecontrollock = false {
                 and !place_meeting(x-32,y,obj_metal_wall_l5)
                 and !place_meeting(x-32,y,obj_metal_wall_bk1)
                 and !place_meeting(x-32,y,obj_metal_floor_oneway_left)
-                and !place_meeting(x-32,y,obj_server)
+                and !place_meeting(x-32,y,obj_barrier_block)
                 and !place_meeting(x-32,y,obj_door_bot_green)
                 and !place_meeting(x-32,y,obj_door_top_green)
                 and !place_meeting(x-32,y,obj_door_bot_red)
@@ -210,7 +210,8 @@ if global.movecontrollock = false {
                 and !place_meeting(x-32,y,obj_door_bot_blue_n)
                 and !place_meeting(x-32,y,obj_door_top_blue_n)
                 and !place_meeting(x-32,y,obj_door_bot_orange)
-                and !place_meeting(x-32,y,obj_door_top_orange) {
+                and !place_meeting(x-32,y,obj_door_top_orange)
+                and !place_meeting(x-32,y,obj_forcefield) {
                 
                     slidetimer = 0;
                     alarm[0] = 1;
@@ -231,7 +232,7 @@ if global.movecontrollock = false {
                 and !place_meeting(x+32,y,obj_metal_wall_r5)
                 and !place_meeting(x+32,y,obj_metal_wall_bk1)
                 and !place_meeting(x+32,y,obj_metal_floor_oneway_right)
-                and !place_meeting(x+32,y,obj_server)
+                and !place_meeting(x+32,y,obj_barrier_block)
                 and !place_meeting(x+32,y,obj_door_bot_green)
                 and !place_meeting(x+32,y,obj_door_top_green)
                 and !place_meeting(x+32,y,obj_door_bot_red)
@@ -241,7 +242,8 @@ if global.movecontrollock = false {
                 and !place_meeting(x+32,y,obj_door_bot_blue_n)
                 and !place_meeting(x+32,y,obj_door_top_blue_n)
                 and !place_meeting(x+32,y,obj_door_bot_orange)
-                and !place_meeting(x+32,y,obj_door_top_orange) {
+                and !place_meeting(x+32,y,obj_door_top_orange)
+                and !place_meeting(x+32,y,obj_forcefield) {
                 
                     slidetimer = 0;
                     alarm[0] = 1;
@@ -260,7 +262,7 @@ if global.movecontrollock = false {
             
                 if !place_meeting(x,y-32,obj_metal_wall_bk1)
                 and !place_meeting(x,y-32,obj_metal_floor_oneway_top)
-                and !place_meeting(x,y-32,obj_server)
+                and !place_meeting(x,y-32,obj_barrier_block)
                 and !place_meeting(x,y-32,obj_door_left_green) 
                 and !place_meeting(x,y-32,obj_door_right_green)
                 and !place_meeting(x,y-32,obj_door_left_red)
@@ -270,7 +272,8 @@ if global.movecontrollock = false {
                 and !place_meeting(x,y-32,obj_door_right_blue_n)
                 and !place_meeting(x,y-32,obj_door_left_blue_n)
                 and !place_meeting(x,y-32,obj_door_left_orange)
-                and !place_meeting(x,y-32,obj_door_right_orange) {
+                and !place_meeting(x,y-32,obj_door_right_orange)
+                and !place_meeting(x,y-32,obj_forcefield) {
                     
                     slidetimer = 0;
                     alarm[0] = 1;
@@ -293,7 +296,7 @@ if global.movecontrollock = false {
                     and !place_meeting(x,y+32,obj_metal_wall_r5)
                     and !place_meeting(x,y+32,obj_metal_wall_l5)
                     and !place_meeting(x,y+32,obj_metal_floor_oneway_bot)
-                    and !place_meeting(x,y+32,obj_server)
+                    and !place_meeting(x,y+32,obj_barrier_block)
                     and !place_meeting(x,y+32,obj_door_left_green)
                     and !place_meeting(x,y+32,obj_door_right_green)
                     and !place_meeting(x,y+32,obj_door_left_red)
@@ -303,7 +306,8 @@ if global.movecontrollock = false {
                     and !place_meeting(x,y+32,obj_door_left_blue_n)
                     and !place_meeting(x,y+32,obj_door_right_blue_n)
                     and !place_meeting(x,y+32,obj_door_left_orange)
-                    and !place_meeting(x,y+32,obj_door_right_orange) {
+                    and !place_meeting(x,y+32,obj_door_right_orange)
+                    and !place_meeting(x,y+32,obj_forcefield) {
                     
                     slidetimer = 0;
                     alarm[0] = 1;

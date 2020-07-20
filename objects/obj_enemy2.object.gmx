@@ -203,14 +203,14 @@ scr_enemy_shooting(1,1,2,2,2,800,obj_enemy_laser2,3);
             <kind>1</kind>
             <string>/// kill check ///
 if place_meeting(x,y,obj_player_laser) {
-    with obj_player_laser {
+    with instance_nearest(x,y,obj_player_laser) {
         instance_destroy();
     }
-    enemyhealth -= 1;
-    
-    if enemyhealth = 0 {
-        instance_destroy();
-    }
+    enemyhealth -=1;
+}
+
+if enemyhealth = 0 {
+    instance_destroy();
 }
 </string>
           </argument>
@@ -237,14 +237,26 @@ if place_meeting(x,y,obj_player_laser) {
             <string>/// draw enemy healthbar ///
 draw_self();
 
-var drawinghealth = enemyhealth * 50;
+var drawinghealth = enemyhealth * 10;
 
 draw_sprite_ext(spr_enemy_health_bar_bg,-1,x-35,y-35,0.4,0.4,0,c_white,1);
 
-if drawinghealth &gt; 60 {
+if drawinghealth &gt; 25 {
     
-} else if drawinghealth &lt; 55 {
-
+    draw_set_colour(make_colour_rgb(101, 205, 41));
+    draw_rectangle(x-32,y-32,x-10,y-27,false);
+    draw_rectangle(x-32,y-32,x-32+drawinghealth,y-29,false);
+    
+} else if drawinghealth &lt; 25 and drawinghealth &gt; 15 {
+    
+    draw_set_colour(make_colour_rgb(204, 206, 24));
+    draw_rectangle(x-32,y-32,x-10,y-27,false);
+    
+} else if drawinghealth &lt; 15 {
+    
+    draw_set_colour(make_colour_rgb(155, 8, 58));
+    draw_rectangle(x-32,y-32,x-32+drawinghealth,y-27,false);
+    
 }
 
 draw_sprite_ext(spr_enemy_health_bar,-1,x-32.2,y-32.2,0.4,0.4,0,c_white,1);

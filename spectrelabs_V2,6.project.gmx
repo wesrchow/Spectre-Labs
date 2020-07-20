@@ -168,6 +168,7 @@
       <sprite>sprites\spr_computer1</sprite>
       <sprite>sprites\spr_server</sprite>
       <sprite>sprites\spr_door_block</sprite>
+      <sprite>sprites\spr_barrier_block</sprite>
       <sprites name="floor_oneway">
         <sprite>sprites\spr_metal_floor_oneway_bot</sprite>
         <sprite>sprites\spr_metal_floor_oneway_top</sprite>
@@ -183,6 +184,7 @@
       <sprite>sprites\spr_enemy_laser1</sprite>
       <sprite>sprites\spr_enemy_health_bar</sprite>
       <sprite>sprites\spr_enemy_health_bar_bg</sprite>
+      <sprite>sprites\spr_forcefield</sprite>
       <sprite>sprites\spr_enemy_laser2</sprite>
     </sprites>
     <sprites name="other">
@@ -321,6 +323,7 @@
       <object>objects\obj_computer1</object>
       <object>objects\obj_server</object>
       <object>objects\obj_door_block</object>
+      <object>objects\obj_barrier_block</object>
       <objects name="floor_oneway">
         <object>objects\obj_metal_floor_oneway_top</object>
         <object>objects\obj_metal_floor_oneway_bot</object>
@@ -335,6 +338,7 @@
       <object>objects\obj_enemy3</object>
       <object>objects\obj_enemy_laser1</object>
       <object>objects\obj_enemy_laser2</object>
+      <object>objects\obj_forcefield</object>
     </objects>
   </objects>
   <rooms name="rooms">

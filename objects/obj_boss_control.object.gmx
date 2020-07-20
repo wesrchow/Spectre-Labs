@@ -31,6 +31,8 @@ started = false; // unlock view started //
 view_hspeed[1] = 0; // set view speed to 0 // 
 view_vspeed[1] = 0; // set view speed to 0 //
 
+forcefieldspawned = false; // if forcefield is spawned or not //
+
 spawntimer = 0; // controls spawn rate of enemies //
 enemyspawn = 0; // controls which enemy to spawn //
 rownum = 0; // which row to spawn to //
@@ -66,11 +68,39 @@ fighting = false; // whether player is fighting a wave or not //
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// remove forcefield ///
+if global.bosswave = 4 {
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// start view stall ///
 if started = false {
     viewtimer ++;
     
-    if viewtimer &gt;= 120 {
+    if viewtimer = 60 {
+        instance_create(obj_player.x,obj_player.y,obj_trigger);
+    }
+    
+    if viewtimer &gt;= 280 {
         view_hspeed[1] = 2;
         view_vspeed[1] = 2;
         
@@ -102,7 +132,7 @@ if started = false {
 if started = true {
     viewtimer ++
     
-    if viewtimer &gt;= 330 {
+    if viewtimer &gt;= 370 {
         global.movecontrollock = false;
         
         viewtimer = 0;
