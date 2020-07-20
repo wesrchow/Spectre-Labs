@@ -548,7 +548,7 @@ if global.lasergun = true {
     shoottimer ++
     
     if global.movecontrollock = false {
-        if shoottimer &gt;= 16 {
+        if shoottimer &gt;= 1 {
             if keyboard_check_pressed(vk_right) {
                 sprite_index = spr_player_shoot;
                 image_xscale = 1;
@@ -596,8 +596,8 @@ if global.lasergun = true {
             }
         }
     }
-    if shoottimer &gt;= 16 {
-        shoottimer = 16;
+    if shoottimer &gt;= 1 {
+        shoottimer = 1;
     }
 }
 </string>

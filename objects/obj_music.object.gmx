@@ -44,6 +44,12 @@ if room = room_boss and !audio_is_playing(snd_bg_boss_music) {
     audio_sound_gain(snd_bg_boss_music,0,0);
     audio_sound_gain(snd_bg_boss_music,1,2000);
 }
+
+if room = room_outside {
+    audio_sound_gain(snd_bg_boss_music,0,15000);
+}
+
+laserbeamstop = 0;
 </string>
           </argument>
         </arguments>
@@ -72,6 +78,19 @@ if room = room_boss and !audio_is_playing(snd_bg_boss_music) {
 
 if audio_sound_get_gain(snd_bg_music) &lt;= 0 {
     audio_stop_sound(snd_bg_music);
+}
+
+if audio_sound_get_gain(snd_bg_boss_music) &lt;= 0 {
+    audio_stop_sound(snd_bg_boss_music);
+}
+
+if audio_is_playing(snd_laser_beam) {
+    laserbeamstop ++;
+    
+    if laserbeamstop &gt;= 370 {
+        audio_stop_sound(snd_laser_beam);
+        laserbeamstop = 0;
+    }
 }
 </string>
           </argument>

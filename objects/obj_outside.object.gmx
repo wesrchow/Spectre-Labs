@@ -60,7 +60,7 @@ if obj_dialogue.printedline = 4 {
     dialoguetimer ++;
 }
 
-if obj_dialogue.printedline = 4 and dialoguetimer = 400 {
+if obj_dialogue.printedline = 4 and dialoguetimer = 200 {
     global.fadein = 1
     instance_create(0,0,obj_fade);
 }

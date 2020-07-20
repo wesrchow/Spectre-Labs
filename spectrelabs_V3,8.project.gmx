@@ -227,7 +227,6 @@
   </fonts>
   <objects name="objects">
     <objects name="setup">
-      <object>objects\obj_pause</object>
       <object>objects\obj_initialize</object>
       <object>objects\obj_titlescreen</object>
       <object>objects\obj_music</object>
@@ -237,6 +236,7 @@
       <object>objects\obj_boss_control</object>
       <object>objects\obj_enemy_health_bar_draw</object>
       <object>objects\obj_outside</object>
+      <object>objects\obj_end</object>
     </objects>
     <objects name="player">
       <object>objects\obj_player</object>

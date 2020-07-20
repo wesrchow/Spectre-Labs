@@ -118,7 +118,10 @@ if started = true {
         
         viewtimer = 0;
         started = 2;
-        global.bosswave = 1;
+        global.bosswave = 4;
+        with obj_dialogue {
+            printedline = 3;
+        }
     }
 }
 </string>
@@ -385,7 +388,7 @@ if global.bosspart = 3 and !instance_exists(obj_main_boss) {
         instance_create(obj_player.x,obj_player.y,obj_trigger);
     }
     
-    if postbossdialogue = 240 {
+    if postbossdialogue = 500 {
         instance_create(272,459,obj_controlpanel);
         instance_create(272,464,obj_barrier_block2);
     }
@@ -403,6 +406,7 @@ if global.bosspart = 3 and !instance_exists(obj_main_boss) {
         
         if sparktimer = 50 {
             effect_create_above(ef_firework,irandom_range(352,832),irandom_range(272,652),1,c_white)
+            effect_create_above(ef_firework,960,256,0,c_white);
         }
         
         if sparktimer &gt;= 100 {
@@ -411,11 +415,12 @@ if global.bosspart = 3 and !instance_exists(obj_main_boss) {
         }
         
         if explosiontimer = 50 {
-            effect_create_above(ef_explosion,irandom_range(352,832),irandom_range(272,652),1,c_black)
+            effect_create_above(ef_explosion,irandom_range(352,832),irandom_range(272,652),1,c_dkgray)
         }
         
         if explosiontimer &gt;= 100 {
-            effect_create_above(ef_explosion,irandom_range(352,832),irandom_range(272,652),1,c_black)
+            effect_create_above(ef_explosion,irandom_range(352,832),irandom_range(272,652),1,c_dkgray)
+            effect_create_above(ef_smoke,960,288,2,c_dkgray);
             explosiontimer = 0;
         }
     }

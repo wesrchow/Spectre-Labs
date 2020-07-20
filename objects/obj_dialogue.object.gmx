@@ -104,7 +104,7 @@ if room = room_boss {
     
     box[9] = "A control panel has been revealed since killing the robots. That #must be the self destruct control!"
     
-    box[10] = "Alright where's the menu for it... *taps at control panel* ...Got #it! I've started self destructing the servers! I better get out of here!"
+    box[10] = "Alright where's the menu for it... *taps at control panel* ...Got it! #I've started self destructing the servers! I better get out of here!"
 }
 
 if room = room_outside {
@@ -112,7 +112,7 @@ if room = room_outside {
     
     box[2] = "Strangled Voice: Fooled. Again. You humans are so naive, falling for #all my tricks and games. It's over for you, I've already uploaded..."
     
-    box[3] = "...myself to millions of computes across the world."
+    box[3] = "...myself to millions of computers across the world."
     
     box[4] = "I........... am inevitable........"
 }

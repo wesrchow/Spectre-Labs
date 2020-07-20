@@ -59,7 +59,7 @@ global.enemies2 = 0; // enemy2 count //
 global.enemies3 = 0; // enemy3 count //
 global.bosspart = 1;
 
-global.playerhealth = 100;
+global.playerhealth = 1000;
 
 if room = room_boss {
     global.lasergun = true;

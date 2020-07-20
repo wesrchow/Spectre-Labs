@@ -538,7 +538,6 @@
     <instance objName="obj_metal_wall_fr1_door" x="688" y="496" name="inst_B4A52369" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_bk1_door" x="688" y="400" name="inst_E4FFF3F3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_button3" x="464" y="752" name="inst_9A725C61" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_pause" x="192" y="768" name="inst_3FF87021" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_bk1" x="400" y="720" name="inst_319D6464" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_bk1" x="432" y="720" name="inst_E4117FCC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_bk1" x="464" y="720" name="inst_97858D40" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
