@@ -7,7 +7,344 @@
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
-  <events/>
+  <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// setup start ///
+
+movement = 1; // 0 disabled // 1 enabled //
+movetimer = 0; // to stall player movement //
+slidetimer = 0; // smooth animation sliding of player //
+depth = -10 // bring player forward //
+
+dirchosen = false; // false = direction not chosen // true = direction chosen //
+randomdir = 0; // 1 = 0deg / 2 = 90deg // 3 = 1800deg // 4 = 270deg //
+randomdirtimer = 0; // random dir timer when enemy going down straight wall //
+
+movefinished = true; // false = not // true = one tile movement finished //
+changedir = false; // false = do nothing // true = change direction //
+
+randomdir = irandom_range(1,4)
+/// setup end ///
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// sliding effect start ///
+
+// according to direction, add onto position //
+if direction = 0 {
+    x+=2;   
+}
+
+if direction = 90 {
+    y-=2;
+}
+
+if direction = 180 {
+    x-=2;
+}
+
+if direction = 270 {
+    y+=2;
+}
+
+// increase slidetimer //
+slidetimer += 1;
+
+// if slidetimer &lt; 16, restart alarm //
+if slidetimer &lt; 16 {
+    alarm[0] = 1;
+}
+
+/// sliding effect end ///
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// collision testing ///
+if movefinished = true {
+    if randomdir = 1 {
+        if place_meeting(x+32,y,obj_metal_wall_r1) or place_meeting(x+32,y,obj_server) {
+            changedir = true;
+        }
+    }
+    
+    if randomdir = 2 {
+        if place_meeting(x,y-32,obj_metal_wall_bk1) or place_meeting(x,y-32,obj_server) {
+            changedir = true;
+        }
+    }
+    
+    if randomdir = 3 {
+        if place_meeting(x-32,y,obj_metal_wall_l1) or place_meeting(x-32,y,obj_server) {
+            changedir = true;
+        }
+    }
+    
+    if randomdir = 4 {
+        if place_meeting(x,y+32,obj_metal_wall_fr1) or place_meeting(x,y+32,obj_server) {
+            changedir = true;
+        }
+    }
+    //movefinished = false;
+}
+
+if changedir = true {
+    randomdir = irandom_range(1,4)
+    changedir = false;
+    
+    while dirchosen = false {
+        if randomdir = 1 {
+            if place_meeting(x+32,y,obj_metal_wall_r1) or place_meeting(x+32,y,obj_server) {
+                randomdir = irandom_range(1,4)
+            } else {
+                dirchosen = true;
+            }
+        }
+    
+        if randomdir = 2 {
+            if place_meeting(x,y-32,obj_metal_wall_bk1) or place_meeting(x,y-32,obj_server) {
+                randomdir = irandom_range(1,4)
+            } else {
+                dirchosen = true;
+            }
+        }
+        
+        if randomdir = 3 {
+            if place_meeting(x-32,y,obj_metal_wall_l1) or place_meeting(x-32,y,obj_server) {
+                randomdir = irandom_range(1,4)
+            } else {
+                dirchosen = true;
+            }
+        }
+        
+        if randomdir = 4 {
+            if place_meeting(x,y+32,obj_metal_wall_fr1) or place_meeting(x,y+32,obj_server) {
+                randomdir = irandom_range(1,4)
+            } else {
+                dirchosen = true;
+            }
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// random movement start ///
+
+/*if dirchosen = false {
+    randomdir = irandom_range(1,4)
+    
+    dirchosen = true
+} */
+
+if movement = 1 {
+    if randomdir = 1 {
+        direction = 0;
+        
+        slidetimer = 0;
+        alarm[0] = 1;
+        movement = 0;
+        movetimer = 16;
+    }
+    
+    if randomdir = 2 {
+        direction = 90;
+        
+        slidetimer = 0;
+        alarm[0] = 1;
+        movement = 0;
+        movetimer = 16;
+    }
+    
+    if randomdir = 3 {
+        direction = 180;
+        
+        slidetimer = 0;
+        alarm[0] = 1;
+        movement = 0;
+        movetimer = 16;
+    }
+    
+    if randomdir = 4 {
+        direction = 270;
+        
+        slidetimer = 0;
+        alarm[0] = 1;
+        movement = 0;
+        movetimer = 16;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// stalled movement start ///
+
+// if disabled movement, decrease movetimer //
+if movement = 0 {
+    movetimer -= 1;
+}
+
+// if movetimer &lt;= 0, enable movement //
+if movetimer &lt;= 0 {
+    movement = 1
+    movefinished = true
+}
+
+/// stalled movement end ///
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// random direction when going along wall ///
+
+if direction = 90 or direction = 270 {
+    if place_meeting(x+32,y,obj_metal_wall_r1) {
+        randomdirtimer += irandom_range(1,3);
+        
+        if randomdirtimer &gt;= 180 {
+            randomdir = 3
+            randomtimer  = 0;
+        }
+    }
+    
+    if place_meeting(x-32,y,obj_metal_wall_l1) {
+        randomdirtimer += irandom_range(1,3);
+        
+        if randomdirtimer &gt;= 180 {
+            randomdir = 1
+            randomtimer  = 0;
+        }
+    }
+}
+
+if direction = 180 or direction = 0 {
+    if place_meeting(x,y-32,obj_metal_wall_bk1) {
+        randomdirtimer += irandom_range(1,3);
+        
+        if randomdirtimer &gt;= 180 {
+            randomdir = 4
+            randomtimer  = 0;
+        }
+    }
+    
+    if place_meeting(x,y+32,obj_metal_wall_fr1) {
+        randomdirtimer += irandom_range(1,3);
+        
+        if randomdirtimer &gt;= 180 {
+            randomdir = 2
+            randomtimer  = 0;
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>

@@ -40,6 +40,7 @@ global.button6state = false; // false = off // true = on // controls buttonstate
 
 global.lever1state = false; // false = off // true = on // controls buttonstate of obj_lever1
 global.lever2state = false; // false = off // true = on // controls buttonstate of obj_lever2
+global.lever3state = false; // false = off // true = on // controls buttonstate of obj_lever3
 
 global.movecontrollock = true; // notlocked = false // locked = true // controls locking player movement
 global.blockmovelock = false; // notlocked = false // locked = true // controls locking pushblock movement
@@ -113,15 +114,21 @@ if room = room_start_cut {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// drawing recording circle ////
+            <string>/// draw recording effects ////
 
 with obj_player {
     if recording = true {
-        draw_circle_colour(10,10, 4, c_green, c_green, false);
+        draw_set_alpha(0.2)
+        draw_sprite(spr_record_overlay,-1,0,0);
+        draw_set_alpha(1)
+        
+        draw_set_font(fnt_start_cut)
+        draw_text(10,10,"recording...")
     }  
     
-    if recording = false and playback = false {
-        draw_circle_colour(10,10, 4, c_red, c_red, false);
+    if global.playingback = true {
+        draw_set_font(fnt_start_cut)
+        draw_text(10,10,"playing...")
     }
 }
 </string>

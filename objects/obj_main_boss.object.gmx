@@ -62,7 +62,7 @@ choseny = 0;
 if global.bosswave = 1 {
    spawntimer += irandom_range(1,2)
    
-    if spawntimer &gt;= 2000 {
+    if spawntimer &gt;= 200 {
         
         rownum = irandom_range(1,6);
         
@@ -70,31 +70,31 @@ if global.bosswave = 1 {
         chosenytile = irandom_range(1,2);
         
         if rownum = 1 {
-            gridx = chosenxtile * 32 + 256 
+            gridx = chosenxtile * 32 + 256
             gridy = chosenytile * 32 + 192
         } else if rownum = 2 {
-            gridx = chosenxtile * 32 + 256 
+            gridx = chosenxtile * 32 + 256
             gridy = chosenytile * 32 + 288
         } else if rownum = 3 {
-            gridx = chosenxtile * 32 + 256 
+            gridx = chosenxtile * 32 + 256
             gridy = chosenytile * 32 + 384
         } else if rownum = 4 {
-            gridx = chosenxtile * 32 + 256 
+            gridx = chosenxtile * 32 + 256
             gridy = chosenytile * 32 + 480
         } else if rownum = 5 {
-            gridx = chosenxtile * 32 + 256 
+            gridx = chosenxtile * 32 + 256
             gridy = chosenytile * 32 + 576
         } else if rownum = 6 {
-            gridx = chosenxtile * 32 + 256 
+            gridx = chosenxtile * 32 + 256
             gridy = chosenytile * 32 + 672
         }
         
-        chosenx = gridx - 16
-        choseny = gridy - 16
+        chosenx = gridx - 16;
+        choseny = gridy - 16;
         
-        enemyspawn = irandom_range(1,3);
+        enemyspawn = irandom_range(1,1);
         
-        global.enemies += 1
+        global.enemies += 1;
         
         if enemyspawn = 1 {
             instance_create(chosenx,choseny,obj_enemy1);

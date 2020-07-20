@@ -379,7 +379,7 @@
     <instance objName="obj_player" x="304" y="784" name="inst_4BF6F76C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_button1" x="944" y="656" name="inst_ED579FE5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_button2" x="656" y="304" name="inst_4685EF0E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_buton3" x="464" y="752" name="inst_828EEEB8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_button3" x="464" y="752" name="inst_828EEEB8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_bk1" x="912" y="176" name="inst_29BD8152" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_bk1" x="880" y="176" name="inst_E506CC8A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_bk1" x="848" y="176" name="inst_A76BD3CA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

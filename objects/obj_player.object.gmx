@@ -47,30 +47,7 @@ snaptimer = 0; // timer to wait to snap to grid //
 
 global.playingback = false
 
-// setup end ///
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>scr_blockstuck_back();
+/// setup end ///
 </string>
           </argument>
         </arguments>
@@ -93,7 +70,32 @@ global.playingback = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scr_player_movement_control();
+            <string>/// sliding effect start ///
+
+// according to direction, add onto position //
+if direction = 0 {
+    x+=2;   
+}
+
+if direction = 90 {
+    y-=2;
+}
+
+if direction = 180 {
+    x-=2;
+}
+
+if direction = 270 {
+    y+=2;
+}
+
+// increase slidetimer //
+slidetimer += 1;
+
+if slidetimer &lt; 16 {
+    alarm[0] = 1;
+}
+/// sliding effect end ///
 </string>
           </argument>
         </arguments>
@@ -222,6 +224,7 @@ if global.movecontrollock = false {
                 and !place_meeting(x-32,y,obj_metal_wall_l5)
                 and !place_meeting(x-32,y,obj_metal_wall_bk1)
                 and !place_meeting(x-32,y,obj_metal_floor_oneway_left)
+                and !place_meeting(x-32,y,obj_server)
                 and !place_meeting(x-32,y,obj_door_bot_green)
                 and !place_meeting(x-32,y,obj_door_top_green)
                 and !place_meeting(x-32,y,obj_door_bot_red)
@@ -252,6 +255,7 @@ if global.movecontrollock = false {
                 and !place_meeting(x+32,y,obj_metal_wall_r5)
                 and !place_meeting(x+32,y,obj_metal_wall_bk1)
                 and !place_meeting(x+32,y,obj_metal_floor_oneway_right)
+                and !place_meeting(x+32,y,obj_server)
                 and !place_meeting(x+32,y,obj_door_bot_green)
                 and !place_meeting(x+32,y,obj_door_top_green)
                 and !place_meeting(x+32,y,obj_door_bot_red)
@@ -280,6 +284,7 @@ if global.movecontrollock = false {
             
                 if !place_meeting(x,y-32,obj_metal_wall_bk1)
                 and !place_meeting(x,y-32,obj_metal_floor_oneway_top)
+                and !place_meeting(x,y-32,obj_server)
                 and !place_meeting(x,y-32,obj_door_left_green) 
                 and !place_meeting(x,y-32,obj_door_right_green)
                 and !place_meeting(x,y-32,obj_door_left_red)
@@ -312,6 +317,7 @@ if global.movecontrollock = false {
                     and !place_meeting(x,y+32,obj_metal_wall_r5)
                     and !place_meeting(x,y+32,obj_metal_wall_l5)
                     and !place_meeting(x,y+32,obj_metal_floor_oneway_bot)
+                    and !place_meeting(x,y+32,obj_server)
                     and !place_meeting(x,y+32,obj_door_left_green)
                     and !place_meeting(x,y+32,obj_door_right_green)
                     and !place_meeting(x,y+32,obj_door_left_red)

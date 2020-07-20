@@ -1,4 +1,5 @@
-// according to direction, subtract position //
+/// unused ///
+/// according to direction, subtract position ///
 if direction = 0 {
     x-=2;
 }

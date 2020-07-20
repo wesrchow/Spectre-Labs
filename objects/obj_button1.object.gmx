@@ -61,6 +61,10 @@ if place_meeting(x,y,obj_player) or place_meeting(x,y,obj_ghost) {
     sprite_index = spr_button_green_4of4;
     global.button1state = true;
     buttontimer = 0;
+    
+    with obj_button1 {
+        buttontimer = 0;
+    }
 }
 
 /// button activate end ///
@@ -105,8 +109,9 @@ if global.button1state = true {
         sprite_index = spr_button_green;
         global.button1state = false;
     }
+} else {
+    sprite_index = spr_button_green;
 }
-
 /// button tick down end ///
 </string>
           </argument>

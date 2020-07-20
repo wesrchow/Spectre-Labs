@@ -89,6 +89,10 @@
       </sprites>
     </sprites>
     <sprites name="levers">
+      <sprites name="lever_green">
+        <sprite>sprites\spr_lever_green_off</sprite>
+        <sprite>sprites\spr_lever_green_on</sprite>
+      </sprites>
       <sprites name="lever_red">
         <sprite>sprites\spr_lever_red_off</sprite>
         <sprite>sprites\spr_lever_red_on</sprite>
@@ -168,22 +172,21 @@
       </sprites>
     </sprites>
     <sprites name="boss">
-      <sprite>sprites\spr_enemy_laser</sprite>
+      <sprite>sprites\spr_main_boss</sprite>
       <sprite>sprites\spr_enemy1</sprite>
       <sprite>sprites\spr_enemy2</sprite>
-      <sprite>sprites\spr_main_boss</sprite>
+      <sprite>sprites\spr_enemy_laser</sprite>
     </sprites>
     <sprites name="other">
       <sprite>sprites\spr_dialogue_bg</sprite>
       <sprite>sprites\spr_fade</sprite>
+      <sprite>sprites\spr_record_overlay</sprite>
       <sprite>sprites\spr_empty</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\scr_player_movement_control.gml</script>
-    <script>scripts\scr_block_movement_control.gml</script>
     <script>scripts\scr_blockstuck_back.gml</script>
     <script>scripts\scr_start_lines.gml</script>
     <script>scripts\scr_menu.gml</script>
@@ -196,6 +199,7 @@
   </fonts>
   <objects name="objects">
     <objects name="setup">
+      <object>objects\obj_pause</object>
       <object>objects\obj_initialize</object>
       <object>objects\obj_fade</object>
       <object>objects\obj_dialogue</object>
@@ -217,7 +221,7 @@
     <objects name="buttons">
       <object>objects\obj_button1</object>
       <object>objects\obj_button2</object>
-      <object>objects\obj_buton3</object>
+      <object>objects\obj_button3</object>
       <object>objects\obj_button4</object>
       <object>objects\obj_button5_n1</object>
       <object>objects\obj_button5_n2</object>
@@ -226,10 +230,14 @@
     <objects name="block_button">
       <object>objects\obj_block_button1</object>
       <object>objects\obj_block_button2</object>
+      <object>objects\obj_block_button3</object>
+      <object>objects\obj_block_button5_n1</object>
+      <object>objects\obj_block_button5_n2</object>
     </objects>
     <objects name="levers">
       <object>objects\obj_lever1</object>
       <object>objects\obj_lever2</object>
+      <object>objects\obj_lever3</object>
     </objects>
     <objects name="doors">
       <objects name="door_green">
@@ -253,8 +261,8 @@
       <objects name="door_blue_n(fix)">
         <object>objects\obj_door_left_blue_n</object>
         <object>objects\obj_door_right_blue_n</object>
-        <object>objects\obj_door_bot_blue_n</object>
         <object>objects\obj_door_top_blue_n</object>
+        <object>objects\obj_door_bot_blue_n</object>
       </objects>
       <objects name="door_orange">
         <object>objects\obj_door_left_orange</object>
@@ -306,11 +314,11 @@
       </objects>
     </objects>
     <objects name="boss">
-      <object>objects\obj_enemy_laser</object>
+      <object>objects\obj_main_boss</object>
       <object>objects\obj_enemy1</object>
       <object>objects\obj_enemy2</object>
       <object>objects\obj_enemy3</object>
-      <object>objects\obj_main_boss</object>
+      <object>objects\obj_enemy_laser</object>
     </objects>
   </objects>
   <rooms name="rooms">

@@ -106,7 +106,7 @@ if slidetimer &lt; 43 {
             <kind>1</kind>
             <string>/// open door start ///
 // if button1 on, doorstate opening, slidetimer 0, start alarm [0] //
-if global.button2state = true {
+if global.button2state = true or global.lever2state = true {
     doorstate = 1;
     slidetimer = 0;
     alarm[0] = 1;
@@ -117,7 +117,7 @@ if global.button2state = true {
 // if not meeting player between doors, if closepos &lt; current x pos, if button1 off, door state closing, slidetimer 0, start alarm [0] //
 if !place_meeting(x,y-32,obj_player) and !place_meeting(x,y-64,obj_player) {
 if closepos &lt; y {
-    if global.button2state = false {
+    if global.button2state = false and global.lever2state = false {
         doorstate = 0;
         slidetimer = 0;
         alarm[0] = 1;
