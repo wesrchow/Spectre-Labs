@@ -119,6 +119,8 @@ if global.bosswave = 4 {
                 
                 shoottimer = 11;
             }
+        } else {
+            audio_stop_sound(snd_laser_beam);
         }
         
         if firingratetimer &gt;= 360 {
@@ -129,7 +131,6 @@ if global.bosswave = 4 {
                 firing = true;
             } else {
                 firing = false;
-                audio_stop_sound(snd_laser_beam);
             }
         }
     }
@@ -198,6 +199,8 @@ if global.bosswave = 4 {
                 
                 shoottimer = 11;
             }
+        } else {
+            audio_stop_sound(snd_laser_beam);
         }
         
         if firingratetimer &gt;= 480 {
@@ -258,7 +261,7 @@ if x &gt;= 608 {
           <argument>
             <kind>1</kind>
             <string>/// kill check ///
-scr_enemy_kill_check();
+scr_enemy_kill_check(0);
 </string>
           </argument>
         </arguments>

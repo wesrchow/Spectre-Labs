@@ -283,6 +283,8 @@ if room = room_game_restart {
     #PRESS 'SPACE'
     #TO RESTART");
     
+    audio_stop_sound(snd_laser_beam);
+    
     if keyboard_check_pressed(vk_space) {
         global.fadein = 1;
         instance_create(0,0,obj_fade);
@@ -308,8 +310,14 @@ if room = room_game_restart {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// title screen drawing start ///
+            <string>/// title screen drawing start (taken out of game) ///
 
+if keyboard_check_pressed(vk_space) {
+    global.startselection = 1
+    global.fadein = 1
+    instance_create(0,0,obj_fade);
+}
+/*
 // draws out selections in the title screen, create selector reference //
 if room = room_title_screen {
     draw_set_halign(fa_middle);
@@ -334,7 +342,7 @@ if room = room_title_screen {
     }
 }
 
-/// title screen drawing end ///
+
 </string>
           </argument>
         </arguments>

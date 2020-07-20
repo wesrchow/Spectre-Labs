@@ -38,6 +38,7 @@ dialoguecontrol = false; // false = off // true = on //
 holdingdialogue = false; // false = not // true = close //
 
 controlroomtimer = 0;
+postdialoguetimer = 0;
 
 closemessage = "'C' to exit"
 closemessageprint = ""
@@ -85,11 +86,11 @@ if room = room_control_room {
     box[12] =  "...the servers the person was talking about. Maybe I'll need this gun #after all..."
 }
 if room = room_boss {
-    box[1] = "So you figured out the big secret huh? Guess we'll just have to get rid #of you. Minions, kill him!"
+    box[1] = "So you figured out the big secret huh? Yes, I have become a sentient AI. #You know too much already, you'll have to die, minions, kill him!"
     
     box[2] = "You killed them all. No problem, there's plenty more where that came #from. Bring in another wave!"
     
-    box[3] = "You are getting very annoying. Can you please just stop struggling and #die? Just send a bunch more."
+    box[3] = "AGH! You are getting very annoying! How are you even surviving against #my robots!?"
     
     box[4] = "Boss: What!? You killed all my minions!? Alright clones, go." 
     
@@ -97,9 +98,11 @@ if room = room_boss {
     
     box[6] = "Boss: Agh!! You've made me use up all my energy, I can't maintain my #forcefield. Fine, then I'll do it myself..."
     
-    box[7] = "Boss: How could a measly human like you kill me!? No matter, it's too #late, I've already finished uploading myself to computers across..."
+    box[7] = "Boss: How could a measly human like you kill me!? Haha, you thought #destroying my robots would be the end? Aren't you forgetting all..."
     
-    box[8] = "... the world. Even if you destroy"
+    box[8] = "... these servers around you??"
+    
+    box[9] = ""
 }
 
 printedline = 0;
@@ -196,6 +199,40 @@ if room = room_control_room  {
 }
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// post boss dialogue control ///
+if room = room_boss {
+    if printedline &gt;= 7 and printedline &lt;= 8 {
+        if holdingdialogue = false {
+            postdialoguetimer ++;
+            
+            if postdialoguetimer = 15 {
+                instance_create(obj_player.x,obj_player.y,obj_trigger);
+                
+                postdialoguetimer = 0;
+            }
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

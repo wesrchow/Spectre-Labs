@@ -11,11 +11,11 @@
   <colour>1710618</colour>
   <showcolour>-1</showcolour>
   <code>instance_create(0,0,obj_fade);
-instance_create(480,317,obj_titlescreen_selector_ref_top);
-instance_create(480,387,obj_titlescreen_selector_ref_bot);
+//instance_create(480,317,obj_titlescreen_selector_ref_top);
+//instance_create(480,387,obj_titlescreen_selector_ref_bot);
 
-instance_create(obj_titlescreen_selector_ref_top.x - 140,obj_titlescreen_selector_ref_top.y + 5,obj_titlescreen_selector_left);
-instance_create(obj_titlescreen_selector_ref_top.x + 140,obj_titlescreen_selector_ref_top.y + 5,obj_titlescreen_selector_right);</code>
+//instance_create(obj_titlescreen_selector_ref_top.x - 140,obj_titlescreen_selector_ref_top.y + 5,obj_titlescreen_selector_left);
+//instance_create(obj_titlescreen_selector_ref_top.x + 140,obj_titlescreen_selector_ref_top.y + 5,obj_titlescreen_selector_right);</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

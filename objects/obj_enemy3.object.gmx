@@ -203,7 +203,7 @@ scr_enemy_sprite_control();
           <argument>
             <kind>1</kind>
             <string>/// enemy shooting ///
-scr_enemy_shooting(1,1,1,2,2,250,obj_enemy_laser1,8);
+scr_enemy_shooting(1,1,1,2,2,200,obj_enemy_laser1,8);
 </string>
           </argument>
         </arguments>
@@ -225,7 +225,7 @@ scr_enemy_shooting(1,1,1,2,2,250,obj_enemy_laser1,8);
           <argument>
             <kind>1</kind>
             <string>/// kill check ///
-scr_enemy_kill_check();
+scr_enemy_kill_check(0);
 </string>
           </argument>
         </arguments>

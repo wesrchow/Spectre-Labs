@@ -276,7 +276,7 @@ draw_sprite_ext(spr_enemy_health_bar,-1,x-32.2,y-32.2,0.4,0.4,0,c_white,1);
           <argument>
             <kind>1</kind>
             <string>/// kill check ///
-scr_enemy_kill_check();
+scr_enemy_kill_check(0);
 </string>
           </argument>
         </arguments>

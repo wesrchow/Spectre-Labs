@@ -136,7 +136,7 @@ if global.bosspart = 3 {
         }
     }
     
-    if stallintimer = 900 {
+    if stallingtimer = 900 {
         audio_stop_sound(snd_laser_beam);
     }
     
@@ -283,7 +283,7 @@ if place_meeting(x,y-24,obj_server) {
           <argument>
             <kind>1</kind>
             <string>/// kill check ///
-scr_enemy_kill_check();
+scr_enemy_kill_check(1);
 </string>
           </argument>
         </arguments>

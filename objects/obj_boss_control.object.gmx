@@ -48,37 +48,13 @@ wavetimer = 0; // delay between waves //
 maxspawned = false; // whether max # of enemies is spawned in wave or not //
 fighting = false; // whether player is fighting a wave or not //
 
-bossdialogue = 1;
+postbossdialogue = 1;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
     <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// remove forcefield ///
-if global.bosswave = 4 {
-
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -140,7 +116,10 @@ if started = true {
         
         viewtimer = 0;
         started = 2;
-        global.bosswave = 1;
+        global.bosswave = 4;
+        with obj_dialogue {
+            printedline = 3;
+        }
     }
 }
 </string>
@@ -169,7 +148,7 @@ if global.bosswave = 1 {
     if maxspawned = false {
        spawntimer += irandom_range(1,2)
        
-        if spawntimer &gt;= 300 {
+        if spawntimer &gt;= 250 {
             
             scr_enemy_spawn_pos();
             
@@ -219,13 +198,13 @@ if global.bosswave = 2 {
     if maxspawned = false {
        spawntimer += irandom_range(1,2)
        
-        if spawntimer &gt;= 500 {
+        if spawntimer &gt;= 400 {
             
             scr_enemy_spawn_pos();
             
             enemyspawn = irandom_range(1,3);
             
-            scr_random_enemy(6,4,2);
+            scr_random_enemy(3,4,3);
             
             if enemyspawn = 1 {
                 instance_create(chosenx,choseny,obj_enemy1);
@@ -265,13 +244,13 @@ if global.bosswave = 3 {
     if maxspawned = false {
        spawntimer += irandom_range(1,2)
        
-        if spawntimer &gt;= 500 {
+        if spawntimer &gt;= 400 {
             
             scr_enemy_spawn_pos();
             
             enemyspawn = irandom_range(1,3);
             
-            scr_random_enemy(7,5,4);
+            scr_random_enemy(3,4,5);
             
             if enemyspawn = 1 {
                 instance_create(chosenx,choseny,obj_enemy1);
@@ -306,35 +285,6 @@ if global.bosswave = 3 {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// final boss fight (wave 4) ///
-/*if global.bosswave = 4 {
-    if bossdialogue = 1 {
-        instance_create(obj_player.x,obj_player.y,obj_trigger);
-        bossdialogue = -1;
-    }
-    
-    
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>/// wave control ///
 if instance_exists(obj_enemy1) or instance_exists(obj_enemy2) or instance_exists(obj_enemy3) {
     fighting = true;
@@ -342,7 +292,6 @@ if instance_exists(obj_enemy1) or instance_exists(obj_enemy2) or instance_exists
     fighting = false;
 }
 
-show_debug_message(wavetimer);
 if global.bosswave = 1 {
     if global.enemies1 = 5 and global.enemies2 = 3 {
         maxspawned = true;
@@ -367,7 +316,7 @@ if global.bosswave = 1 {
 }
 
 if global.bosswave = 2 {
-    if global.enemies1 = 6 and global.enemies2 = 4 and global.enemies3 = 2 {
+    if global.enemies1 = 3 and global.enemies2 = 4 and global.enemies3 = 3 {
         maxspawned = true;
         
         if fighting = false {
@@ -391,7 +340,7 @@ if global.bosswave = 2 {
 }
 
 if global.bosswave = 3 {
-    if global.enemies1 = 7 and global.enemies2 = 5 and global.enemies3 = 4 {
+    if global.enemies1 = 3 and global.enemies2 = 4 and global.enemies3 = 5 {
         maxspawned = true;
         
         if fighting = false {
@@ -431,7 +380,11 @@ if global.bosswave = 3 {
             <kind>1</kind>
             <string>/// boss post dialogue ///
 if global.bosspart = 3 and !instance_exists(obj_main_boss) {
-    instance_create(obj_player.x,obj_player.y,obj_trigger);
+    postbossdialogue ++;
+    
+    if postbossdialogue = 30 {
+        instance_create(obj_player.x,obj_player.y,obj_trigger);
+    }
 }
 </string>
           </argument>
@@ -479,7 +432,7 @@ if global.bosswave = 1 {
 }
 
 if global.bosswave = 2 {
-    if global.enemies1 = 6 and global.enemies2 = 4 and global.enemies3 = 2 {
+    if global.enemies1 = 3 and global.enemies2 = 4 and global.enemies3 = 3 {
         if fighting = false {
             draw_set_halign(fa_center);
             draw_set_valign(fa_center);
@@ -492,7 +445,7 @@ if global.bosswave = 2 {
 }
 
 if global.bosswave = 3 {
-    if global.enemies1 = 7 and global.enemies2 = 5 and global.enemies3 = 4 {
+    if global.enemies1 = 3 and global.enemies2 = 4 and global.enemies3 = 3 {
         if fighting = false {
             draw_set_halign(fa_center);
             draw_set_valign(fa_center);
