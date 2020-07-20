@@ -43,6 +43,7 @@ playback = false // false = not playing recording // true = playing recording //
 recordtimer = 0; // recording timer //
 recordstartingx = 0;
 recordstartingy = 0;
+snaptimer = 0; // timer to wait to snap to grid //
 
 global.playingback = false
 
@@ -262,18 +263,38 @@ if place_meeting(x,y,obj_level_complete) {
             <kind>1</kind>
             <string>/// ghost recording start ///
 
-if movement = 1 {
+/* if x mod 32 = 0 {
+  //on grid
+}
+else {
+  var rem=x mod 32;
+  if rem&lt;16
+    x-=rem
+  else
+    x+=rem
+}
+*/
+
+ongridx = x + 16
+ongridy = y + 16
+
+//show_debug_message(x)
+
+if ongridx mod 32 = 0 and ongridy mod 32 = 0 {
+    //show_debug_message("on grid");
     if global.playingback = false {
         if recording = false {
             if keyboard_check_pressed(ord('Q')) {
+                recordstartingx = x;
+                recordstartingy = y;
+                
                 ds_list_clear(global.recordpathx);
                 ds_list_clear(global.recordpathy);
                 
                 image_blend = c_lime;
                 
                 recording = true;
-                recordstartingx = x;
-                recordstartingy = y;
+                
                 
                 show_debug_message("started recordingg");
             }
@@ -289,14 +310,55 @@ if recording = true {
     ds_list_add(global.recordpathy,y);
     
     if recordtimer &gt;= 300 {
-        recording = false
-        playback = false
-        recordtimer = 0;
+    
+        if ongridx mod 32 != 0 or ongridy mod 32 != 0 {
+            show_debug_message("started snapping")
+            
+            
+        } else {
+            recording = false
+            playback = false
+            
+            
+            image_blend = c_white;
+            x = recordstartingx;
+            y = recordstartingy;
+            
+            snaptimer = 0;
+            recordtimer = 0;
+        }
         
-        image_blend = c_white;
-        x = recordstartingx;
-        y = recordstartingy;
+        /*
+        snaptimer ++;
         
+        if snaptimer &gt;= 20 {
+        
+            while ongridx mod 32 != 0 {
+            
+                if ongridx mod 32 &gt;= 16{
+                    x -= 0.1
+                } else if ongridx mod 32 &lt; 16 {
+                    x += 0.1
+                }   
+                ongridx = x + 16
+                ongridy = y + 16
+            }
+
+            while ongridy mod 32 != 0 {
+
+                if ongridy mod 32 &gt;= 16{
+                    y -= 0.1
+                } else if ongridy mod 32 &lt; 16 {
+                    y += 0.1
+                } 
+                ongridx = x + 16
+                ongridy = y + 16
+            } 
+            
+            
+        }
+            */
+            
         show_debug_message("recording finished");
     }
 }

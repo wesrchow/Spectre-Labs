@@ -56,15 +56,17 @@
     </sprites>
     <sprites name="room_structure">
       <sprite>sprites\spr_metal_ground</sprite>
+      <sprite>sprites\spr_metal_wall</sprite>
       <sprites name="ground_oneway">
         <sprite>sprites\spr_metal_ground_oneway_topbot</sprite>
         <sprite>sprites\spr_metal_ground_oneway_leftright</sprite>
       </sprites>
-      <sprite>sprites\spr_metal_wall</sprite>
-      <sprite>sprites\spr_pushblock_floor</sprite>
-      <sprite>sprites\spr_pushblock_floor_edge_topbot</sprite>
-      <sprite>sprites\spr_pushblock_floor_corner</sprite>
-      <sprite>sprites\spr_pushblock_floor_edge_leftright</sprite>
+      <sprites name="pushblock">
+        <sprite>sprites\spr_pushblock_floor</sprite>
+        <sprite>sprites\spr_pushblock_floor_edge_topbot</sprite>
+        <sprite>sprites\spr_pushblock_floor_edge_leftright</sprite>
+        <sprite>sprites\spr_pushblock_floor_corner</sprite>
+      </sprites>
       <sprites name="exit_door">
         <sprite>sprites\spr_exit_door_green</sprite>
         <sprite>sprites\spr_exit_door_blue</sprite>
@@ -89,6 +91,7 @@
   <objects name="objects">
     <object>objects\obj_initialize</object>
     <object>objects\obj_dialogue</object>
+    <object>objects\obj_trigger</object>
     <object>objects\obj_fade</object>
     <object>objects\obj_player</object>
     <object>objects\obj_ghost</object>

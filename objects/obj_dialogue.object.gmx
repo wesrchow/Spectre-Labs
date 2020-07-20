@@ -32,14 +32,45 @@ draw_set_font(fnt_start_cut);
 draw_set_colour(c_white);
 
 strcharpos = 0; // position of list to take character from
-scrolltimer = 0 // timer to control text holding and rate of scrolling of text
-printed = "" // the text to be printed
-    
+scrolltimer = 0; // timer to control text holding and rate of scrolling of text
+printed = ""; // the text to be printed
+dialoguecontrol = false; // false = off // true = on //
+holdingdialogue = false; // false = not // true = close //
+
 if room = room_level1 {
-    box1 = "testing testing ... . . . . . .#sdkjhfejkahdsjkfklsfjkldsj lkdsjflksjlkf jdskl jlk"
+    box[1] = "Voice from speaker: Oh? We have our test subj- I mean our valued #prototype tester! How exciting it is to see you."
+    
+    box[2] = "Voice from speaker: I assume my colleagues have already filled you in. #Try and get through the puzzle rooms."
+    
+    box[3] = ""
 }
 
-printedline = box1;
+printedline = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if keyboard_check(ord('C')) {
+    holdingdialogue = false;
+}
 </string>
           </argument>
         </arguments>
@@ -65,10 +96,10 @@ printedline = box1;
             <string>/// dialogue control start ///
 
 // if room is level1 //
-if room = room_level1 {
-
-        draw_sprite(spr_dialogue_bg,-1,0,650);
+if dialoguecontrol = true {
         
+    draw_sprite(spr_dialogue_bg,0,0,650);
+    
         scrolltimer ++;        
 
         // if scroll timer &gt;= 3 // 
@@ -77,7 +108,7 @@ if room = room_level1 {
                 // character to be added = list(printedline, strcharpos) //
                 // printed phrase = current printed phrase + character //
                 //character = ds_list_find_value(printedline, strcharpos);
-                printed = string_copy(printedline,1,strcharpos + 1)
+                printed = string_copy(box[printedline],1,strcharpos + 1)
                 
                 strcharpos ++;
                 scrolltimer = 0;
@@ -85,18 +116,21 @@ if room = room_level1 {
             }
         
         // if list position &gt;= size of printing list, printing line = script start lines //
-        if strcharpos &gt;= string_length(printedline) {
-            starthold = true
-                            
-            if scrolltimer &gt;= 45 {
-                room_goto(room_level1);
-            }
-        //printedline = scr_start_lines();
+        if strcharpos &gt;= string_length(box[printedline]) {
+            
+            scrolltimer = 0;
+            strcharpos = 0;
+            dialoguecontrol = false;
+            holdingdialogue = true;
+        
         }
-                 
+        draw_text(20,653,printed);
+}                 
         // draw printed string with y + amount depending on printing line number //
-        draw_text(20,652,printed);
-    
+
+    if holdingdialogue = true {
+        draw_sprite(spr_dialogue_bg,0,0,650);
+        draw_text(20,653,printed);
     }
 
 /// dialogue control end ///
