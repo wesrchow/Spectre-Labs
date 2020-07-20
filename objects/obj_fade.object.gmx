@@ -25,12 +25,18 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>depth = -10000;
-holdtimer = 0;
-fadetimer = 0;
+            <string>/// setup start ///
+
+depth = -10000; // sets depth to very top of room //
+holdtimer = 0; // holds black screen for amount of time on fade in //
+fadetimer = 0; // controls fading effect timing of object //
+
+// if fadeout state, start object invisible //
 if global.fadein = 1 {
     image_alpha = 0;
 }
+
+// setup end ///
 </string>
           </argument>
         </arguments>
@@ -53,10 +59,14 @@ if global.fadein = 1 {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.fadein = 0 {
-    image_alpha -= 0.04;
+            <string>/// fading effect start ///
 
+// if fadein state, decrease image_alpha, increase fadetimer //
+if global.fadein = 0 {
+    image_alpha -= 0.04;
     fadetimer += 1;
+    
+    // if fadetimer &lt; 25, restart alarm, else destroy self, unlock global.movecontrollock //
     if fadetimer &lt; 25 {
         alarm[0] = 1;
     } else {
@@ -65,13 +75,20 @@ if global.fadein = 1 {
     }
 }
 
+// if fadeout state, incrase image_alpha, increase fadetimer //
 if global.fadein = 1 {
     image_alpha += 0.04;
-    
     fadetimer += 1;
+    
+    // if fadetimer &lt; 25, restart alarm //
     if fadetimer &lt; 25 {
-        alarm[0] = 1;
+    alarm[0] = 1;
+    
+    // else choose room depending on current room and global.startselection //
     } else {
+        if room = room_feature_test {
+            room_goto(room_title_screen);
+        }
         if room = room_tutorial {
             room_goto(room_title_screen);
         }
@@ -86,8 +103,11 @@ if global.fadein = 1 {
                 room_goto(/*room_tutorial*/room_feature_test);
             }
         }
+        
     }
 }
+
+/// fading effect end ///
 </string>
           </argument>
         </arguments>
@@ -110,21 +130,28 @@ if global.fadein = 1 {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.fadein = 1 {
-    if fadetimer = 0 {
-        alarm[0] = 1;
-    }
-}
-/// hold black for short time // fadein ///
-if global.fadein = 0 {
-holdtimer += 1;
+            <string>/// fade initialize start ///
 
-if holdtimer &gt; 15 {
+// if fadeout state, if fadetimer 0 (start of fade), set alarm [0] (fading effect) //
+if global.fadein = 1 {
     if fadetimer = 0 {
         alarm[0] = 1;
     }
 }
+
+// if fadein state, increase holdtimer to hold black //
+if global.fadein = 0 {
+    holdtimer += 1;
+    
+    // if holdtimer &gt; 15, if fadetimer 0 (start of fade), set alarm [0] (fading effect) //
+    if holdtimer &gt; 15 {
+        if fadetimer = 0 {
+            alarm[0] = 1;
+        }
+    }
 }
+
+// fade initialize end ///
 </string>
           </argument>
         </arguments>

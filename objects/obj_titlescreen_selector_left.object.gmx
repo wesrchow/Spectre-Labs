@@ -25,14 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//menu[0] = "Start Game";
+            <string>// old menu code //
+//menu[0] = "Start Game";
 //menu[1] = "Tutorial";
 
-global.startselection = 0; // startgame = 0 // tutorial = 1 //
-
-global.level = 0;
+/// setup start ///
 
 alarm[0] = 1;
+
+/// setup end ///
 </string>
           </argument>
         </arguments>
@@ -55,8 +56,12 @@ alarm[0] = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sprite_index = spr_titlescreen_selector_flash;
+            <string>/// blink animation start ///
+
+sprite_index = spr_titlescreen_selector_flash;
 alarm[0] = 30;
+
+/// blink animation end ///
 </string>
           </argument>
         </arguments>
@@ -79,8 +84,12 @@ alarm[0] = 30;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sprite_index = spr_titlescreen_selector;
+            <string>/// blink animation start ///
+
+sprite_index = spr_titlescreen_selector;
 alarm[1] = 30;
+
+/// blink animation end ///
 </string>
           </argument>
         </arguments>
@@ -103,34 +112,49 @@ alarm[1] = 30;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.startselectoptionlock = 1 {
+            <string>/// movement control start ///
+
+/// input start ///
+// if startselection unlocked, check for input, move selector accordingly, change startselection accordingly //
+if global.startselectoptionlock = 1 {
     if keyboard_check_pressed(ord("W")) and global.startselection = 1 {
         global.startselection -= 1;
         global.startselectlock = 0;
-        move_towards_point(190,257,4);
+        move_towards_point(obj_titlescreen_selector_ref_top.x - 140,obj_titlescreen_selector_ref_top.y + 4,5);
     }
 
     if keyboard_check_pressed(ord("S")) and global.startselection = 0 {
         global.startselection += 1;
         global.startselectlock = 0;
-        move_towards_point(222,326,4);
+        move_towards_point(obj_titlescreen_selector_ref_bot.x - 110,obj_titlescreen_selector_ref_bot.y + 5,5);
     }
 }
+/// input end ///
 
+/// selector stopping start ///
+// if startselection, if in correct position, speed 0, unlock startselect //
 if global.startselection = 0 {
-    if x &lt; 191 and y &lt; 258 {
+    if x &lt; obj_titlescreen_selector_ref_top.x - 139 or y &lt; obj_titlescreen_selector_ref_top.y + 4 {
         speed = 0;
+        x = obj_titlescreen_selector_ref_top.x - 140;
+        y = obj_titlescreen_selector_ref_top.y + 5;
         global.startselectlock = 1;
     }
 }
 
+// if startselection, if in correct position, speed 0, unlock startselect //
 if global.startselection = 1 { 
-    if x &gt; 221 and y &gt; 325 {
+    if x &gt; obj_titlescreen_selector_ref_bot.x - 109 or y &gt; obj_titlescreen_selector_ref_bot.y + 2 {
         speed = 0;
+        x = obj_titlescreen_selector_ref_bot.x - 110;
+        y = obj_titlescreen_selector_ref_bot.y + 3;
         global.startselectlock = 1;
     }
 }
+/// selector stopping end ///
 
+/// selection input start ///
+// if startselect unlocked, if space pressed, set fadeout state, startselectoption lock, create fade object //
 if global.startselectlock = 1 {
     if keyboard_check_pressed(vk_space) {
         global.fadein = 1; 
@@ -138,10 +162,9 @@ if global.startselectlock = 1 {
         instance_create(320,288,obj_fade);
     }
 }
+/// selection input end ///
 
-if keyboard_check_pressed(ord("W")) or keyboard_check_pressed(ord("S")) {
-    
-}
+/// movement control end ///
 </string>
           </argument>
         </arguments>

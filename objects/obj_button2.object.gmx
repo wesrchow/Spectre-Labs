@@ -25,7 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>buttontimer = 0;
+            <string>/// 120 opacity black for greyed out parts of buton ///
+/// player and pushblock activate ///
+/// setup start ///
+
+buttontimer = 0;
+
+/// setup start ///
 </string>
           </argument>
         </arguments>
@@ -48,14 +54,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// button activate ///
-if place_meeting(x,y,obj_player) {
+            <string>/// button activate start ///
+
+// when player or pushblock is on button, buttonstate on, change sprite index //
+if place_meeting(x,y,obj_player) or place_meeting(x,y,obj_push_block) {
     sprite_index = spr_button_red_4of4;
-    global.button2state = 1;
+    global.button2state = true;
     buttontimer = 0;
     alarm[0] = 120;
 }
-/// button activate ///
+
+/// button activate  end ///
 </string>
           </argument>
         </arguments>
@@ -76,8 +85,10 @@ if place_meeting(x,y,obj_player) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// button tick down ///
-if global.button2state = 1 {
+            <string>/// button tick down start ///
+
+// if butonstate on, increase button timer, change sprite at given intervals //
+if global.button2state = true {
     buttontimer += 1;
 
     if buttontimer &gt; 30 and buttontimer &lt; 60 {
@@ -93,9 +104,11 @@ if global.button2state = 1 {
     }
     if buttontimer &gt;= 120 {
         sprite_index = spr_button_red;
-        global.button2state = 0;
+        global.button2state = false;
     }
 }
+
+/// button tick down end ///
 </string>
           </argument>
         </arguments>

@@ -1,3 +1,4 @@
+/// unused ///
 switch(global.mpos)
 {
     case 0: room_goto(room_level1); break;

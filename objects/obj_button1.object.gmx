@@ -25,7 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>buttontimer = 0;
+            <string>/// 120 opacity black for greyed out parts of buton ///
+/// player activate only ///
+/// setup start ///
+
+buttontimer = 0;
+
+/// setup start ///
 </string>
           </argument>
         </arguments>
@@ -48,14 +54,30 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// button activate ///
-if place_meeting(x,y,obj_player) {
-    sprite_index = spr_button_green_4of4;
-    global.button1state = 1;
-    buttontimer = 0;
-    alarm[0] = 120;
+            <string>/// button tick down start ///
+
+// if butonstate on, increase button timer, change sprite at given intervals //
+if global.button1state = true {
+    buttontimer += 1;
+
+    if buttontimer &gt; 30 and buttontimer &lt; 60 {
+        sprite_index = spr_button_green_3of4;
+    }
+
+    if buttontimer &gt; 60 and buttontimer &lt; 90 {
+        sprite_index = spr_button_green_2of4;
+    }
+
+    if buttontimer &gt; 90 and buttontimer &lt; 120 {
+        sprite_index = spr_button_green_1of4;
+    }
+    if buttontimer &gt;= 120 {
+        sprite_index = spr_button_green;
+        global.button1state = false;
+    }
 }
-/// button activate ///
+
+/// button tick down end ///
 </string>
           </argument>
         </arguments>
@@ -76,26 +98,16 @@ if place_meeting(x,y,obj_player) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// button tick down ///
-if global.button1state = 1 {
-    buttontimer += 1;
+            <string>/// button activate start ///
 
-    if buttontimer &gt; 30 and buttontimer &lt; 60 {
-        sprite_index = spr_button_green_3of4;
-    }
-
-    if buttontimer &gt; 60 and buttontimer &lt; 90 {
-        sprite_index = spr_button_green_2of4;
-    }
-
-    if buttontimer &gt; 90 and buttontimer &lt; 120 {
-        sprite_index = spr_button_green_1of4;
-    }
-    if buttontimer &gt;= 120 {
-        sprite_index = spr_button_green;
-        global.button1state = 0;
-    }
+// when player is on button, buttonstate on, change sprite index //
+if place_meeting(x,y,obj_player) {
+    sprite_index = spr_button_green_4of4;
+    global.button1state = true;
+    buttontimer = 0;
 }
+
+/// button activate end ///
 </string>
           </argument>
         </arguments>

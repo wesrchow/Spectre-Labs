@@ -25,9 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>movement = 1; // 0 disabled // 1 enabled //
+            <string>/// setup start ///
+
+movement = 1; // 0 disabled // 1 enabled //
 movetimer = 0; // to stall player movement //
 slidetimer = 0; // smooth animation sliding of block //
+
+/// setup start ///
 </string>
           </argument>
         </arguments>
@@ -50,26 +54,7 @@ slidetimer = 0; // smooth animation sliding of block //
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if direction = 0 {
-    x+=2;   
-}
-
-if direction = 90 {
-    y-=2;
-}
-
-if direction = 180 {
-    x-=2;
-}
-
-if direction = 270 {
-    y+=2;
-}
-
-slidetimer += 1;
-if slidetimer &lt; 16 {
-    alarm[0] = 1;
-}
+            <string>scr_movement_control();
 </string>
           </argument>
         </arguments>
@@ -92,15 +77,66 @@ if slidetimer &lt; 16 {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// stalled movement start ///
-if movement = 0 {
-    movetimer -= 1;
+            <string>/// player push checking start ///
+
+// checks for meeting obj_player and not meeting obj_metal_ground in next position //
+// sets alarm, slidetimer, movement, movetimer //
+if place_meeting(x-2,y,obj_player) {
+    if movement = 1 {
+        direction = 0;
+        
+        if !place_meeting(x+32,y,obj_metal_ground) {
+            slidetimer = 0;
+            alarm[0] = 1;
+            
+            movement = 0;
+            movetimer = 16;
+        }
+    }
 }
 
-if movetimer &lt;= 0 {
-    movement = 1;
+if place_meeting(x+2,y,obj_player) {
+    if movement = 1 {
+        direction = 180;
+        
+        if !place_meeting(x-32,y,obj_metal_ground) {
+            slidetimer = 0;
+            alarm[0] = 1;
+            
+            movement = 0;
+            movetimer = 16;
+        }
+    }
 }
-/// stalled movement end ///
+
+if place_meeting(x,y-2,obj_player) {
+    if movement = 1 {
+        direction = 270;
+        
+        if !place_meeting(x,y+32,obj_metal_ground) {
+            slidetimer = 0;
+            alarm[0] = 1;
+            
+            movement = 0;
+            movetimer = 16;
+        }
+    }
+}
+
+if place_meeting(x,y+2,obj_player) {
+    if movement = 1 {
+        direction = 90;
+        
+        if !place_meeting(x,y-32,obj_metal_ground) {
+            slidetimer = 0;
+            alarm[0] = 1;
+            
+            movement = 0;
+            movetimer = 16;
+        }
+    }
+}
+/// player push checking end ///
 </string>
           </argument>
         </arguments>
@@ -121,62 +157,19 @@ if movetimer &lt;= 0 {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// player push checking ///
-if place_meeting(x-2,y,obj_player) {
-    if movement = 1 {
-        direction = 0;
-        
-        if !place_meeting(x+32,y,obj_metal_wall) {
-            slidetimer = 0;
-            alarm[0] = 1;
-            
-            movement = 0;
-            movetimer = 16;
-        }
-    }
+            <string>/// stalled movement start ///
+
+// if disabled movement, decrease movetimer //
+if movement = 0 {
+    movetimer -= 1;
 }
 
-if place_meeting(x+2,y,obj_player) {
-    if movement = 1 {
-        direction = 180;
-        
-        if !place_meeting(x-32,y,obj_metal_wall) {
-            slidetimer = 0;
-            alarm[0] = 1;
-            
-            movement = 0;
-            movetimer = 16;
-        }
-    }
+// if movetimer &lt;= 0, enable movement //
+if movetimer &lt;= 0 {
+    movement = 1;
 }
 
-if place_meeting(x,y-2,obj_player) {
-    if movement = 1 {
-        direction = 270;
-        
-        if !place_meeting(x,y+32,obj_metal_wall) {
-            slidetimer = 0;
-            alarm[0] = 1;
-            
-            movement = 0;
-            movetimer = 16;
-        }
-    }
-}
-
-if place_meeting(x,y+2,obj_player) {
-    if movement = 1 {
-        direction = 90;
-        
-        if !place_meeting(x,y-32,obj_metal_wall) {
-            slidetimer = 0;
-            alarm[0] = 1;
-            
-            movement = 0;
-            movetimer = 16;
-        }
-    }
-}
+/// stalled movement end ///
 </string>
           </argument>
         </arguments>
