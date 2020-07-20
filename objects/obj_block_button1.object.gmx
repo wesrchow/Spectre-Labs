@@ -60,7 +60,14 @@ buttontimer = 0;
 if place_meeting(x,y,obj_pushblock1) {
     sprite_index = spr_button_green_4of4;
     global.button1state = true;
-    buttontimer = 0;
+    
+    with obj_button1 {
+        buttontimer = 0;
+    }
+    
+    with obj_block_button1 {
+        buttontimer = 0;
+    }
 }
 
 /// button activate end ///

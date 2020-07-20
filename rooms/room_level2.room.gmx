@@ -221,6 +221,7 @@
     <instance objName="obj_pushblock_floor_edge_topbot" x="528" y="432" name="inst_D041E182" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
     <instance objName="obj_pushblock_floor" x="528" y="368" name="inst_F93D3124" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_pushblock_floor" x="496" y="368" name="inst_4ED1D35A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_door_block" x="432" y="912" name="inst_60D6B052" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_pushblock_floor_edge_leftright" x="464" y="368" name="inst_4277C89C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_pushblock_floor" x="560" y="368" name="inst_FD6DC317" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_pushblock_floor" x="560" y="400" name="inst_01ABDE43" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -272,7 +273,6 @@
     <instance objName="obj_metal_wall_bk1" x="304" y="304" name="inst_68C5A5E9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="400" y="688" name="inst_9315E748" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_l1" x="368" y="656" name="inst_5ADD95FE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_metal_wall_bk1" x="880" y="656" name="inst_F84AA456" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_r3" x="752" y="176" name="inst_31D398FE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_r1" x="752" y="208" name="inst_145EC6B2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_r1" x="752" y="240" name="inst_A0DBB181" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -302,6 +302,7 @@
     <instance objName="obj_pushblock_floor_edge_topbot" x="432" y="784" name="inst_F5CFC120" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_pushblock_floor" x="432" y="816" name="inst_07FAACF9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_block_button5_n2" x="528" y="816" name="inst_80D81D06" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_door_block" x="528" y="912" name="inst_9F0588F5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_pushblock_floor" x="432" y="848" name="inst_66095403" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_pushblock_floor" x="528" y="848" name="inst_A4A9BE98" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_pushblock_floor_edge_leftright" x="400" y="784" name="inst_8A2CBDC8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -473,6 +474,8 @@
     <instance objName="obj_metal_wall_fr1" x="528" y="1136" name="inst_1BFD1C6B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_l1" x="400" y="1072" name="inst_2A8BB90F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_r1" x="592" y="1072" name="inst_BAAC1E42" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_door_block" x="766" y="848" name="inst_FCC5C20E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_door_block" x="642" y="848" name="inst_AC093118" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
