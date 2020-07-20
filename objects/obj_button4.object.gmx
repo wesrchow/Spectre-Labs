@@ -103,7 +103,7 @@ if global.button4state = true {
     }
     if buttontimer &gt;= 120 {
         sprite_index = spr_button_orange;
-        global.button3state = false;
+        global.button4state = false;
     }
 }
 

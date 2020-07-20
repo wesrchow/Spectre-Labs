@@ -1,8 +1,0 @@
-PLAYER CONTROL:
-WASD keys to control player
-
-
-BUTTONS:
-Green buttons are player only activate
-Red buttons can be activated by players or push blocks
-Blue buttons are player only activate

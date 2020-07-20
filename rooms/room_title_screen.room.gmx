@@ -8,7 +8,7 @@
   <isometric>0</isometric>
   <speed>60</speed>
   <persistent>0</persistent>
-  <colour>1579032</colour>
+  <colour>1710618</colour>
   <showcolour>-1</showcolour>
   <code>instance_create(0,0,obj_fade);
 instance_create(480,317,obj_titlescreen_selector_ref_top);

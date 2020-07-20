@@ -81,19 +81,19 @@ slidetimer = 0; // smooth animation sliding of block //
 
 // global.block1stuck = false
 
-if place_meeting(x+32,y,obj_metal_ground) and place_meeting(x-32,y,obj_player) {
+if place_meeting(x+32,y,obj_metal_floor) and place_meeting(x-32,y,obj_player) {
 
     global.block1stuckdir = 1
-    
-} else if place_meeting(x,y-32,obj_metal_ground) and place_meeting(x,y+32,obj_player) {
+
+} else if place_meeting(x,y-32,obj_metal_floor) and place_meeting(x,y+32,obj_player) {
 
     global.block1stuckdir = 2
     
-} else if place_meeting(x-32,y,obj_metal_ground) and place_meeting(x+32,y,obj_player) {
+} else if place_meeting(x-32,y,obj_metal_floor) and place_meeting(x+32,y,obj_player) {
 
     global.block1stuckdir = 3
     
-} else if place_meeting(x,y+32,obj_metal_ground) and place_meeting(x,y-32,obj_player) {
+} else if place_meeting(x,y+32,obj_metal_floor) and place_meeting(x,y-32,obj_player) {
 
     global.block1stuckdir = 4
     
@@ -130,15 +130,15 @@ with obj_player {
     }
 }
 
-// checks for meeting obj_player and not meeting obj_metal_ground in next position //
+// checks for meeting obj_player and not meeting obj_metal_floor in next position //
 // sets alarm, slidetimer, movement, movetimer //
 if global.blockmovelock = false {
 
-if place_meeting(x-2,y,obj_player) {
+if place_meeting(x-2,y,obj_player) or place_meeting(x-2,y,obj_ghost) {
     if movement = 1 {
         direction = 0;
         
-        if !place_meeting(x+32,y,obj_metal_ground) {
+        if !place_meeting(x+32,y,obj_metal_floor) {
             slidetimer = 0;
             alarm[0] = 1;
             
@@ -150,11 +150,11 @@ if place_meeting(x-2,y,obj_player) {
     }
 }
 
-if place_meeting(x+2,y,obj_player) {
+if place_meeting(x+2,y,obj_player) or place_meeting(x+2,y,obj_ghost) {
     if movement = 1 {
         direction = 180;
         
-        if !place_meeting(x-32,y,obj_metal_ground) {
+        if !place_meeting(x-32,y,obj_metal_floor) {
             slidetimer = 0;
             alarm[0] = 1;
             
@@ -166,11 +166,11 @@ if place_meeting(x+2,y,obj_player) {
     }
 }
 
-if place_meeting(x,y-2,obj_player) {
+if place_meeting(x,y-2,obj_player) or place_meeting(x,y-2,obj_ghost){
     if movement = 1 {
         direction = 270;
         
-        if !place_meeting(x,y+32,obj_metal_ground) {
+        if !place_meeting(x,y+32,obj_metal_floor) {
             slidetimer = 0;
             alarm[0] = 1;
             
@@ -182,11 +182,11 @@ if place_meeting(x,y-2,obj_player) {
     }
 }
 
-if place_meeting(x,y+2,obj_player) {
+if place_meeting(x,y+2,obj_player) or place_meeting(x,y+2,obj_ghost){
     if movement = 1 {
         direction = 90;
         
-        if !place_meeting(x,y-32,obj_metal_ground) {
+        if !place_meeting(x,y-32,obj_metal_floor) {
             slidetimer = 0;
             alarm[0] = 1;
             

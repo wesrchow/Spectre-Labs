@@ -116,7 +116,98 @@ global.playingback = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// keyboard movement checking ///
+            <string>/// ghost recording start ///
+
+// sets ongrid position to edge of tile (theoretically divisible) //
+ongridx = x + 16
+ongridy = y + 16
+
+// if player is centered on a grid tile, allow recording to start, setup the recording //
+if ongridx mod 32 = 0 and ongridy mod 32 = 0 {
+    if global.playingback = false {
+        if recording = false {
+            if keyboard_check_pressed(ord('Q')) {
+                recordstartingx = x;
+                recordstartingy = y;
+                
+                ds_list_clear(global.recordpathx);
+                ds_list_clear(global.recordpathy);
+                
+                image_blend = c_lime;
+                
+                recording = true;
+                
+                show_debug_message("started recordingg");
+            }
+        }
+    }
+}
+
+// when recording started, start recording points //
+if recording = true {
+    recordtimer ++;
+
+    ds_list_add(global.recordpathx,x);
+    ds_list_add(global.recordpathy,y);
+    
+    // when time is up, check if player is centered on tile before finishing //
+    if recordtimer &gt;= 300 {
+    
+        if ongridx mod 32 != 0 or ongridy mod 32 != 0 {
+            show_debug_message("started snapping")
+            
+            
+        } else {
+            recording = false
+            playback = false
+            
+            
+            image_blend = c_white;
+            x = recordstartingx;
+            y = recordstartingy;
+            
+            snaptimer = 0;
+            recordtimer = 0;
+        }
+        
+        show_debug_message("recording finished");
+    }
+}
+
+/// ghost recording end ///
+/// ghost playback start ///
+
+// if not recording or already playing, check for keypress and turn on playback variable //
+if recording = false and playback = false {
+    if keyboard_check_pressed(ord('E')) {
+        show_debug_message("playback started");
+        playback = true;
+        instance_create(recordstartingx, recordstartingy, obj_ghost);
+    }
+}
+
+/// ghost playback end ///
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// keyboard movement checking start ///
 
 // checks for keyboard input and other parameters to move the player //
 // sets alarm, slidetimer, movement, movetimer //
@@ -130,7 +221,17 @@ if global.movecontrollock = false {
                 if !place_meeting(x-32,y,obj_metal_wall_l1)
                 and !place_meeting(x-32,y,obj_metal_wall_l5)
                 and !place_meeting(x-32,y,obj_metal_wall_bk1)
-                and !place_meeting(x-32,y,obj_metal_floor_oneway_left) {
+                and !place_meeting(x-32,y,obj_metal_floor_oneway_left)
+                and !place_meeting(x-32,y,obj_door_bot_green)
+                and !place_meeting(x-32,y,obj_door_top_green)
+                and !place_meeting(x-32,y,obj_door_bot_red)
+                and !place_meeting(x-32,y,obj_door_top_red)
+                and !place_meeting(x-32,y,obj_door_bot_blue)
+                and !place_meeting(x-32,y,obj_door_top_blue)
+                and !place_meeting(x-32,y,obj_door_bot_blue_n)
+                and !place_meeting(x-32,y,obj_door_top_blue_n)
+                and !place_meeting(x-32,y,obj_door_bot_orange)
+                and !place_meeting(x-32,y,obj_door_top_orange) {
                 
                     slidetimer = 0;
                     alarm[0] = 1;
@@ -150,7 +251,18 @@ if global.movecontrollock = false {
                 if !place_meeting(x+32,y,obj_metal_wall_r1)
                 and !place_meeting(x+32,y,obj_metal_wall_r5)
                 and !place_meeting(x+32,y,obj_metal_wall_bk1)
-                and !place_meeting(x+32,y,obj_metal_floor_oneway_right) { 
+                and !place_meeting(x+32,y,obj_metal_floor_oneway_right)
+                and !place_meeting(x+32,y,obj_door_bot_green)
+                and !place_meeting(x+32,y,obj_door_top_green)
+                and !place_meeting(x+32,y,obj_door_bot_red)
+                and !place_meeting(x+32,y,obj_door_top_red)
+                and !place_meeting(x+32,y,obj_door_bot_blue)
+                and !place_meeting(x+32,y,obj_door_top_blue)
+                and !place_meeting(x+32,y,obj_door_bot_blue_n)
+                and !place_meeting(x+32,y,obj_door_top_blue_n)
+                and !place_meeting(x+32,y,obj_door_bot_orange)
+                and !place_meeting(x+32,y,obj_door_top_orange) {
+                
                     slidetimer = 0;
                     alarm[0] = 1;
             
@@ -166,12 +278,18 @@ if global.movecontrollock = false {
             if movement = 1 {
                 direction = 90;
             
-                if !place_meeting(x,y-32,obj_metal_wall_bk1) 
-                and !place_meeting(x,y-32,obj_exit_door_right_green) 
-                and !place_meeting(x,y-32,obj_exit_door_left_green) 
-                and !place_meeting(x,y-32,obj_exit_door_right_blue)
-                and !place_meeting(x,y-32,obj_exit_door_left_blue)
-                and !place_meeting(x,y-32,obj_metal_floor_oneway_top) {
+                if !place_meeting(x,y-32,obj_metal_wall_bk1)
+                and !place_meeting(x,y-32,obj_metal_floor_oneway_top)
+                and !place_meeting(x,y-32,obj_door_left_green) 
+                and !place_meeting(x,y-32,obj_door_right_green)
+                and !place_meeting(x,y-32,obj_door_left_red)
+                and !place_meeting(x,y-32,obj_door_right_red)
+                and !place_meeting(x,y-32,obj_door_right_blue)
+                and !place_meeting(x,y-32,obj_door_left_blue)
+                and !place_meeting(x,y-32,obj_door_right_blue_n)
+                and !place_meeting(x,y-32,obj_door_left_blue_n)
+                and !place_meeting(x,y-32,obj_door_left_orange)
+                and !place_meeting(x,y-32,obj_door_right_orange) {
                     
                     slidetimer = 0;
                     alarm[0] = 1;
@@ -189,14 +307,22 @@ if global.movecontrollock = false {
                 direction = 270;
             
                     if !place_meeting(x,y+32,obj_metal_wall_fr1)
+                    and !place_meeting(x,y+32,obj_metal_wall_fr1_door)
                     and !place_meeting(x,y+32,obj_metal_wall_fr2)
                     and !place_meeting(x,y+32,obj_metal_wall_r5)
                     and !place_meeting(x,y+32,obj_metal_wall_l5)
-                    and !place_meeting(x,y+32,obj_exit_door_right_green) 
-                    and !place_meeting(x,y+32,obj_exit_door_left_green) 
-                    and !place_meeting(x,y+32,obj_exit_door_right_blue)
-                    and !place_meeting(x,y+32,obj_exit_door_left_blue)
-                    and !place_meeting(x,y+32,obj_metal_floor_oneway_bot) {
+                    and !place_meeting(x,y+32,obj_metal_floor_oneway_bot)
+                    and !place_meeting(x,y+32,obj_door_left_green)
+                    and !place_meeting(x,y+32,obj_door_right_green)
+                    and !place_meeting(x,y+32,obj_door_left_red)
+                    and !place_meeting(x,y+32,obj_door_right_red)
+                    and !place_meeting(x,y+32,obj_door_left_blue)
+                    and !place_meeting(x,y+32,obj_door_right_blue)
+                    and !place_meeting(x,y+32,obj_door_left_blue_n)
+                    and !place_meeting(x,y+32,obj_door_right_blue_n)
+                    and !place_meeting(x,y+32,obj_door_left_orange)
+                    and !place_meeting(x,y+32,obj_door_right_orange) {
+                    
                     slidetimer = 0;
                     alarm[0] = 1;
             
@@ -246,140 +372,6 @@ if movetimer &lt;= 0 {
 }
 
 /// stalled movement end ///
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// ghost recording start ///
-
-/* if x mod 32 = 0 {
-  //on grid
-}
-else {
-  var rem=x mod 32;
-  if rem&lt;16
-    x-=rem
-  else
-    x+=rem
-}
-*/
-
-ongridx = x + 16
-ongridy = y + 16
-
-//show_debug_message(x)
-
-if ongridx mod 32 = 0 and ongridy mod 32 = 0 {
-    //show_debug_message("on grid");
-    if global.playingback = false {
-        if recording = false {
-            if keyboard_check_pressed(ord('Q')) {
-                recordstartingx = x;
-                recordstartingy = y;
-                
-                ds_list_clear(global.recordpathx);
-                ds_list_clear(global.recordpathy);
-                
-                image_blend = c_lime;
-                
-                recording = true;
-                
-                
-                show_debug_message("started recordingg");
-            }
-        }
-    }
-}
-
-if recording = true {
-    recordtimer ++;
-    
-    //path_add_point(global.recordpath, x, y, 12);
-    ds_list_add(global.recordpathx,x);
-    ds_list_add(global.recordpathy,y);
-    
-    if recordtimer &gt;= 300 {
-    
-        if ongridx mod 32 != 0 or ongridy mod 32 != 0 {
-            show_debug_message("started snapping")
-            
-            
-        } else {
-            recording = false
-            playback = false
-            
-            
-            image_blend = c_white;
-            x = recordstartingx;
-            y = recordstartingy;
-            
-            snaptimer = 0;
-            recordtimer = 0;
-        }
-        
-        /*
-        snaptimer ++;
-        
-        if snaptimer &gt;= 20 {
-        
-            while ongridx mod 32 != 0 {
-            
-                if ongridx mod 32 &gt;= 16{
-                    x -= 0.1
-                } else if ongridx mod 32 &lt; 16 {
-                    x += 0.1
-                }   
-                ongridx = x + 16
-                ongridy = y + 16
-            }
-
-            while ongridy mod 32 != 0 {
-
-                if ongridy mod 32 &gt;= 16{
-                    y -= 0.1
-                } else if ongridy mod 32 &lt; 16 {
-                    y += 0.1
-                } 
-                ongridx = x + 16
-                ongridy = y + 16
-            } 
-            
-            
-        }
-            */
-            
-        show_debug_message("recording finished");
-    }
-}
-
-/// ghost recording end ///
-/// ghost playback start ///
-
-if recording = false and playback = false {
-    if keyboard_check_pressed(ord('E')) {
-        show_debug_message("playback started");
-        playback = true;
-        instance_create(recordstartingx, recordstartingy, obj_ghost);
-    }
-}
-
-/// ghost playback end ///
 </string>
           </argument>
         </arguments>

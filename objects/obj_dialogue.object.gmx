@@ -49,7 +49,7 @@ if room = room_level1 {
 }
 
 if room = room_level2 {
-    box[1] = "Level two stuff works"
+    box[1] = "The buttons on the pushblock platform look like they require something #heavy to activate them..."
     
     box[2] = ""
     
@@ -80,15 +80,15 @@ printedline = 0;
           <argument>
             <kind>1</kind>
             <string>if keyboard_check(ord('C')) {
-    
-    global.movecontrollock = false;
-    holdingdialogue = false;
-    
-    scrolltimer = 0;
-    strcharpos = 0;
-    
-    closemessageprint = "";
-    
+    if dialoguecontrol = false {
+        global.movecontrollock = false;
+        holdingdialogue = false;
+        
+        scrolltimer = 0;
+        strcharpos = 0;
+        
+        closemessageprint = "";
+    }
 }
 </string>
           </argument>
