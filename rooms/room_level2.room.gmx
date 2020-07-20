@@ -437,7 +437,7 @@
     <instance objName="obj_metal_floor" x="880" y="688" name="inst_43CBE29A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="752" y="688" name="inst_195FB709" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_door_top_blue_n" x="816" y="682" name="inst_5E7218BB" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_door_bot_blue_n" x="816" y="709" name="inst_B76FB620" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_door_bot_blue_n" x="816" y="714" name="inst_B76FB620" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="784" y="720" name="inst_10EA6B59" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="784" y="688" name="inst_2501B9B3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_lever2" x="880" y="688" name="inst_9DD5909F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

@@ -122,8 +122,10 @@
         <sprite>sprites\spr_door_bot_blue</sprite>
       </sprites>
       <sprites name="door_blue_n">
-        <sprite>sprites\spr_door_blue_left_n</sprite>
-        <sprite>sprites\spr_door_blue_right_n</sprite>
+        <sprite>sprites\spr_door_left_blue_n</sprite>
+        <sprite>sprites\spr_door_right_blue_n</sprite>
+        <sprite>sprites\spr_door_top_blue_n</sprite>
+        <sprite>sprites\spr_door_bot_blue_n</sprite>
       </sprites>
       <sprites name="door_orange">
         <sprite>sprites\spr_door_left_orange</sprite>
@@ -187,9 +189,7 @@
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\scr_blockstuck_back.gml</script>
-    <script>scripts\scr_start_lines.gml</script>
-    <script>scripts\scr_menu.gml</script>
+    <script>scripts\scr_enemy_spawn.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_startscreen</font>
@@ -258,7 +258,7 @@
         <object>objects\obj_door_top_blue</object>
         <object>objects\obj_door_bot_blue</object>
       </objects>
-      <objects name="door_blue_n(fix)">
+      <objects name="door_blue_n">
         <object>objects\obj_door_left_blue_n</object>
         <object>objects\obj_door_right_blue_n</object>
         <object>objects\obj_door_top_blue_n</object>

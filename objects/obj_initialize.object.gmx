@@ -51,8 +51,14 @@ global.block1stuckdir = 0 // 1 = 0deg // 2 = 90deg // 3 = 180 deg // 4 = 270deg
 global.playermoving = 0; // moving = 1 // not moving = 0 // not in use
 global.level = 0; // not in use
 
-global.bosswave = 1; // controls which wave number //
-global.enemies = 0;
+global.bosswave = -1; // controls which wave number //
+global.enemies1 = 0; // enemy1 count //
+global.enemies2 = 0; // enemy2 count //
+global.enemies3 = 0; // enemy3 count //
+
+global.playerhealth = 100;
+
+randomize(); // randomize seed for random numbers //
 
 // if room is start cut //
 if room = room_start_cut {
@@ -69,7 +75,6 @@ if room = room_start_cut {
     strcharpos = 0; // position of list to take character from
     scrolltimer = 0 // timer to control text holding and rate of scrolling of text
     printed = "&gt;" // the text to be printed
-    // ylinechange = 0; // amount of y to be changed for a new line
     
     // create lists of text by letter for each line //
     
@@ -80,16 +85,6 @@ if room = room_start_cut {
     #in a military grade car with tinted windows and drive
     #you off to an unknown location. "
 
-    /* line1 = ds_list_create();
-    ds_list_add(line1, "  ", "T", "e", "s", "t", "i", "n", "g", ".", " ", "T", "h", "i", "s", " ", "i", "s", " ", "t", "e", "d", "i", "o", "u", "s")
-    */
-    
-    // line2 = "This is a line two, the game will crash after this one# lkj lkj lkj lkj lkj lkj lkj #uoiuoiuiouo"
-    
-    /* line2 = ds_list_create();
-    ds_list_add(line2, "", "T", "e", "s", "t", "i", "n", "g", ".");
-    */
-    
     printedline = page1; // set the current printing line
 }
 </string>

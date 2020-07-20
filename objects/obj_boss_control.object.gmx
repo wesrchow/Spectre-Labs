@@ -25,11 +25,25 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>viewtimer = 0; // stall of first view //\
-started = false;
+            <string>viewtimer = 0; // stall of first view //
+started = false; // unlock view started //
 
-view_hspeed[1] = 0;
-view_vspeed[1] = 0;
+view_hspeed[1] = 0; // set view speed to 0 // 
+view_vspeed[1] = 0; // set view speed to 0 //
+
+spawntimer = 0; // controls spawn rate of enemies //
+enemyspawn = 0; // controls which enemy to spawn //
+rownum = 0; // which row to spawn to //
+chosenxtile = 0; // which x axis tile spawn to //
+chosenytile = 0; // which y axis tile spawn to //
+gridx = 0; // edge grid x pos spawn to //
+gridy = 0; // edge grid y pos spawn to //
+chosenx = 0; // spawning x //
+choseny = 0; // spawning y //
+
+wavetimer = 0; // delay between waves //
+maxspawned = false; // whether max # of enemies is spawned in wave or not //
+fighting = false; // whether player is fighting a wave or not //
 </string>
           </argument>
         </arguments>
@@ -93,8 +107,190 @@ if started = true {
         
         viewtimer = 0;
         started = 2;
+        global.bosswave = 1;
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// enemy spawning wave1 ///
+if global.bosswave = 1 {
+    if maxspawned = false {
+       spawntimer += irandom_range(1,2)
+       
+        if spawntimer &gt;= 50 {
+            
+            scr_enemy_spawn();
+            
+            enemyspawn = irandom_range(1,2);
+            
+            if global.enemies1 = 8 {
+                enemyspawn = 2;
+            }
+            
+            if global.enemies2 = 5 {
+                enemyspawn = 1;
+            }
+            
+            if enemyspawn = 1 {
+                instance_create(chosenx,choseny,obj_enemy1);
+            } else if enemyspawn = 2{
+                instance_create(chosenx,choseny,obj_enemy2);
+            } 
+            
+            spawntimer = 0;
+            rownum = 0;
+       }
+   }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// enemy spawning wave2 ///
+if global.bosswave = 2 {
+    if maxspawned = false {
+       spawntimer += irandom_range(1,2)
+       
+        if spawntimer &gt;= 50 {
+            
+            scr_enemy_spawn();
+            
+            enemyspawn = irandom_range(1,3);
+            
+            if global.enemies1 = 10 {
+                while enemyspawn = 1 {
+                    irandom_range(1,3);
+                }
+            }
+            
+            if global.enemies2 = 5 {
+                while enemyspawn = 2 {
+                    irandom_range(1,3);
+                }
+            }
+            
+            if global.enemies3 = 3 {
+                while enemyspawn = 3 {
+                    irandom_range(1,3);
+                }
+            }
+            
+            if enemyspawn = 1 {
+                instance_create(chosenx,choseny,obj_enemy1);
+            } else if enemyspawn = 2 {
+                instance_create(chosenx,choseny,obj_enemy2);
+            } else if enemyspawn = 3 {
+                instance_create(chosenx,choseny,obj_enemy3);
+            } 
+            
+            spawntimer = 0;
+            rownum = 0;
+       }
+   }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// wave control start ///
+if instance_exists(obj_enemy1) or instance_exists(obj_enemy2) or instance_exists(obj_enemy3) {
+    fighting = true;
+} else {
+    fighting = false;
+}
+
+if global.bosswave = 1 {
+    if global.enemies1 = 8 and global.enemies2 = 5 {
+        maxspawned = true;
+        
+        if fighting = false {
+            wavetimer ++;
+  
+            if wavetimer &gt;= 300 {
+                global.enemies1 = 0;
+                global.enemies2 = 0;
+            
+                global.bosswave = 2;
+                maxspawned = false;
+                wavetimer = 0;
+            }
+        }
+    }
+}
+
+if global.bosswave = 2 {
+    if global.enemies1 = 10 and global.enemies2 = 5 and global.enemies3 = 2 {
+        maxspawned = true;
+        
+        if fighting = false {
+            wavetimer ++;
+            
+            if wavetimer &gt;= 300 {
+                global.enemies1 = 0;
+                global.enemies2 = 0;
+                global.enemies3 = 0;
+            
+                global.bosswave = 3;
+                maxspawned = false;
+                wavetimer = 0;
+            }
+        }
+    }
+}
+
+
+
+/// wave control end ///
 </string>
           </argument>
         </arguments>
