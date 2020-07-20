@@ -118,10 +118,7 @@ if started = true {
         
         viewtimer = 0;
         started = 2;
-        global.bosswave = 4;
-        with obj_dialogue {
-            printedline = 3;
-        }
+        global.bosswave = 1;
     }
 }
 </string>
@@ -484,7 +481,7 @@ if global.bosswave = 2 {
 }
 
 if global.bosswave = 3 {
-    if global.enemies1 = 3 and global.enemies2 = 4 and global.enemies3 = 3 {
+    if global.enemies1 = 3 and global.enemies2 = 4 and global.enemies3 = 5 {
         if fighting = false {
             draw_set_halign(fa_center);
             draw_set_valign(fa_center);

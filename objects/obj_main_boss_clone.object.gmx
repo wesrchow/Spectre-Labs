@@ -165,10 +165,10 @@ if global.bosswave = 4 {
                 } else {
                     laser.direction = 90;
                     laser2.direction = 0;
-                    laser3.direcion = 180;
+                    laser3.direction = 180;
                     
                     laser.image_angle = 90;
-                    laser3.direction = 180;
+                    laser3.image_angle = 180;
                 }
             } 
             

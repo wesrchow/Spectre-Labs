@@ -86,7 +86,7 @@ if room = room_control_room {
     box[12] =  "...the servers the person was talking about. Maybe I'll need this gun #after all..."
 }
 if room = room_boss {
-    box[1] = "So you figured out the big secret huh? Yes, I have become a sentient AI. #You know too much already, you'll have to die, minions, kill him!"
+    box[1] = "So you figured out the big secret huh? Yes, I've have become a sentient #AI. You know too much already, you'll have to die, minions, kill him!"
     
     box[2] = "You killed them all. No problem, there's plenty more where that came #from. Bring in another wave!"
     
@@ -94,7 +94,7 @@ if room = room_boss {
     
     box[4] = "Boss: What!? You killed all my minions!? Alright clones, go." 
     
-    box[5] = "Boss: even my clones???"
+    box[5] = "Boss: even my clones??? Send more!"
     
     box[6] = "Boss: Agh!! You've made me use up all my energy, I can't maintain my #forcefield. Fine, then I'll do it myself..."
     

@@ -396,7 +396,6 @@
     <instance objName="obj_metal_floor" x="400" y="592" name="inst_27B2902C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="368" y="592" name="inst_401BE1DA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="368" y="624" name="inst_0BA02CFC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_pushblock1" x="336" y="272" name="inst_EBC8B3CB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_player" x="272" y="209" name="inst_4BF6F76C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_button1" x="272" y="144" name="inst_ED579FE5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_button2" x="432" y="144" name="inst_4685EF0E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

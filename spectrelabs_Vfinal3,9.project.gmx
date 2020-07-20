@@ -28,6 +28,7 @@
       <sprite>sprites\spr_player</sprite>
       <sprite>sprites\spr_player_run</sprite>
       <sprite>sprites\spr_player_idle</sprite>
+      <sprite>sprites\spr_player_idle_ghost</sprite>
       <sprite>sprites\spr_player_shoot</sprite>
       <sprite>sprites\spr_laser_gun</sprite>
       <sprite>sprites\spr_player_spectral_form</sprite>
@@ -176,6 +177,7 @@
       <sprite>sprites\spr_server</sprite>
       <sprite>sprites\spr_door_block</sprite>
       <sprite>sprites\spr_controlpanel</sprite>
+      <sprite>sprites\spr_grass_block</sprite>
       <sprite>sprites\spr_barrier_block</sprite>
       <sprites name="floor_oneway">
         <sprite>sprites\spr_metal_floor_oneway_bot</sprite>
@@ -344,6 +346,7 @@
       <object>objects\obj_server</object>
       <object>objects\obj_door_block</object>
       <object>objects\obj_controlpanel</object>
+      <object>objects\obj_grass_block</object>
       <object>objects\obj_barrier_block</object>
       <object>objects\obj_barrier_block2</object>
       <objects name="floor_oneway">
@@ -373,7 +376,6 @@
       <room>rooms\room_start_cut</room>
       <room>rooms\room_level1</room>
       <room>rooms\room_level2</room>
-      <room>rooms\room_level3</room>
       <room>rooms\room_vent</room>
       <room>rooms\room_control_room</room>
       <room>rooms\room_boss</room>
