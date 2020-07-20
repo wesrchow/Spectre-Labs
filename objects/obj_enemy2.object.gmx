@@ -173,6 +173,7 @@ randomdir = irandom_range(1,4)
             <kind>1</kind>
             <string>/// kill check ///
 if place_meeting(x,y,obj_player) or place_meeting(x,y,obj_player_laser) {
+    global.playerhealth -= 2;
     instance_destroy();
 }
 </string>

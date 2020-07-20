@@ -29,6 +29,8 @@
       <sprite>sprites\spr_player</sprite>
       <sprite>sprites\spr_player_spectral_form</sprite>
       <sprite>sprites\spr_player_laser</sprite>
+      <sprite>sprites\spr_player_health_bar_bg</sprite>
+      <sprite>sprites\spr_player_health_bar</sprite>
     </sprites>
     <sprites name="pushblock">
       <sprite>sprites\spr_pushblock</sprite>
@@ -179,6 +181,7 @@
       <sprite>sprites\spr_enemy2</sprite>
       <sprite>sprites\spr_enemy3</sprite>
       <sprite>sprites\spr_enemy_laser</sprite>
+      <sprite>sprites\spr_enemy_laser2</sprite>
     </sprites>
     <sprites name="other">
       <sprite>sprites\spr_dialogue_bg</sprite>
