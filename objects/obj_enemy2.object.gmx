@@ -47,6 +47,9 @@ image_speed = 0.5;
 global.enemies2 += 1;
 
 randomdir = irandom_range(1,4)
+
+healthbarbg = instance_create(x-35,y-35,obj_enemy_health_bar_bg);
+healthbar = instance_create(x-32.2,y-32.2,obj_enemy_health_bar);
 </string>
           </argument>
         </arguments>
@@ -204,6 +207,54 @@ scr_enemy_sprite_control();
             <kind>1</kind>
             <string>/// enemy shooting ///
 scr_enemy_shooting(1,1,2,2,2,800,obj_enemy_laser2,5);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// draw enemy healthbar ///
+//var drawinghealth = enemyhealth * 10;
+
+//draw_sprite_ext(spr_enemy_health_bar_bg,-1,x-35,y-35,0.4,0.4,0,c_white,1);
+
+healthbarbg.enemyid = id;
+healthbar.enemyid = id;
+
+/*
+if drawinghealth &gt; 25 {
+    
+    draw_set_colour(make_colour_rgb(101, 205, 41));
+    draw_rectangle(x-32,y-32,x-10,y-27,false);
+    draw_rectangle(x-32,y-32,x-32+drawinghealth,y-29,false);
+    
+} else if drawinghealth &lt; 25 and drawinghealth &gt; 15 {
+    
+    draw_set_colour(make_colour_rgb(204, 206, 24));
+    draw_rectangle(x-32,y-32,x-10,y-27,false);
+    
+} else if drawinghealth &lt; 15 {
+    
+    draw_set_colour(make_colour_rgb(155, 8, 58));
+    draw_rectangle(x-32,y-32,x-32+drawinghealth,y-27,false);
+    
+}
+
+draw_sprite_ext(spr_enemy_health_bar,-1,x-32.2,y-32.2,0.4,0.4,0,c_white,1);
 </string>
           </argument>
         </arguments>

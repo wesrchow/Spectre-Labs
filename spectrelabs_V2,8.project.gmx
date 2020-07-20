@@ -26,6 +26,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprites name="player">
+      <sprite>sprites\spr_player</sprite>
       <sprite>sprites\spr_player_run</sprite>
       <sprite>sprites\spr_player_spectral_form</sprite>
       <sprite>sprites\spr_player_laser</sprite>
@@ -333,14 +334,19 @@
         <object>objects\obj_metal_floor_oneway_left</object>
         <object>objects\obj_metal_floor_oneway_right</object>
       </objects>
+      <object>objects\odraw</object>
     </objects>
     <objects name="boss">
       <object>objects\obj_main_boss</object>
+      <object>objects\obj_main_boss_clone</object>
       <object>objects\obj_enemy1</object>
       <object>objects\obj_enemy2</object>
       <object>objects\obj_enemy3</object>
+      <object>objects\obj_enemy_health_bar</object>
+      <object>objects\obj_enemy_health_bar_bg</object>
       <object>objects\obj_enemy_laser1</object>
       <object>objects\obj_enemy_laser2</object>
+      <object>objects\obj_enemy_laser2_beam</object>
       <object>objects\obj_forcefield</object>
     </objects>
   </objects>

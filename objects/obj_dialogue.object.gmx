@@ -60,6 +60,8 @@ if room = room_boss {
     box[1] = ".... testing"
     
     box[2] = "test2......................."
+    
+    box[3] = " boss dialogue testig" 
 }
 
 printedline = 0;

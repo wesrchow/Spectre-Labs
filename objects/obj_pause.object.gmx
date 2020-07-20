@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.paused = false;
+            <string>//global.paused = false;
 </string>
           </argument>
         </arguments>
@@ -48,7 +48,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('P')) and global.paused = false {
+            <string>/*if keyboard_check_pressed(ord('P')) and global.paused = false {
     global.paused = true;
     instance_deactivate_all(true);
 } else if keyboard_check_pressed(ord('P')) and global.paused = true {

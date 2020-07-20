@@ -26,8 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>depth = -10;
-bosspart = 1;
-spawnedclones = false;
+bosspart = 1; // what part of final boss //
+
+enemyhealth = 20;
+
+shoottimer = 0;
 </string>
           </argument>
         </arguments>
@@ -50,22 +53,66 @@ spawnedclones = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// spawning clones ///
+            <string>/// shoot control ///
 if global.bosswave = 4 {
-    if spawnedclones = false {
-        if bosspart = 1 {
-            instance_create(272,620,obj_main_boss_clone);
-            instance_create(272,300,obj_main_boss_clone);
-            instance_create(944,332,obj_main_boss_clone);
-            instance_create(944,588,obj_main_boss_clone);
-            spawnedclones = true;
-        }
+    if bosspart = 1 {
+        shoottimer ++;
         
-        if bosspart = 2 {
-            
+        if shoottimer &gt;= 480 {
+            laser = instance_create(x,y,obj_enemy_laser2)
+        } 
+        
+        if shoottimer &gt;= 510 {
+        
         }
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// sprite control ///
+if x &gt;= 608 {
+    image_xscale = -1;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// kill check ///
+scr_enemy_kill_check();
 </string>
           </argument>
         </arguments>

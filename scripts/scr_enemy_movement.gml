@@ -1,6 +1,6 @@
 // called by enemies 1 2 3 //
 // controls movement direction and setup //
-
+/*
 if movement = 1 {
     if randomdir = 1 {
         direction = 0;
