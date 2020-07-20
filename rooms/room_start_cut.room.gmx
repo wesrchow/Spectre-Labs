@@ -10,7 +10,7 @@
   <persistent>0</persistent>
   <colour>1184274</colour>
   <showcolour>-1</showcolour>
-  <code>instance_create(320,288,obj_fade);</code>
+  <code>instance_create(0,0,obj_fade);</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

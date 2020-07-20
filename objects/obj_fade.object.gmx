@@ -100,7 +100,7 @@ if global.fadein = 1 {
                 room_goto(room_start_cut);
             }
             if global.startselection = 1 {
-                room_goto(/*room_tutorial*/room_feature_test);
+                room_goto(/*room_feature_test*/room_level1);
             }
         }
         

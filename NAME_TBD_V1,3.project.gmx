@@ -65,9 +65,14 @@
       <sprite>sprites\spr_pushblock_floor_edge_topbot</sprite>
       <sprite>sprites\spr_pushblock_floor_corner</sprite>
       <sprite>sprites\spr_pushblock_floor_edge_leftright</sprite>
-      <sprite>sprites\spr_exit_door</sprite>
+      <sprites name="exit_door">
+        <sprite>sprites\spr_exit_door_green</sprite>
+        <sprite>sprites\spr_exit_door_blue</sprite>
+      </sprites>
     </sprites>
     <sprite>sprites\spr_fade</sprite>
+    <sprite>sprites\spr_dialogue_bg</sprite>
+    <sprite>sprites\spr_empty</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -79,9 +84,11 @@
   <fonts name="fonts">
     <font>fonts\fnt_startscreen</font>
     <font>fonts\fnt_start_cut</font>
+    <font>fonts\fnt_dialogue</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_initialize</object>
+    <object>objects\obj_dialogue</object>
     <object>objects\obj_fade</object>
     <object>objects\obj_player</object>
     <object>objects\obj_ghost</object>
@@ -90,6 +97,7 @@
     <object>objects\obj_button2</object>
     <object>objects\obj_buton3</object>
     <objects name="room_structure">
+      <object>objects\obj_level_complete</object>
       <object>objects\obj_metal_ground</object>
       <object>objects\obj_metal_ground_oneway_top</object>
       <object>objects\obj_metal_ground_oneway_bot</object>
@@ -100,8 +108,10 @@
       <object>objects\obj_pushblock_floor_edge_leftright</object>
       <object>objects\obj_pushblock_floor_edge_topbot</object>
       <object>objects\obj_pushblock_floor_corner</object>
-      <object>objects\obj_exit_door_left</object>
-      <object>objects\obj_exit_door_right</object>
+      <object>objects\obj_exit_door_left_green</object>
+      <object>objects\obj_exit_door_right_green</object>
+      <object>objects\obj_exit_door_left_blue</object>
+      <object>objects\obj_exit_door_right_blue</object>
     </objects>
     <object>objects\obj_titlescreen_selector_ref_bot</object>
     <object>objects\obj_titlescreen_selector_ref_top</object>
@@ -115,7 +125,7 @@
     <room>rooms\room_level1</room>
     <room>rooms\room_start_cut</room>
     <room>rooms\room_tutorial</room>
-    <room>rooms\room_level1_old_</room>
+    <room>rooms\room_level1_old</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

@@ -159,7 +159,7 @@ if global.startselectlock = 1 {
     if keyboard_check_pressed(vk_space) {
         global.fadein = 1; 
         global.startselectoptionlock = 0;
-        instance_create(320,288,obj_fade);
+        instance_create(0,0,obj_fade);
     }
 }
 /// selection input end ///

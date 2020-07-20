@@ -83,6 +83,39 @@ if room = room_start_cut {
         </arguments>
       </action>
     </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// drawing recording circle ////
+
+with obj_player {
+    if recording = true {
+        draw_circle_colour(10,10, 4, c_green, c_green, false);
+    }  
+    
+    if recording = false and playback = false {
+        draw_circle_colour(10,10, 4, c_red, c_red, false);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -200,6 +233,39 @@ if room = room_start_cut {
     }
 }
 /// start game cut end ///
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// drawing player while recording start ///
+
+with obj_player {
+    if recording = true {
+        draw_set_alpha(0.8);
+        draw_sprite(spr_player,-1,recordstartingx,recordstartingy);
+        draw_set_alpha(1);
+    }
+}
+
+/// drawing player while recording end ///
+
+
 </string>
           </argument>
         </arguments>

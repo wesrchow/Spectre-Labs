@@ -39,10 +39,12 @@ depth = -10 // bring player forward //
 global.recordpathx = ds_list_create(); // list for x recording //
 global.recordpathy = ds_list_create(); // list for x recording //
 recording = false // false = not recording // true = recording //
-playback = false // false = not playing recording // true = p[laying recording //
+playback = false // false = not playing recording // true = playing recording //
 recordtimer = 0; // recording timer //
 recordstartingx = 0;
 recordstartingy = 0;
+
+global.playingback = false
 
 // setup end ///
 </string>
@@ -131,8 +133,10 @@ if global.movecontrollock = 1 {
             direction = 90;
         
             if !place_meeting(x,y-32,obj_metal_wall) 
-            and !place_meeting(x,y-32,obj_exit_door_right) 
-            and !place_meeting(x,y-32,obj_exit_door_left) 
+            and !place_meeting(x,y-32,obj_exit_door_right_green) 
+            and !place_meeting(x,y-32,obj_exit_door_left_green) 
+            and !place_meeting(x,y-32,obj_exit_door_right_blue)
+            and !place_meeting(x,y-32,obj_exit_door_left_blue)
             and !place_meeting(x,y-32,obj_metal_ground_oneway_top) {
                 
                 slidetimer = 0;
@@ -149,6 +153,10 @@ if global.movecontrollock = 1 {
             direction = 270;
         
             if !place_meeting(x,y+32,obj_metal_wall) 
+            and !place_meeting(x,y+32,obj_exit_door_right_green) 
+            and !place_meeting(x,y+32,obj_exit_door_left_green) 
+            and !place_meeting(x,y+32,obj_exit_door_right_blue)
+            and !place_meeting(x,y+32,obj_exit_door_left_blue)
             and !place_meeting(x,y+32,obj_metal_ground_oneway_bot) {
                 slidetimer = 0;
                 alarm[0] = 1;
@@ -164,41 +172,6 @@ if global.movecontrollock = 1 {
 /// movement checking for push block held up against wall ///
 
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// level completion start ///
-
-// if player past top of room, according to room, act accordingly //
-if y &lt;= 0 {
-    if room = /*room_tutorial*/ room_feature_test {
-        global.fadein = 1;
-        instance_create(320,288,obj_fade);
-    }
-    if room = room_level1 {
-        global.fadein = 1;
-        instance_create(320,288,obj_fade);    
-    }
-}
-
-/// level completion end ///
 </string>
           </argument>
         </arguments>
@@ -252,14 +225,59 @@ if movetimer &lt;= 0 {
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// level completion start ///
+
+// if player past top of room, according to room, act accordingly //
+if place_meeting(x,y,obj_level_complete) {
+    if room = /*room_tutorial*/ room_feature_test {
+        global.fadein = 1;
+        instance_create(0,0,obj_fade);
+    }
+    if room = room_level1 {
+        global.fadein = 1;
+        instance_create(0,0,obj_fade);    
+    }
+}
+
+/// level completion end ///
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// ghost recording start ///
 
-if recording = false {
-    if keyboard_check_pressed(ord('Q')) {
-        recording = true;
-        recordstartingx = x;
-        recordstartingy = y;
-        show_debug_message("started recordingg");
+if movement = 1 {
+    if global.playingback = false {
+        if recording = false {
+            if keyboard_check_pressed(ord('Q')) {
+                ds_list_clear(global.recordpathx);
+                ds_list_clear(global.recordpathy);
+                
+                image_blend = c_lime;
+                
+                recording = true;
+                recordstartingx = x;
+                recordstartingy = y;
+                
+                show_debug_message("started recordingg");
+            }
+        }
     }
 }
 
@@ -272,7 +290,13 @@ if recording = true {
     
     if recordtimer &gt;= 300 {
         recording = false
+        playback = false
         recordtimer = 0;
+        
+        image_blend = c_white;
+        x = recordstartingx;
+        y = recordstartingy;
+        
         show_debug_message("recording finished");
     }
 }
