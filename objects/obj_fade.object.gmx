@@ -90,7 +90,7 @@ if global.fadein = 1 {
     } else {
         
         if room = room_title_screen {
-            room_goto(room_boss);
+            room_goto(room_outside);
         }
 
         if room = room_start_cut {
@@ -122,13 +122,14 @@ if global.fadein = 1 {
                 global.restarting = false;
                 room_goto(room_game_restart);
             } else {
-                
+                room_goto(room_outside);
             }
         }
         
         if room = room_game_restart {
             room_goto(room_boss)
         }
+        
     }
 }
 

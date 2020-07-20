@@ -48,7 +48,9 @@ wavetimer = 0; // delay between waves //
 maxspawned = false; // whether max # of enemies is spawned in wave or not //
 fighting = false; // whether player is fighting a wave or not //
 
-postbossdialogue = 1;
+postbossdialogue = 1; // post boss fight timer //
+sparktimer = 0;
+explosiontimer = 0;
 </string>
           </argument>
         </arguments>
@@ -384,6 +386,41 @@ if global.bosspart = 3 and !instance_exists(obj_main_boss) {
     
     if postbossdialogue = 30 {
         instance_create(obj_player.x,obj_player.y,obj_trigger);
+    }
+    
+    if postbossdialogue = 240 {
+        instance_create(272,459,obj_controlpanel);
+        instance_create(272,464,obj_barrier_block2);
+    }
+    
+    if obj_dialogue.printedline = 10 {
+        with obj_metal_wall_r1 {
+            if y &gt; 240 and y &lt;= 304 {
+                effect_create_above(ef_explosion,x,y,0,c_dkgray);
+                instance_destroy();
+            }
+        }
+        
+        sparktimer += irandom_range(1,3);
+        explosiontimer += irandom_range(1,3);
+        
+        if sparktimer = 50 {
+            effect_create_above(ef_firework,irandom_range(352,832),irandom_range(272,652),1,c_white)
+        }
+        
+        if sparktimer &gt;= 100 {
+            effect_create_above(ef_firework,irandom_range(352,832),irandom_range(272,652),1,c_white)
+            sparktimer = 0;
+        }
+        
+        if explosiontimer = 50 {
+            effect_create_above(ef_explosion,irandom_range(352,832),irandom_range(272,652),1,c_black)
+        }
+        
+        if explosiontimer &gt;= 100 {
+            effect_create_above(ef_explosion,irandom_range(352,832),irandom_range(272,652),1,c_black)
+            explosiontimer = 0;
+        }
     }
 }
 </string>

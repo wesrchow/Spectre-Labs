@@ -175,6 +175,7 @@
       <sprite>sprites\spr_computer1</sprite>
       <sprite>sprites\spr_server</sprite>
       <sprite>sprites\spr_door_block</sprite>
+      <sprite>sprites\spr_controlpanel</sprite>
       <sprite>sprites\spr_barrier_block</sprite>
       <sprites name="floor_oneway">
         <sprite>sprites\spr_metal_floor_oneway_bot</sprite>
@@ -341,6 +342,7 @@
       <object>objects\obj_computer1</object>
       <object>objects\obj_server</object>
       <object>objects\obj_door_block</object>
+      <object>objects\obj_controlpanel</object>
       <object>objects\obj_barrier_block</object>
       <object>objects\obj_barrier_block2</object>
       <objects name="floor_oneway">
@@ -374,6 +376,7 @@
       <room>rooms\room_vent</room>
       <room>rooms\room_control_room</room>
       <room>rooms\room_boss</room>
+      <room>rooms\room_outside</room>
       <room>rooms\room_game_restart</room>
     </rooms>
     <rooms name="other">
