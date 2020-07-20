@@ -29,8 +29,8 @@
       <sprite>sprites\spr_player</sprite>
       <sprite>sprites\spr_player_spectral_form</sprite>
       <sprite>sprites\spr_player_laser</sprite>
-      <sprite>sprites\spr_player_health_bar_bg</sprite>
       <sprite>sprites\spr_player_health_bar</sprite>
+      <sprite>sprites\spr_player_health_bar_bg</sprite>
     </sprites>
     <sprites name="pushblock">
       <sprite>sprites\spr_pushblock</sprite>
@@ -181,6 +181,8 @@
       <sprite>sprites\spr_enemy2</sprite>
       <sprite>sprites\spr_enemy3</sprite>
       <sprite>sprites\spr_enemy_laser1</sprite>
+      <sprite>sprites\spr_enemy_health_bar</sprite>
+      <sprite>sprites\spr_enemy_health_bar_bg</sprite>
       <sprite>sprites\spr_enemy_laser2</sprite>
     </sprites>
     <sprites name="other">
@@ -201,6 +203,7 @@
     <script>scripts\scr_enemy_movement.gml</script>
     <script>scripts\scr_randomdir_along_object.gml</script>
     <script>scripts\scr_enemy_shooting.gml</script>
+    <script>scripts\scr_enemy_healthbar.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_startscreen</font>
