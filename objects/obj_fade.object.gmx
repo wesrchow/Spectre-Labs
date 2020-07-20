@@ -90,12 +90,7 @@ if global.fadein = 1 {
     } else {
         
         if room = room_title_screen {
-            if global.startselection = 0 {
-                room_goto(room_start_cut);
-            }
-            if global.startselection = 1 {
-                room_goto(room_boss);
-            }
+            room_goto(room_boss);
         }
 
         if room = room_start_cut {

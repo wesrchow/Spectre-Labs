@@ -27,9 +27,9 @@
             <kind>1</kind>
             <string>depth = 100;
 
-global.startselection = 0; // startgame = 0 // tutorial = 1 // keeps track of selection
-global.startselectlock = 1; // locked = 0 // unlocked = 1 // locks level selection during obj_titlescreen_selector sliding
-global.startselectoptionlock = 1; // locked = 0 // unlocked = 1 // locks ability to select level after level is chosen
+//global.startselection = 0; // startgame = 0 // tutorial = 1 // keeps track of selection
+//global.startselectlock = 1; // locked = 0 // unlocked = 1 // locks level selection during obj_titlescreen_selector sliding
+//global.startselectoptionlock = 1; // locked = 0 // unlocked = 1 // locks ability to select level after level is chosen
 global.fadein = 0; // fadein = 0 // fadeout = 1 // states whether to fade in or out
 
 global.button1state = false; // false = off // true = on // controls buttonstate of obj_button1
@@ -310,14 +310,25 @@ if room = room_game_restart {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// title screen drawing start (taken out of game) ///
-
-if keyboard_check_pressed(vk_space) {
-    global.startselection = 1
-    global.fadein = 1
-    instance_create(0,0,obj_fade);
+            <string>/*/// title screen drawing ///
+if room = room_title_screen {
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_center);
+    draw_set_font(fnt_startscreen);
+    draw_set_colour(c_white);
+    draw_text(480,250,"SPECTRE LABS");
+    
+    draw_set_font(fnt_startscreen_message);
+    draw_text(480,400,"Press 'space' to start");
+    
+    if keyboard_check_pressed(vk_space) {
+        global.startselection = 1
+        global.fadein = 1
+        instance_create(0,0,obj_fade);
+    }
 }
-/*
+
+/* taken out of game
 // draws out selections in the title screen, create selector reference //
 if room = room_title_screen {
     draw_set_halign(fa_middle);
@@ -340,9 +351,7 @@ if room = room_title_screen {
         draw_set_colour(c_white);
         draw_text(480,387,"Tutorial");
     }
-}
-
-
+} */
 </string>
           </argument>
         </arguments>
