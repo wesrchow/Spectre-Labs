@@ -10,13 +10,6 @@ if place_meeting(x,y,obj_player_laser) {
 }
 
 if enemyhealth = 0 {
-    with healthbar {
-        instance_destroy();
-    }
-    
-    with healthbarbg {
-        instance_destroy();
-    }
     effect_create_above(ef_explosion,x,y,0,c_dkgray);
     instance_destroy();
 }

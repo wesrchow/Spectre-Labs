@@ -28,6 +28,7 @@
     <sprites name="player">
       <sprite>sprites\spr_player</sprite>
       <sprite>sprites\spr_player_run</sprite>
+      <sprite>sprites\spr_player_idle</sprite>
       <sprite>sprites\spr_player_spectral_form</sprite>
       <sprite>sprites\spr_player_laser</sprite>
       <sprite>sprites\spr_player_health_bar</sprite>
@@ -209,7 +210,6 @@
     <script>scripts\scr_enemy_sprite_control.gml</script>
     <script>scripts\scr_enemy_shooting.gml</script>
     <script>scripts\scr_enemy_kill_check.gml</script>
-    <script>scripts\scr_enemy_healthbar.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_startscreen</font>
@@ -226,6 +226,7 @@
       <object>objects\obj_dialogue</object>
       <object>objects\obj_trigger</object>
       <object>objects\obj_boss_control</object>
+      <object>objects\obj_enemy_health_bar_draw</object>
     </objects>
     <objects name="player">
       <object>objects\obj_player</object>
@@ -334,7 +335,6 @@
         <object>objects\obj_metal_floor_oneway_left</object>
         <object>objects\obj_metal_floor_oneway_right</object>
       </objects>
-      <object>objects\odraw</object>
     </objects>
     <objects name="boss">
       <object>objects\obj_main_boss</object>
@@ -342,8 +342,8 @@
       <object>objects\obj_enemy1</object>
       <object>objects\obj_enemy2</object>
       <object>objects\obj_enemy3</object>
-      <object>objects\obj_enemy_health_bar</object>
-      <object>objects\obj_enemy_health_bar_bg</object>
+      <object>objects\obj_enemy_health_bar_old</object>
+      <object>objects\obj_enemy_health_bar_bg_old</object>
       <object>objects\obj_enemy_laser1</object>
       <object>objects\obj_enemy_laser2</object>
       <object>objects\obj_enemy_laser2_beam</object>

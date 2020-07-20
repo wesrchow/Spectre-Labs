@@ -26,7 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>depth = -10;
-bosspart = 1;
 spawnedclones = false;
 </string>
           </argument>
@@ -53,17 +52,61 @@ spawnedclones = false;
             <string>/// spawning clones ///
 if global.bosswave = 4 {
     if spawnedclones = false {
-        if bosspart = 1 {
+        if global.bosspart = 1 {
+            // story message to player
+            instance_create(obj_player.x,obj_player.y,obj_trigger);
+            // left side clones
             instance_create(272,620,obj_main_boss_clone);
             instance_create(272,300,obj_main_boss_clone);
+            // right side clones
             instance_create(944,332,obj_main_boss_clone);
             instance_create(944,588,obj_main_boss_clone);
             spawnedclones = true;
+            show_debug_message('got through?');
         }
         
-        if bosspart = 2 {
-            
+        if global.bosspart = 2 {
+            // story message to player
+            instance_create(obj_player.x,obj_player.y,obj_trigger);
+            // top clones 
+            instance_create(272,208,obj_main_boss_clone);
+            instance_create(336,208,obj_main_boss_clone);
+            instance_create(592,208,obj_main_boss_clone);
+            instance_create(912,208,obj_main_boss_clone);
+            // bottom clones
+            instance_create(304,720,obj_main_boss_clone);
+            instance_create(624,720,obj_main_boss_clone);
+            instance_create(880,720,obj_main_boss_clone);
+            instance_create(944,720,obj_main_boss_clone);
+            spawnedclones = true;
         }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// check if any clones left ///
+if global.bosswave = 4 {
+    if !instance_exists(obj_main_boss_clone) {
+        global.bosspart ++;
+        spawnedclones = false;
     }
 }
 </string>

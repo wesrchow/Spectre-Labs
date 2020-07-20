@@ -48,8 +48,8 @@ global.enemies1 += 1;
 
 randomdir = irandom_range(1,4)
 
-healthbarbg = instance_create(x-35,y-35,obj_enemy_health_bar_bg);
-healthbar = instance_create(x-32.2,y-32.2,obj_enemy_health_bar);
+//healthbarbg = instance_create(x-35,y-35,obj_enemy_health_bar_bg);
+//healthbar = instance_create(x-32.2,y-32.2,obj_enemy_health_bar);
 </string>
           </argument>
         </arguments>
@@ -234,8 +234,8 @@ scr_enemy_shooting(1,1,1,2,2,500,obj_enemy_laser1,8);
 //draw_sprite_ext(spr_enemy_health_bar_bg,-1,x-35,y-35,0.4,0.4,0,c_white,1);
 //healthbarbg = instance_create(x-35,y-35,obj_enemy_health_bar_bg);
 
-healthbarbg.enemyid = id;
-healthbar.enemyid = id;
+///healthbarbg.enemyid = id;
+///healthbar.enemyid = id;
 
 /*
 if drawinghealth &gt; 60 {

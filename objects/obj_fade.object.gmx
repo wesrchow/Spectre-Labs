@@ -94,7 +94,7 @@ if global.fadein = 1 {
                 room_goto(room_start_cut);
             }
             if global.startselection = 1 {
-                room_goto(room_boss);
+                room_goto(room_level1);
             }
         }
 

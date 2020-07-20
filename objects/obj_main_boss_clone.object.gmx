@@ -26,11 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>depth = -10;
-bosspart = 1; // what part of final boss //
 
-enemyhealth = 20;
+enemyhealth = 10; // enemy health //
 
-shoottimer = 0;
+shoottimer = 0; // timing of firing laser objects //
+firingratetimer = 0; // firing rate timer //
+firing = false; // firing or not //
 </string>
           </argument>
         </arguments>
@@ -55,15 +56,96 @@ shoottimer = 0;
             <kind>1</kind>
             <string>/// shoot control ///
 if global.bosswave = 4 {
-    if bosspart = 1 {
-        shoottimer ++;
+    if global.bosspart = 1 {
         
-        if shoottimer &gt;= 480 {
-            laser = instance_create(x,y,obj_enemy_laser2)
-        } 
+        firingratetimer ++;
         
-        if shoottimer &gt;= 510 {
+        if firing = true {
+            shoottimer ++;
+            
+            if shoottimer = 10 {
+                laser = instance_create(x,y,obj_enemy_laser2)
+                laser.speed = 5;
+                
+                if x &gt; 608 {
+                    laser.direction = 180;
+                    laser.image_xscale = -1;
+                } else {
+                    laser.direction = 0;
+                }
+            } 
+            
+            if shoottimer &gt;= 15 {
+                laser = instance_create(x,y,obj_enemy_laser2_beam)
+                laser.speed = 5;
+                
+                if x &gt; 608 {
+                    laser.direction = 180;
+                } else {
+                    laser.direction = 0;
+                }
+                
+                shoottimer = 11;
+            }
+        }
         
+        if firingratetimer &gt;= 360 {
+            firingratetimer = 0;
+            
+            if firing = false {
+                shoottimer = 0;
+                firing = true;
+            } else {
+                firing = false;
+            }
+        }
+    }
+    
+    if global.bosspart = 2 {
+        
+        firingratetimer ++;
+        
+        if firing = true {
+            shoottimer ++;
+            
+            if shoottimer = 10 {
+                laser = instance_create(x,y,obj_enemy_laser2)
+                laser.speed = 5;
+                
+                if y &lt; 464 {
+                    laser.direction = 270;
+                    laser.image_angle = 270;
+                } else {
+                    laser.direction = 90;
+                    laser.image_angle = 90;
+                }
+            } 
+            
+            if shoottimer &gt;= 15 {
+                laser = instance_create(x,y,obj_enemy_laser2_beam)
+                laser.speed = 5;
+                
+                if y &lt; 464 {
+                    laser.direction = 270;
+                    laser.image_angle = 90;
+                } else {
+                    laser.direction = 90;
+                    laser.image_angle = 90;
+                }
+                
+                shoottimer = 11;
+            }
+        }
+        
+        if firingratetimer &gt;= 480 {
+            firingratetimer = 0;
+            
+            if firing = false {
+                shoottimer = 0;
+                firing = true;
+            } else {
+                firing = false;
+            }
         }
     }
 }

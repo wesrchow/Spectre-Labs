@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>friction = 0.05
+            <string>if global.bosswave = 4 {
+
+} else {
+    friction = 0.05;
+}
 </string>
           </argument>
         </arguments>

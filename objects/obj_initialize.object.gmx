@@ -57,6 +57,7 @@ global.bosswave = -1; // controls which wave number //
 global.enemies1 = 0; // enemy1 count //
 global.enemies2 = 0; // enemy2 count //
 global.enemies3 = 0; // enemy3 count //
+global.bosspart = 1;
 
 global.playerhealth = 100;
 

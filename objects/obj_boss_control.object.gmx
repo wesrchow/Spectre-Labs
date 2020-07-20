@@ -139,7 +139,7 @@ if started = true {
         
         viewtimer = 0;
         started = 2;
-        global.bosswave = 1;
+        global.bosswave = 4;
     }
 }
 </string>
@@ -306,7 +306,7 @@ if global.bosswave = 3 {
           <argument>
             <kind>1</kind>
             <string>/// final boss fight (wave 4) ///
-if global.bosswave = 4 {
+/*if global.bosswave = 4 {
     if bossdialogue = 1 {
         instance_create(obj_player.x,obj_player.y,obj_trigger);
         bossdialogue = -1;
