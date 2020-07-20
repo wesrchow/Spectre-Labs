@@ -1,4 +1,4 @@
-// called by obj_boss_control //
+// called by obj_boss_control and obj_main_boss//
 // spawns enemies to a random position on the grid of open spots //
 rownum = irandom_range(1,6);
 

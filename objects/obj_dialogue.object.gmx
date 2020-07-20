@@ -57,11 +57,15 @@ if room = room_level2 {
 }
 
 if room = room_boss {
-    box[1] = ".... testing"
+    box[1] = "So you figured out the big secret huh? Guess we'll just have to get rid #of you. Minions, kill this uselss creature!"
     
-    box[2] = "test2......................."
+    box[2] = "You killed them all. No problem, we have parts to spare. Bring in #another wave! End him quickly, we have things to do."
     
-    box[3] = " boss dialogue testig" 
+    box[3] = "You are getting very annoying. Can you please just stop struggling and #die? Just send a bunch more."
+    
+    box[4] = "Boss: What!? You killed all my minions!? Fine, then I'll do it myself..." 
+    
+    box[5] = "Boss: even my clones???"
 }
 
 printedline = 0;

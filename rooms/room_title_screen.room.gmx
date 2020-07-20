@@ -57,6 +57,7 @@ instance_create(obj_titlescreen_selector_ref_top.x + 140,obj_titlescreen_selecto
   </views>
   <instances>
     <instance objName="obj_initialize" x="32" y="672" name="inst_C3B632CB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_music" x="32" y="640" name="inst_EFE6A51F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

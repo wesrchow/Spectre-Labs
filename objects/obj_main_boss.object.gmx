@@ -3,7 +3,7 @@
   <spriteName>spr_main_boss</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-10</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,14 +25,124 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>depth = -10;
-spawnedclones = false;
+            <string>spawnedclones = false; // if any clones are left
+enemyhealth = 20; // enemyhealth
+stallingtimer = 0; // used for stalling things
+
+rownum = 0; // which row to jump to
+chosenxtile = 0; // which x axis tile
+chosenytile = 0; // which y axis tile
+chosenx = 0; // edge grid x
+choseny = 0; // edge grid y
+gridx = 0; // jumping x
+gridy = 0; // jumping y
+
+shoottimer = 0; // controls consistent beam of laser
 </string>
           </argument>
         </arguments>
       </action>
     </event>
     <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// bosspart 3 ///
+if global.bosspart = 3 {
+    
+        stallingtimer ++;
+    
+    if stallingtimer = 2 {
+        view_object[0] = obj_main_boss;
+        global.movecontrollock = true;
+    }
+    
+    if stallingtimer = 400 {
+        with obj_forcefield {
+            effect_create_above(ef_firework,x,y-5,0,c_white);
+            effect_create_above(ef_spark,x,y,0,c_white);
+            instance_destroy();
+        }
+    }
+    
+    if stallingtimer = 480 {
+        view_object[0] = obj_player;
+        global.movecontrollock = false;
+    }
+    
+    if stallingtimer &gt;= 520 and stallingtimer &lt;= 900 {
+        shoottimer ++;
+        
+        if shoottimer = 10 {
+            laser1 = instance_create(x,y,obj_enemy_laser2);
+            laser2 = instance_create(x,y,obj_enemy_laser2);
+            laser3 = instance_create(x,y,obj_enemy_laser2);
+            laser4 = instance_create(x,y,obj_enemy_laser2);
+            
+            laser2.image_angle = 90;
+            laser3.image_angle = 180;
+            laser4.image_angle = 270;
+            
+            laser1.direction = 0;
+            laser2.direction = 90;
+            laser3.direction = 180;
+            laser4.direction = 270;
+            
+            laser1.speed = 5;
+            laser2.speed = 5;
+            laser3.speed = 5;
+            laser4.speed = 5;
+        }
+        
+        if shoottimer &gt;= 15 {
+            laser1 = instance_create(x,y,obj_enemy_laser2_beam);
+            laser2 = instance_create(x,y,obj_enemy_laser2_beam);
+            laser3 = instance_create(x,y,obj_enemy_laser2_beam);
+            laser4 = instance_create(x,y,obj_enemy_laser2_beam);
+            
+            laser2.image_angle = 90;
+            laser3.image_angle = 180;
+            laser4.image_angle = 270;
+            
+            laser1.direction = 0;
+            laser2.direction = 90;
+            laser3.direction = 180;
+            laser4.direction = 270;
+            
+            laser1.speed = 5;
+            laser2.speed = 5;
+            laser3.speed = 5;
+            laser4.speed = 5;
+            
+            shoottimer = 11;
+        }
+    }
+    
+    if stallingtimer &gt;= 1180 {
+        scr_enemy_spawn_pos();
+        x = chosenx;
+        y = choseny - 4;
+        stallingtimer = 481;
+        shoottimer = 0;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -69,15 +179,21 @@ if global.bosswave = 4 {
             // story message to player
             instance_create(obj_player.x,obj_player.y,obj_trigger);
             // top clones 
-            instance_create(272,208,obj_main_boss_clone);
-            instance_create(336,208,obj_main_boss_clone);
-            instance_create(592,208,obj_main_boss_clone);
-            instance_create(912,208,obj_main_boss_clone);
+            instance_create(272,204,obj_main_boss_clone);
+            instance_create(336,204,obj_main_boss_clone);
+            instance_create(592,204,obj_main_boss_clone);
+            instance_create(912,204,obj_main_boss_clone);
             // bottom clones
-            instance_create(304,720,obj_main_boss_clone);
-            instance_create(624,720,obj_main_boss_clone);
-            instance_create(880,720,obj_main_boss_clone);
-            instance_create(944,720,obj_main_boss_clone);
+            instance_create(304,716,obj_main_boss_clone);
+            instance_create(624,716,obj_main_boss_clone);
+            instance_create(880,716,obj_main_boss_clone);
+            instance_create(944,716,obj_main_boss_clone);
+            spawnedclones = true;
+        }
+        
+        if global.bosspart = 3 {
+            // story message to player
+            instance_create(obj_player.x,obj_player.y,obj_trigger);
             spawnedclones = true;
         }
     }
@@ -104,10 +220,38 @@ if global.bosswave = 4 {
             <kind>1</kind>
             <string>/// check if any clones left ///
 if global.bosswave = 4 {
-    if !instance_exists(obj_main_boss_clone) {
-        global.bosspart ++;
-        spawnedclones = false;
+    if global.bosspart = 1 or global.bosspart = 2 {
+        if !instance_exists(obj_main_boss_clone) {
+            global.bosspart ++;
+            spawnedclones = false;
+        }
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// sprite control ///
+if place_meeting(x,y-32,obj_server) {
+    depth = -13;
+} else {
+    depth = -11;
 }
 </string>
           </argument>

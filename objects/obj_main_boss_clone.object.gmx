@@ -29,7 +29,7 @@
 
 enemyhealth = 10; // enemy health //
 
-shoottimer = 0; // timing of firing laser objects //
+shoottimer = 0; // timing of firing laser objects
 firingratetimer = 0; // firing rate timer //
 firing = false; // firing or not //
 </string>

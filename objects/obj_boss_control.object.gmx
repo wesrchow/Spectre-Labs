@@ -28,6 +28,7 @@
             <string>viewtimer = 0; // stall of first view //
 started = false; // unlock view started //
 
+view_visible[1] = false;
 view_hspeed[1] = 0; // set view speed to 0 // 
 view_vspeed[1] = 0; // set view speed to 0 //
 
@@ -103,8 +104,8 @@ if started = false {
     }
     
     if viewtimer &gt;= 280 {
-        view_hspeed[1] = 2;
-        view_vspeed[1] = 2;
+        view_hspeed[0] = 2;
+        view_vspeed[0] = 2;
         
         viewtimer = 0;
         started = true
@@ -174,11 +175,11 @@ if global.bosswave = 1 {
             
             enemyspawn = irandom_range(1,2);
             
-            if global.enemies1 = 8 {
+            if global.enemies1 = 5 {
                 enemyspawn = 2;
             }
             
-            if global.enemies2 = 5 {
+            if global.enemies2 = 3 {
                 enemyspawn = 1;
             }
             
@@ -224,7 +225,7 @@ if global.bosswave = 2 {
             
             enemyspawn = irandom_range(1,3);
             
-            scr_random_enemy(10,5,2);
+            scr_random_enemy(6,4,2);
             
             if enemyspawn = 1 {
                 instance_create(chosenx,choseny,obj_enemy1);
@@ -270,7 +271,7 @@ if global.bosswave = 3 {
             
             enemyspawn = irandom_range(1,3);
             
-            scr_random_enemy(13,8,6);
+            scr_random_enemy(7,5,4);
             
             if enemyspawn = 1 {
                 instance_create(chosenx,choseny,obj_enemy1);
@@ -342,16 +343,20 @@ if instance_exists(obj_enemy1) or instance_exists(obj_enemy2) or instance_exists
 }
 
 if global.bosswave = 1 {
-    if global.enemies1 = 8 and global.enemies2 = 5 {
+    if global.enemies1 = 5 and global.enemies2 = 3 {
         maxspawned = true;
         
         if fighting = false {
             wavetimer ++;
             
+            if wavetimer = 1 {
+                instance_create(obj_player.x,obj_player.y,obj_trigger);
+            }
+            
             if wavetimer &gt;= 300 {
                 global.enemies1 = 0;
                 global.enemies2 = 0;
-            
+                
                 global.bosswave = 2;
                 maxspawned = false;
                 wavetimer = 0;
@@ -361,17 +366,21 @@ if global.bosswave = 1 {
 }
 
 if global.bosswave = 2 {
-    if global.enemies1 = 10 and global.enemies2 = 5 and global.enemies3 = 2 {
+    if global.enemies1 = 6 and global.enemies2 = 4 and global.enemies3 = 2 {
         maxspawned = true;
         
         if fighting = false {
             wavetimer ++;
             
+            if wavetimer = 1 {
+                instance_create(obj_player.x,obj_player.y,obj_trigger);
+            }
             if wavetimer &gt;= 300 {
                 global.enemies1 = 0;
                 global.enemies2 = 0;
                 global.enemies3 = 0;
-            
+                
+                
                 global.bosswave = 3;
                 maxspawned = false;
                 wavetimer = 0;
@@ -381,7 +390,7 @@ if global.bosswave = 2 {
 }
 
 if global.bosswave = 3 {
-    if global.enemies1 = 13 and global.enemies2 = 8 and global.enemies3 = 6 {
+    if global.enemies1 = 7 and global.enemies2 = 5 and global.enemies3 = 4 {
         maxspawned = true;
         
         if fighting = false {
@@ -432,7 +441,7 @@ if started = true {
 }
 
 if global.bosswave = 1 {
-    if global.enemies1 = 8 and global.enemies2 = 5 {
+    if global.enemies1 = 7 and global.enemies2 = 4 {
         if fighting = false {
             draw_set_halign(fa_center);
             draw_set_valign(fa_center);
@@ -445,7 +454,7 @@ if global.bosswave = 1 {
 }
 
 if global.bosswave = 2 {
-    if global.enemies1 = 10 and global.enemies2 = 5 and global.enemies3 = 2 {
+    if global.enemies1 = 9 and global.enemies2 = 5 and global.enemies3 = 2 {
         if fighting = false {
             draw_set_halign(fa_center);
             draw_set_valign(fa_center);
@@ -458,7 +467,7 @@ if global.bosswave = 2 {
 }
 
 if global.bosswave = 3 {
-    if global.enemies1 = 13 and global.enemies2 = 8 and global.enemies3 = 6 {
+    if global.enemies1 = 12 and global.enemies2 = 7 and global.enemies3 = 5 {
         if fighting = false {
             draw_set_halign(fa_center);
             draw_set_valign(fa_center);

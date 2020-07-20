@@ -329,8 +329,6 @@ if room = room_title_screen {
 // if room is start cut //
 if room = room_start_cut {
 
-show_debug_message(scrolltimer);
-
     // if starttext enabled, draw starting text //
     if starttext = true {
         draw_text(128,100,printed);
@@ -417,7 +415,7 @@ show_debug_message(scrolltimer);
 with obj_player {
     if recording = true {
         draw_set_alpha(0.8);
-        draw_sprite(spr_player,-1,recordstartingx,recordstartingy);
+        draw_sprite(spr_player_idle,-1,recordstartingx,recordstartingy);
         draw_set_alpha(1);
     }
 }
