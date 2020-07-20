@@ -39,9 +39,10 @@ randomdirtimer = 0; // random dir timer when enemy going down straight wall //
 movefinished = true; // false = not // true = one tile movement finished //
 changedir = false; // false = do nothing // true = change direction //
 
-shoottimer = 0;
+shoottimer = 0; // random value to time shooting //
+enemyhealth = 5; // enemy health //
 
-enemyhealth = 5;
+image_speed = 0.5;
 
 global.enemies3 += 1;
 
@@ -179,8 +180,30 @@ scr_randomdir_along_object();
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// sprite control ///
+scr_enemy_sprite_control();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// enemy shooting ///
-scr_enemy_shooting(1,1,1,2,2,250,obj_enemy_laser1,5);
+scr_enemy_shooting(1,1,1,2,2,250,obj_enemy_laser1,8);
 </string>
           </argument>
         </arguments>
@@ -202,16 +225,7 @@ scr_enemy_shooting(1,1,1,2,2,250,obj_enemy_laser1,5);
           <argument>
             <kind>1</kind>
             <string>/// kill check ///
-if place_meeting(x,y,obj_player_laser) {
-    with instance_nearest(x,y,obj_player_laser) {
-        instance_destroy();
-    }
-    enemyhealth -=1;
-}
-
-if enemyhealth = 0 {
-    instance_destroy();
-}
+scr_enemy_kill_check();
 </string>
           </argument>
         </arguments>
@@ -247,13 +261,7 @@ if drawinghealth &gt; 23 {
     draw_rectangle(x-32,y-32,x-10,y-27,false);
     draw_rectangle(x-32,y-32,x-32+drawinghealth,y-29,false);
     
-} /*else if drawinghealth &lt; 30 and drawinghealth &gt; 20 {
-    
-    draw_set_colour(make_colour_rgb(204, 206, 24));
-    draw_rectangle(x-32,y-32,x-10,y-27,false);
-    draw_rectangle(x-32,y-32,x-32+drawinghealth,y-29,false);
-    
-}*/ else if drawinghealth &lt; 20 and drawinghealth &gt; 10 {
+} else if drawinghealth &lt; 20 and drawinghealth &gt; 10 {
     
     draw_set_colour(make_colour_rgb(204, 206, 24));
     draw_rectangle(x-32,y-32,x-32+drawinghealth,y-27,false);

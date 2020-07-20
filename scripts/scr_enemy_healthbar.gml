@@ -1,5 +1,7 @@
+// not used atm //
 // called by enemies 1 2 3 //
-// draws enemy healthbar //
+// draws enemy healthbar // 
+/*
 draw_self();
 
 var drawinghealth = enemyhealth * 50;

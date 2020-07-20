@@ -229,7 +229,6 @@
     <instance objName="obj_metal_floor" x="528" y="208" name="inst_84DAC891" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="720" y="208" name="inst_610CDDFF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="624" y="208" name="inst_E341038B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_main_boss" x="273" y="464" name="inst_7B30D0C5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="368" y="496" name="inst_31EA37DD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="368" y="432" name="inst_6876B3D8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="368" y="400" name="inst_4AAA1991" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -591,6 +590,7 @@
     <instance objName="obj_forcefield" x="272" y="464" name="inst_C823FDE1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_forcefield" x="272" y="432" name="inst_644C18F2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_trigger" x="832" y="700" name="inst_169642B7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_main_boss" x="273" y="460" name="inst_7B30D0C5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

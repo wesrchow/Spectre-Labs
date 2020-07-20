@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>friction = 0.02
+            <string>friction = 0.05
 </string>
           </argument>
         </arguments>
@@ -54,6 +54,7 @@ or place_meeting(x,y,obj_metal_wall_r1)
 or place_meeting(x,y,obj_metal_wall_l1)
 or place_meeting(x,y,obj_metal_wall_fr1) 
 or place_meeting(x,y,obj_barrier_block) {
+    effect_create_above(ef_smoke,x,y,0.3,c_dkgray);
     instance_destroy();
 }
 </string>
@@ -77,7 +78,7 @@ or place_meeting(x,y,obj_barrier_block) {
           <argument>
             <kind>1</kind>
             <string>/// destroy when stalled ///
-if speed &lt;= 0.2 {
+if speed &lt;= 0.3 {
     instance_destroy();
 }
 </string>

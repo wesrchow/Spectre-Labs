@@ -26,7 +26,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprites name="player">
-      <sprite>sprites\spr_player</sprite>
+      <sprite>sprites\spr_player_run</sprite>
       <sprite>sprites\spr_player_spectral_form</sprite>
       <sprite>sprites\spr_player_laser</sprite>
       <sprite>sprites\spr_player_health_bar</sprite>
@@ -182,10 +182,11 @@
       <sprite>sprites\spr_enemy2</sprite>
       <sprite>sprites\spr_enemy3</sprite>
       <sprite>sprites\spr_enemy_laser1</sprite>
+      <sprite>sprites\spr_enemy_laser2</sprite>
+      <sprite>sprites\spr_enemy_laser2_beam</sprite>
       <sprite>sprites\spr_enemy_health_bar</sprite>
       <sprite>sprites\spr_enemy_health_bar_bg</sprite>
       <sprite>sprites\spr_forcefield</sprite>
-      <sprite>sprites\spr_enemy_laser2</sprite>
     </sprites>
     <sprites name="other">
       <sprite>sprites\spr_dialogue_bg</sprite>
@@ -200,11 +201,13 @@
     <script>scripts\scr_movement_sliding.gml</script>
     <script>scripts\scr_enemy_spawn_pos.gml</script>
     <script>scripts\scr_random_enemy.gml</script>
-    <script>scripts\scr_enemy_stalled_movement.gml</script>
     <script>scripts\scr_enemy_collision_test.gml</script>
     <script>scripts\scr_enemy_movement.gml</script>
+    <script>scripts\scr_enemy_stalled_movement.gml</script>
     <script>scripts\scr_randomdir_along_object.gml</script>
+    <script>scripts\scr_enemy_sprite_control.gml</script>
     <script>scripts\scr_enemy_shooting.gml</script>
+    <script>scripts\scr_enemy_kill_check.gml</script>
     <script>scripts\scr_enemy_healthbar.gml</script>
   </scripts>
   <fonts name="fonts">
@@ -351,6 +354,7 @@
       <room>rooms\room_control_room</room>
       <room>rooms\room_vent</room>
       <room>rooms\room_boss</room>
+      <room>rooms\room_game_restart</room>
     </rooms>
     <rooms name="other">
       <room>rooms\room_feature_test</room>

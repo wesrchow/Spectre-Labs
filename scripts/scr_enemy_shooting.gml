@@ -4,12 +4,24 @@ shoottimer += choose(argument0,argument1,argument2,argument3,argument4);
 
 if movement = 1 {
     if point_direction(x,y,obj_player.x,obj_player.y) <= 20 and point_direction(x,y,obj_player.x,obj_player.y) >= -20 {
-        if shoottimer >= argument5 {
-            bullet = instance_create(x,y,argument6)
-            bullet.image_angle = 0;
-            bullet.speed = argument7;
-            bullet.direction = 0;
-            shoottimer = 0;
+        if direction = 0 {
+            if shoottimer >= argument5 {
+                bullet = instance_create(x,y,argument6)
+                bullet.image_angle = 0;
+                bullet.speed = argument7;
+                bullet.direction = 0;
+                shoottimer = 0;
+            }
+        }
+        
+        if direction = 90 or direction = 270 and x < 608 {
+            if shoottimer >= argument5 {
+                bullet = instance_create(x,y,argument6)
+                bullet.image_angle = 0;
+                bullet.speed = argument7;
+                bullet.direction = 0;
+                shoottimer = 0;
+            }
         }
     }
     
@@ -24,12 +36,24 @@ if movement = 1 {
     }
     
     if point_direction(x,y,obj_player.x,obj_player.y) <= 200 and point_direction(x,y,obj_player.x,obj_player.y) >= 160 {
-        if shoottimer >= argument5 {
-            bullet = instance_create(x,y,argument6)
-            bullet.image_angle = 180;
-            bullet.speed = argument7;
-            bullet.direction = 180;
-            shoottimer = 0;
+        if direction = 180 {
+            if shoottimer >= argument5 {
+                bullet = instance_create(x,y,argument6)
+                bullet.image_angle = 180;
+                bullet.speed = argument7;
+                bullet.direction = 180;
+                shoottimer = 0;
+            }
+        }
+        
+        if direction = 90 or direction = 270 and x >= 608 {
+            if shoottimer >= argument5 {
+                bullet = instance_create(x,y,argument6)
+                bullet.image_angle = 180;
+                bullet.speed = argument7;
+                bullet.direction = 180;
+                shoottimer = 0;
+            }
         }
     }
     
