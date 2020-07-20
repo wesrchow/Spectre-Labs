@@ -57,7 +57,7 @@ buttontimer = 0;
             <string>/// button activate start ///
 
 // when player or pushblock is on button, buttonstate on, change sprite index //
-if place_meeting(x,y,obj_player) or place_meeting(x,y,obj_ghost) or place_meeting(x,y,obj_push_block) {
+if place_meeting(x,y,obj_player) or place_meeting(x,y,obj_ghost) or place_meeting(x,y,obj_pushblock1) {
     sprite_index = spr_button_red_4of4;
     global.button2state = true;
     buttontimer = 0;

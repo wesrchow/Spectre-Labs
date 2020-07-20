@@ -8,7 +8,7 @@
   <isometric>0</isometric>
   <speed>60</speed>
   <persistent>0</persistent>
-  <colour>1184274</colour>
+  <colour>1579032</colour>
   <showcolour>-1</showcolour>
   <code>instance_create(0,0,obj_fade);
 instance_create(480,317,obj_titlescreen_selector_ref_top);
@@ -56,7 +56,7 @@ instance_create(obj_titlescreen_selector_ref_top.x + 140,obj_titlescreen_selecto
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance objName="obj_initialize" x="-32" y="672" name="inst_C3B632CB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_initialize" x="32" y="672" name="inst_C3B632CB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

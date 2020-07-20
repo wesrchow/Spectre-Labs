@@ -34,13 +34,18 @@ global.button1state = false; // false = off // true = on // controls buttonstate
 global.button2state = false; // false = off // true = on // controls buttonstate of obj_button2
 global.button3state = false; // false = off // true = on // controls buttonstate of obj_button3
 global.button4state = false; // false = off // true = on // controls buttonstate of obj_button4
+global.button5_n1state = false; // false = off // true = on // controls buttonstate of obj_button5_n1
+global.button5_n2state = false; // false = off // true = on // controls buttonstate of obj_button5_n2
+global.button6state = false; // false = off // true = on // controls buttonstate of obj_button6
 
 global.lever1state = false; // false = off // true = on // controls buttonstate of obj_lever1
 global.lever2state = false; // false = off // true = on // controls buttonstate of obj_lever2
 
 global.movecontrollock = true; // notlocked = false // locked = true // controls locking player movement
+global.blockmovelock = false; // notlocked = false // locked = true // controls locking pushblock movement
 
-
+global.block1stuck = false // not in use
+global.block1stuckdir = 0 // 1 = 0deg // 2 = 90deg // 3 = 180 deg // 4 = 270deg
 
 global.playermoving = 0; // moving = 1 // not moving = 0 // not in use
 global.level = 0; // not in use

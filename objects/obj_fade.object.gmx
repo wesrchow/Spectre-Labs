@@ -117,10 +117,10 @@ if global.fadein = 1 {
         
         if room = room_title_screen {
             if global.startselection = 0 {
-                room_goto(room_start_cut);
+                room_goto(/*room_start_cut*/ room_level1);
             }
             if global.startselection = 1 {
-                room_goto(/*room_feature_test*/ room_level1 /*room_hallway*/);
+                room_goto(room_feature_test);
             }
         }
         
