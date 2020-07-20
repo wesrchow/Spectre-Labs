@@ -1,7 +1,7 @@
 /// called by obj_player and obj_push_block ///
 /// sliding effect start ///
 
-// according to direction, add onto player position //
+// according to direction, add onto position //
 if direction = 0 {
     x+=2;   
 }

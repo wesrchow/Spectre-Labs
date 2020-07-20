@@ -70,8 +70,8 @@ if global.fadein = 0 {
     if fadetimer &lt; 25 {
         alarm[0] = 1;
     } else {
-        instance_destroy();
         global.movecontrollock = 1;
+        instance_destroy(); 
     }
 }
 
@@ -97,7 +97,7 @@ if global.fadein = 1 {
         }
         if room = room_title_screen {
             if global.startselection = 0 {
-                room_goto(room_level1);
+                room_goto(room_start_cut);
             }
             if global.startselection = 1 {
                 room_goto(/*room_tutorial*/room_feature_test);

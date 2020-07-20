@@ -40,6 +40,44 @@ global.movecontrollock = 0; // locked = 0 // unlocked = 1 // controls locking pl
 global.playermoving = 0; // moving = 1 // not moving = 0 // not in use
 global.level = 0; // not in use
 
+// if room is start cut //
+if room = room_start_cut {
+
+    // set text parameters //
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_left);
+    draw_set_font(fnt_start_cut);
+    draw_set_colour(c_white);
+    
+    
+    starttext = true; // enabled = true // disabled = false // controls one time usage of code
+    starthold = true; // enabled = true // disabled = false // holds starting text for a short time
+    strcharpos = 0; // position of list to take character from
+    scrolltimer = 0 // timer to control text holding and rate of scrolling of text
+    printed = "&gt;" // the text to be printed
+    // ylinechange = 0; // amount of y to be changed for a new line
+    
+    // create lists of text by letter for each line //
+    
+    page1 = "&gt;  Welcome, to _________.
+    #You've signed up to be a test subject for an obscure
+    #company you've never heard of before, but the pay was
+    #good, so you decided to go for it. They picked you up
+    #in a military grade car with tinted windows and drive
+    #you off to an unknown location. "
+
+    /* line1 = ds_list_create();
+    ds_list_add(line1, "  ", "T", "e", "s", "t", "i", "n", "g", ".", " ", "T", "h", "i", "s", " ", "i", "s", " ", "t", "e", "d", "i", "o", "u", "s")
+    */
+    
+    // line2 = "This is a line two, the game will crash after this one# lkj lkj lkj lkj lkj lkj lkj #uoiuoiuiouo"
+    
+    /* line2 = ds_list_create();
+    ds_list_add(line2, "", "T", "e", "s", "t", "i", "n", "g", ".");
+    */
+    
+    printedline = page1; // set the current printing line
+}
 </string>
           </argument>
         </arguments>
@@ -69,7 +107,7 @@ if room = room_title_screen {
     draw_set_halign(fa_middle);
     draw_set_valign(fa_middle);
     draw_set_font(fnt_startscreen);
-    draw_set_colour(c_black);
+    draw_set_colour(c_gray);
     
     //instance_create(480,317,obj_titlescreen_selector_ref);
     
@@ -89,6 +127,79 @@ if room = room_title_screen {
 }
 
 /// title screen drawing end ///
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// start game cut ///
+
+// if room is start cut //
+if room = room_start_cut {
+
+    // if starttext enabled, draw starting text //
+    if starttext = true {
+        draw_text(128,128,printed);
+    }
+    
+    // if movecontrollock is unlocked //
+    if global.movecontrollock = 1 {
+
+        scrolltimer ++;        
+        
+        // if scrolltimer &gt;= 50, disables one time code and holding text, set scrolltimer to 0 //
+        if scrolltimer &gt;= 50 {
+            starthold = false;
+            starttext = false;
+            scrolltimer = 0;
+        }
+        
+        // if holding text is disabled, if scroll timer &gt;= 3 // 
+        if starthold = false {
+            if scrolltimer &gt;= 3 {
+                
+                // character to be added = list(printedline, strcharpos) //
+                // printed phrase = current printed phrase + character //
+                //character = ds_list_find_value(printedline, strcharpos);
+                printed = string_copy(printedline,1,strcharpos + 1)
+                
+                strcharpos ++;
+                scrolltimer = 0;
+                 
+            }
+        }
+        
+        // if list position &gt;= size of printing list, printing line = script start lines //
+        if strcharpos &gt;= string_length(printedline) {
+            starthold = true
+                            
+            if scrolltimer &gt;= 45 {
+                room_goto(room_level1);
+            }
+        //printedline = scr_start_lines();
+        }
+                 
+        // draw printed string with y + amount depending on printing line number //
+        draw_text(128,128,printed);
+    
+    }
+}
+/// start game cut end ///
 </string>
           </argument>
         </arguments>
