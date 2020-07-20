@@ -140,7 +140,7 @@ if started = true {
         
         viewtimer = 0;
         started = 2;
-        global.bosswave = 4;
+        global.bosswave = 1;
     }
 }
 </string>

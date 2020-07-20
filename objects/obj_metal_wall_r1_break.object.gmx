@@ -48,14 +48,21 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if place_meeting(x-32,y,obj_player) {
+            <string>if place_meeting(x-32,y,obj_player) and obj_player.image_xscale = 1 {
     playerdetecttimer ++;
 } else {
-    playerdetecttimer --;
+    if playerdetecttimer &gt; 0 {
+        playerdetecttimer --;
+    }
 }
 
-if playerdetecttimer &gt;= 90{
+if playerdetecttimer = 100 {
+    instance_create(obj_player.x,obj_player.y,obj_trigger);
+}
 
+if playerdetecttimer &gt;= 420 {
+    effect_create_above(ef_explosion,x,y,0,c_dkgray);
+    instance_destroy();
 }
 </string>
           </argument>

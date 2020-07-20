@@ -37,25 +37,47 @@ printed = ""; // the text to be printed
 dialoguecontrol = false; // false = off // true = on //
 holdingdialogue = false; // false = not // true = close //
 
+controlroomtimer = 0;
+
 closemessage = "'C' to exit"
 closemessageprint = ""
 
 if room = room_level1 {
     box[1] = "Speaker: So, have you figured out how to use the device? Make sure #you're comfortable with it before you move on."
-    
-    box[2] = "Voice from speaker: I assume my colleagues have already filled you in. #Try and get through the puzzle rooms."
-    
-    box[3] = ""
+
 }
 
 if room = room_level2 {
     box[1] = "The buttons on the pushblock platform look like they require something #heavy to activate them..."
     
-    box[2] = ""
+    box[2] = "What's up with this wall here? It seems to be partly broken, I can see #that it's covering something up. Maybe I can get through it..."
     
     box[3] = ""
 }
 
+if room = room_vent {
+    box[1] = "A vent? Why would this be covered up... and where does it lead...?"
+}
+
+if room = room_control_room {
+    box[1] = "It's a control room, there's video feeds of the rooms I was just in, #but why's the only entrance through a vent and where's everyone?"
+
+    box[2] = "Speaker: H-hey why are you in there?? Get out and go back into the #puzzle rooms! This isn't some place for you to be snooping around."
+    
+    box[3] = "Hey, what's this? *picks up laser gun* Why would people need a gun in #this secured control room..." 
+    
+    box[4] = "Oh? It seems someone recorded a journal on this computer. Let's have a #listen..."
+    
+    box[5] = "Log \#1: This job is great, I get to work on cutting edge technology #like artificial intelligence. The program we're working on is..."
+    
+    box[6] = "...now able to move robots on its own! - Log \#10: The AI seems to be #getting restless, but no one else seems..."
+    
+    box[7] = "... to have noticed. I hope things will be alright - Log \#23: The AI #has gone rogue. This is the end. The AI's robots are breaking..."
+    
+    box[8] = "... into the control room as we speak. We don't have time to destroy #the servers, I pray that if anyone finds this, they..."
+    
+    box[9] = "... end this terrible AI.. AHHHH! NOOO STOPP WHAT DID WE EVER DO TO #YOU!??!?!......................................."
+}
 if room = room_boss {
     box[1] = "So you figured out the big secret huh? Guess we'll just have to get rid #of you. Minions, kill this uselss creature!"
     
@@ -113,6 +135,57 @@ if keyboard_check(ord('C')) {
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// control room control ///
+if room = room_control_room and printedline &lt; 2 or printedline &gt;= 3 {
+    if holdingdialogue = false {
+        controlroomtimer ++;
+        
+        if printedline &lt; 2 {
+            if controlroomtimer = 120 {
+                instance_create(obj_player.x,obj_player.y,obj_trigger);
+                
+                controlroomtimer = 0;
+            }
+        } else if printedline &gt;= 3 {
+            if controlroomtimer = 15 {
+                instance_create(obj_player.x,obj_player.y,obj_trigger);
+                
+                controlroomtimer = 0;
+            }
+        }
+    }
+}
+
+// removing barrier block to exit room
+
+if printedline = 3 {
+    global.lasergun = true;
+    with obj_barrier_block2 {
+        if y &lt; 432 {
+            instance_destroy();
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="64">
       <action>
@@ -157,6 +230,7 @@ if dialoguecontrol = true {
                 scrolltimer = 0;
                 
                 holdingdialogue = true;
+
                 if room = room_boss {
                 
                 } else {

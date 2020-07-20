@@ -60,6 +60,7 @@ global.enemies3 = 0; // enemy3 count //
 global.bosspart = 1;
 
 global.playerhealth = 100;
+global.lasergun = false;
 
 global.restarting = false; // restarting game or not //
 
@@ -147,19 +148,46 @@ if room = room_start_cut {
 with obj_player {
     if recording = true {
         draw_set_colour(c_white);
-        draw_set_alpha(0.2)
+        draw_set_alpha(0.2);
         draw_sprite(spr_record_overlay,-1,0,0);
-        draw_set_alpha(1)
+        draw_set_alpha(1);
         
-        draw_set_font(fnt_start_cut)
-        draw_text(10,10,"recording...")
+        draw_set_font(fnt_start_cut);
+        draw_text(10,10,"recording...");
     }  
     
     if global.playingback = true {
         draw_set_colour(c_white);
-        draw_set_font(fnt_start_cut)
-        draw_text(10,10,"playing...")
+        draw_set_font(fnt_start_cut);
+        draw_text(10,10,"playing...");
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// draw darkness effect ///
+
+if room = room_vent {
+    draw_set_alpha(0.8);
+    draw_sprite(spr_fade,-1,0,0);
+    draw_set_alpha(1);
 }
 </string>
           </argument>

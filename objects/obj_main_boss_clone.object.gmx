@@ -61,6 +61,10 @@ if global.bosswave = 4 {
         if firing = true {
             shoottimer ++;
             
+            if !audio_is_playing(snd_laser_beam) {
+                audio_play_sound(snd_laser_beam,5,true);
+            }
+            
             if shoottimer = 10 {
                 laser = instance_create(x,y,obj_enemy_laser2);
                 laser2 = instance_create(x,y,obj_enemy_laser2);
@@ -125,6 +129,7 @@ if global.bosswave = 4 {
                 firing = true;
             } else {
                 firing = false;
+                audio_stop_sound(snd_laser_beam);
             }
         }
     }
@@ -136,29 +141,59 @@ if global.bosswave = 4 {
         if firing = true {
             shoottimer ++;
             
+            if !audio_is_playing(snd_laser_beam) {
+                audio_play_sound(snd_laser_beam,5,true);
+            }
+            
             if shoottimer = 10 {
-                laser = instance_create(x,y,obj_enemy_laser2)
+                laser = instance_create(x,y,obj_enemy_laser2);
+                laser2 = instance_create(x,y,obj_enemy_laser2);
+                laser3 = instance_create(x,y,obj_enemy_laser2);
+                
                 laser.speed = 5;
+                laser2.speed = 5;
+                laser3.speed = 5;
                 
                 if y &lt; 464 {
                     laser.direction = 270;
+                    laser2.direction = 0;
+                    laser3.direction = 180;
+                    
                     laser.image_angle = 270;
+                    laser3.image_angle = 180;
                 } else {
                     laser.direction = 90;
+                    laser2.direction = 0;
+                    laser3.direcion = 180;
+                    
                     laser.image_angle = 90;
+                    laser3.direction = 180;
                 }
             } 
             
             if shoottimer &gt;= 15 {
                 laser = instance_create(x,y,obj_enemy_laser2_beam)
+                laser2 = instance_create(x,y,obj_enemy_laser2_beam)
+                laser3 = instance_create(x,y,obj_enemy_laser2_beam)
+                
                 laser.speed = 5;
+                laser2.speed = 5;
+                laser3.speed = 5;
                 
                 if y &lt; 464 {
                     laser.direction = 270;
+                    laser2.direction = 0;
+                    laser3.direction = 180;
+                    
                     laser.image_angle = 90;
+                    laser3.image_angle = 180;
                 } else {
                     laser.direction = 90;
+                    laser2.direction = 0;
+                    laser3.direction = 180;
+                    
                     laser.image_angle = 90;
+                    laser3.image_angle = 180;
                 }
                 
                 shoottimer = 11;
@@ -173,6 +208,7 @@ if global.bosswave = 4 {
                 firing = true;
             } else {
                 firing = false;
+                audio_stop_sound(snd_laser_beam);
             }
         }
     }

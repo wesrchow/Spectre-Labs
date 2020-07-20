@@ -78,7 +78,7 @@ if global.bosspart = 3 {
         }
     }
     
-    if stallingtimer = 480 {
+    if stallingtimer = 550 {
         view_object[0] = obj_player;
         global.movecontrollock = false;
     }

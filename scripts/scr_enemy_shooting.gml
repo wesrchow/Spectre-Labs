@@ -11,6 +11,7 @@ if movement = 1 {
                 laser.speed = argument7;
                 laser.direction = 0;
                 shoottimer = 0;
+                audio_play_sound(snd_laser_shot,2,false);
             }
         }
         
@@ -21,6 +22,7 @@ if movement = 1 {
                 laser.speed = argument7;
                 laser.direction = 0;
                 shoottimer = 0;
+                audio_play_sound(snd_laser_shot,2,false);
             }
         }
     }
@@ -32,6 +34,7 @@ if movement = 1 {
             laser.speed = argument7;
             laser.direction = 90;
             shoottimer = 0;
+            audio_play_sound(snd_laser_shot,2,false);
         }
     }
     
@@ -43,6 +46,7 @@ if movement = 1 {
                 laser.speed = argument7;
                 laser.direction = 180;
                 shoottimer = 0;
+                audio_play_sound(snd_laser_shot,2,false);
             }
         }
         
@@ -53,6 +57,7 @@ if movement = 1 {
                 laser.speed = argument7;
                 laser.direction = 180;
                 shoottimer = 0;
+                audio_play_sound(snd_laser_shot,2,false);
             }
         }
     }
@@ -64,6 +69,7 @@ if movement = 1 {
             laser.speed = argument7;
             laser.direction = 270;
             shoottimer = 0;
+            audio_play_sound(snd_laser_shot,2,false);
         }
     }
 }
