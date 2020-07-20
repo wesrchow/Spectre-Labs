@@ -1,0 +1,30 @@
+/// draw player healthbar ///
+
+var drawinghealth = global.playerhealth * 3
+
+show_debug_message(drawinghealth);
+
+if room = room_boss {
+    draw_sprite(spr_player_health_bar_bg,-1,10,640);
+    
+    if global.playerhealth >= 50 {
+        draw_set_colour(make_colour_rgb(101, 205, 41))
+    } else if global.playerhealth < 50 and global.playerhealth >= 30 {
+        draw_set_colour(make_colour_rgb(101, 205, 41))
+    } else if global.playerhealth < 30 {
+        draw_set_colour(make_colour_rgb(101, 205, 41))
+    }
+    
+    if drawinghealth >= 172 {
+    
+        draw_rectangle(20,650,drawinghealth+19,657,false);
+        draw_rectangle(20,650,190,664,false);
+        
+    } else if drawinghealth < 172 {
+    
+        draw_rectangle(20,650,drawinghealth,664,false);
+        
+    }
+
+    draw_sprite(spr_player_health_bar,-1,17,647);
+}
