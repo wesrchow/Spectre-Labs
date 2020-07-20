@@ -41,6 +41,8 @@ changedir = false; // false = do nothing // true = change direction //
 
 shoottimer = 0; // random value to time shooting //
 
+enemyhealth = 4;
+
 global.enemies2 += 1;
 
 randomdir = irandom_range(1,4)
@@ -200,9 +202,15 @@ scr_enemy_shooting(1,1,2,2,2,800,obj_enemy_laser2,3);
           <argument>
             <kind>1</kind>
             <string>/// kill check ///
-if place_meeting(x,y,obj_player) or place_meeting(x,y,obj_player_laser) {
-    global.playerhealth -= 2;
-    instance_destroy();
+if place_meeting(x,y,obj_player_laser) {
+    with obj_player_laser {
+        instance_destroy();
+    }
+    enemyhealth -= 1;
+    
+    if enemyhealth = 0 {
+        instance_destroy();
+    }
 }
 </string>
           </argument>

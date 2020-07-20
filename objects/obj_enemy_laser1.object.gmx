@@ -48,7 +48,36 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if speed &lt;= 0.3 {
+            <string>/// collision with walls ///
+if place_meeting(x,y,obj_metal_wall_bk1)
+or place_meeting(x,y,obj_metal_wall_r1)
+or place_meeting(x,y,obj_metal_wall_l1)
+or place_meeting(x,y,obj_metal_wall_fr1) 
+or place_meeting(x,y,obj_server) {
+    instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// destroy when stalled ///
+if speed &lt;= 0.3 {
     instance_destroy();
 }
 </string>

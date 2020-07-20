@@ -35,6 +35,7 @@ depth = -10 // bring player forward //
 //global.recordpath = path_add(); // path recording //
 //path_set_closed(global.recordpath, false); // sets path to open //
 
+shoottimer = 0; // stalled shooting //
 
 global.recordpathx = ds_list_create(); // list for x recording //
 global.recordpathy = ds_list_create(); // list for x recording //
@@ -407,11 +408,54 @@ if place_meeting(x,y,obj_level_complete) {
           <argument>
             <kind>1</kind>
             <string>/// shooting ///
-if keyboard_check(vk_space) {
-    laser = instance_create(x,y,obj_player_laser)
-    
-    laser.direction = direction;
-    laser.speed = 5;
+if keyboard_check_pressed(vk_space) {
+    if shoottimer &gt;= 20 {
+        laser = instance_create(x,y,obj_player_laser)
+        laser.direction = direction;
+        laser.speed = 5;
+        
+        shoottimer = 0;
+    }
+}
+
+shoottimer ++
+
+if shoottimer &gt;= 20 {
+    shoottimer = 20;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// bullet collision check ///
+if place_meeting(x,y,obj_enemy_laser1) {
+    with obj_enemy_laser1 {
+        instance_destroy();
+    }
+    global.playerhealth -= 4;
+}
+
+if place_meeting(x,y,obj_enemy_laser2) {
+    with obj_enemy_laser2 {
+        instance_destroy();
+    }
+    global.playerhealth -= 6;
 }
 </string>
           </argument>

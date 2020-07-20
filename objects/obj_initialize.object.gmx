@@ -56,7 +56,7 @@ global.enemies1 = 0; // enemy1 count //
 global.enemies2 = 0; // enemy2 count //
 global.enemies3 = 0; // enemy3 count //
 
-global.playerhealth = 60;
+global.playerhealth = 100;
 
 randomize(); // randomize seed for random numbers //
 
@@ -182,7 +182,7 @@ if global.bosswave &gt;= 1 {
     var drawinghealth = global.playerhealth * 3
     
     if room = room_boss {
-        draw_sprite(spr_player_health_bar_bg,-1,10,640);
+        draw_sprite(spr_player_health_bar_bg,-1,10,10);
         
         if global.playerhealth &gt;= 57 {
             draw_set_colour(make_colour_rgb(101, 205, 41))
@@ -194,16 +194,16 @@ if global.bosswave &gt;= 1 {
         
         if drawinghealth &gt;= 172 {
         
-            draw_rectangle(20,650,drawinghealth+19,657,false);
-            draw_rectangle(20,650,190,664,false);
+            draw_rectangle(20,20,drawinghealth+19,27,false);
+            draw_rectangle(20,20,190,34,false);
             
         } else if drawinghealth &lt; 172 {
         
-            draw_rectangle(20,650,drawinghealth+19,664,false);
+            draw_rectangle(20,20,drawinghealth+19,34,false);
             
         }
     
-        draw_sprite(spr_player_health_bar,-1,17,647);
+        draw_sprite(spr_player_health_bar,-1,17,17);
     }
 }
 </string>

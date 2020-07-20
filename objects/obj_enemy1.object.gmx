@@ -41,6 +41,8 @@ changedir = false; // false = do nothing // true = change direction //
 
 shoottimer = 0; // random value to time shooting //
 
+enemyhealth = 2;
+
 global.enemies1 += 1;
 
 randomdir = irandom_range(1,4)
@@ -200,9 +202,49 @@ scr_enemy_shooting(1,1,1,2,2,500,obj_enemy_laser1,5);
           <argument>
             <kind>1</kind>
             <string>/// kill check ///
-if place_meeting(x,y,obj_player) or place_meeting(x,y,obj_player_laser) {
-    global.playerhealth -= 2;
-    instance_destroy();
+if place_meeting(x,y,obj_player_laser) {
+    with obj_player_laser {
+        instance_destroy();
+    }
+    enemyhealth -= 1;
+    
+    if enemyhealth = 0 {
+        instance_destroy();
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// draw enemy healthbar ///
+draw_self();
+
+var drawinghealth = enemyhealth * 50;
+
+if drawinghealth &gt; 60 {
+    
+} else if drawinghealth &lt; 55 {
+    
+    //draw_rectangle(x-5,y-5,drawinghealth
+
 }
 </string>
           </argument>
