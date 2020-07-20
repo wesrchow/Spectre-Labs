@@ -108,7 +108,13 @@ if room = room_boss {
 }
 
 if room = room_outside {
-    box[1] = ""
+    box[1] = "Where... am I...? Is this outside the building?? ... I barely escaped #with my life, at least I was able to destroy that awful AI!"
+    
+    box[2] = "Strangled Voice: Fooled. Again. You humans are so naive, falling for #all my tricks and games. It's over for you, I've already uploaded..."
+    
+    box[3] = "...myself to millions of computes across the world."
+    
+    box[4] = "I........... am inevitable........"
 }
 
 printedline = 0;
@@ -243,6 +249,49 @@ if room = room_boss {
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// outside dialogue control ///
+if room = room_outside {
+    if holdingdialogue = false {
+        postdialoguetimer ++;
+        
+        if postdialoguetimer = 120 and printedline = 1 {
+            instance_create(obj_player.x,obj_player.y,obj_trigger);
+            
+            postdialoguetimer = 0;
+        }
+        
+        if postdialoguetimer = 15 and printedline = 2 {
+            instance_create(obj_player.x,obj_player.y,obj_trigger);
+            
+            postdialoguetimer = 0;
+        }
+        
+        if postdialoguetimer = 15 and printedline = 3 {
+            instance_create(obj_player.x,obj_player.y,obj_trigger);
+            
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="64">
       <action>
@@ -288,7 +337,7 @@ if dialoguecontrol = true {
                 
                 holdingdialogue = true;
 
-                if room = room_boss and printedline != 9 {
+                if room = room_boss and printedline != 9 or room = room_outside {
                 
                 } else {
                     global.movecontrollock = true;

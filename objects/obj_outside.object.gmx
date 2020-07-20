@@ -25,25 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if room = room_title_screen {
-    //audio_play_sound(snd_intro_music,1,true);
-    audio_sound_gain(snd_intro_music,0,0);
-    audio_sound_gain(snd_intro_music,1,1500);
-}
-
-if room = room_level1 {
-    audio_sound_gain(snd_intro_music,0,2000);
-    audio_play_sound(snd_bg_music,0,true);
-    audio_sound_gain(snd_bg_music,0,0);
-    audio_sound_gain(snd_bg_music,1,2000);
-}
-
-if room = room_boss and !audio_is_playing(snd_bg_boss_music) {
-    audio_sound_gain(snd_bg_music,0,2000);
-    audio_play_sound(snd_bg_boss_music,0,true);
-    audio_sound_gain(snd_bg_boss_music,0,0);
-    audio_sound_gain(snd_bg_boss_music,1,2000);
-}
+            <string>dialoguetimer = 0;
 </string>
           </argument>
         </arguments>
@@ -66,12 +48,21 @@ if room = room_boss and !audio_is_playing(snd_bg_boss_music) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if audio_sound_get_gain(snd_intro_music) &lt;= 0 {
-    audio_stop_sound(snd_intro_music);
+            <string>if obj_dialogue.printedline = 0 {
+    dialoguetimer ++;
+}
+if dialoguetimer = 60 and obj_dialogue.printedline = 0 {
+    instance_create(obj_player.x,obj_player.y,obj_trigger);
+    dialoguetimer = 0;
 }
 
-if audio_sound_get_gain(snd_bg_music) &lt;= 0 {
-    audio_stop_sound(snd_bg_music);
+if obj_dialogue.printedline = 4 {
+    dialoguetimer ++;
+}
+
+if obj_dialogue.printedline = 4 and dialoguetimer = 400 {
+    global.fadein = 1
+    instance_create(0,0,obj_fade);
 }
 </string>
           </argument>

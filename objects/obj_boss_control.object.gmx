@@ -118,10 +118,7 @@ if started = true {
         
         viewtimer = 0;
         started = 2;
-        global.bosswave = 4;
-        with obj_dialogue {
-            printedline = 3;
-        }
+        global.bosswave = 1;
     }
 }
 </string>

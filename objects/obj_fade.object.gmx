@@ -79,61 +79,75 @@ if global.fadein = 0 {
 
 // if fadeout state, incrase image_alpha, increase fadetimer //
 if global.fadein = 1 {
-    image_alpha += 0.04;
-    fadetimer += 1;
+    if room != room_outside {
+        image_alpha += 0.04;
+        fadetimer += 1;
+        
+        // if fadetimer &lt; 25, restart alarm //
+        
+        if fadetimer &lt; 25 {
+        alarm[0] = 1;
+        
+        // else choose room depending on current room and global.startselection //
+        } else {
+            
+            if room = room_title_screen {
+                room_goto(room_start_cut);
+            }
     
-    // if fadetimer &lt; 25, restart alarm //
-    if fadetimer &lt; 25 {
-    alarm[0] = 1;
-    
-    // else choose room depending on current room and global.startselection //
+            if room = room_start_cut {
+                room_goto(room_level1);
+            }
+            
+            if room = room_level1 {
+                room_goto(room_level2);
+            }
+            
+            if room = room_level2 {
+                room_goto(room_vent);
+            }
+            
+            if room = room_level3 {
+                room_goto(room_vent);
+            }
+            
+            if room = room_vent {
+                room_goto(room_control_room);
+            }
+            
+            if room = room_control_room {
+                room_goto(room_boss);
+            }
+            
+            if room = room_boss {
+                if global.restarting = true {
+                    global.restarting = false;
+                    room_goto(room_game_restart);
+                } else {
+                    room_goto(room_outside);
+                }
+            }
+            
+            if room = room_game_restart {
+                room_goto(room_boss)
+            }
+            
+            
+            
+        }
     } else {
+        image_alpha += 0.01;
+        fadetimer += 1;
         
-        if room = room_title_screen {
-            room_goto(room_outside);
-        }
-
-        if room = room_start_cut {
-            room_goto(room_level1);
-        }
-        
-        if room = room_level1 {
-            room_goto(room_level2);
-        }
-        
-        if room = room_level2 {
-            room_goto(room_vent);
-        }
-        
-        if room = room_level3 {
-            room_goto(room_vent);
-        }
-        
-        if room = room_vent {
-            room_goto(room_control_room);
-        }
-        
-        if room = room_control_room {
-            room_goto(room_boss);
-        }
-        
-        if room = room_boss {
-            if global.restarting = true {
-                global.restarting = false;
-                room_goto(room_game_restart);
-            } else {
-                room_goto(room_outside);
+        if fadetimer &lt; 100 {
+            alarm[0] = 1;
+        } else {
+            if room = room_outside {
+                room_goto(room_end);
             }
         }
-        
-        if room = room_game_restart {
-            room_goto(room_boss)
-        }
-        
     }
 }
-
-/// fading effect end ///
 </string>
           </argument>
         </arguments>

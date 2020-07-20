@@ -236,6 +236,7 @@
       <object>objects\obj_trigger</object>
       <object>objects\obj_boss_control</object>
       <object>objects\obj_enemy_health_bar_draw</object>
+      <object>objects\obj_outside</object>
     </objects>
     <objects name="player">
       <object>objects\obj_player</object>
@@ -377,6 +378,7 @@
       <room>rooms\room_control_room</room>
       <room>rooms\room_boss</room>
       <room>rooms\room_outside</room>
+      <room>rooms\room_end</room>
       <room>rooms\room_game_restart</room>
     </rooms>
     <rooms name="other">
