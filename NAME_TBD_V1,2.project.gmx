@@ -84,6 +84,7 @@
     <object>objects\obj_initialize</object>
     <object>objects\obj_fade</object>
     <object>objects\obj_player</object>
+    <object>objects\obj_ghost</object>
     <object>objects\obj_push_block</object>
     <object>objects\obj_button1</object>
     <object>objects\obj_button2</object>

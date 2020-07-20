@@ -32,6 +32,18 @@ movetimer = 0; // to stall player movement //
 slidetimer = 0; // smooth animation sliding of player //
 depth = -10 // bring player forward //
 
+//global.recordpath = path_add(); // path recording //
+//path_set_closed(global.recordpath, false); // sets path to open //
+
+
+global.recordpathx = ds_list_create(); // list for x recording //
+global.recordpathy = ds_list_create(); // list for x recording //
+recording = false // false = not recording // true = recording //
+playback = false // false = not playing recording // true = p[laying recording //
+recordtimer = 0; // recording timer //
+recordstartingx = 0;
+recordstartingy = 0;
+
 // setup end ///
 </string>
           </argument>
@@ -220,6 +232,63 @@ if movetimer &lt;= 0 {
 }
 
 /// stalled movement end ///
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// ghost recording start ///
+
+if recording = false {
+    if keyboard_check_pressed(ord('Q')) {
+        recording = true;
+        recordstartingx = x;
+        recordstartingy = y;
+        show_debug_message("started recordingg");
+    }
+}
+
+if recording = true {
+    recordtimer ++;
+    
+    //path_add_point(global.recordpath, x, y, 12);
+    ds_list_add(global.recordpathx,x);
+    ds_list_add(global.recordpathy,y);
+    
+    if recordtimer &gt;= 300 {
+        recording = false
+        recordtimer = 0;
+        show_debug_message("recording finished");
+    }
+}
+
+/// ghost recording end ///
+/// ghost playback start ///
+
+if recording = false and playback = false {
+    if keyboard_check_pressed(ord('E')) {
+        show_debug_message("playback started");
+        playback = true;
+        instance_create(recordstartingx, recordstartingy, obj_ghost);
+    }
+}
+
+/// ghost playback end ///
 </string>
           </argument>
         </arguments>
