@@ -30,10 +30,15 @@ global.startselectlock = 1; // locked = 0 // unlocked = 1 // locks level selecti
 global.startselectoptionlock = 1; // locked = 0 // unlocked = 1 // locks ability to select level after level is chosen
 global.fadein = 0; // fadein = 0 // fadeout = 1 // states whether to fade in or out
 
-global.button1state = false; // 0 off // 1 on // controls buttonstate of obj_button1
-global.button2state = false; // 0 off // 1 on // controls buttonstate of obj_button2
-global.button3state = false; // 0 off // 1 on // controls buttonstate of obj_button3
-global.movecontrollock = 0; // locked = 0 // unlocked = 1 // controls locking player movement
+global.button1state = false; // false = off // true = on // controls buttonstate of obj_button1
+global.button2state = false; // false = off // true = on // controls buttonstate of obj_button2
+global.button3state = false; // false = off // true = on // controls buttonstate of obj_button3
+global.button4state = false; // false = off // true = on // controls buttonstate of obj_button4
+
+global.lever1state = false; // false = off // true = on // controls buttonstate of obj_lever1
+global.lever2state = false; // false = off // true = on // controls buttonstate of obj_lever2
+
+global.movecontrollock = true; // notlocked = false // locked = true // controls locking player movement
 
 
 

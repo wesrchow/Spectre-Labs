@@ -97,12 +97,12 @@ global.playingback = false
 
 // checks for keyboard input and other parameters to move the player //
 // sets alarm, slidetimer, movement, movetimer //
-if global.movecontrollock = 1 {
+if global.movecontrollock = false {
     if keyboard_check(ord('A')) {
         if movement = 1 {
             direction = 180;
     
-            if !place_meeting(x-32,y,obj_metal_wall) 
+            if !place_meeting(x-32,y,obj_metal_wall_left1)
             and !place_meeting(x-32,y,obj_metal_ground_oneway_left) {
             
                 slidetimer = 0;
@@ -118,7 +118,7 @@ if global.movecontrollock = 1 {
         if movement = 1 {
             direction = 0;
         
-            if !place_meeting(x+32,y,obj_metal_wall) 
+            if !place_meeting(x+32,y,obj_metal_wall_right1)
             and !place_meeting(x+32,y,obj_metal_ground_oneway_right) { 
                 slidetimer = 0;
                 alarm[0] = 1;
@@ -206,41 +206,6 @@ if movetimer &lt;= 0 {
 }
 
 /// stalled movement end ///
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// level completion start ///
-
-// if player past top of room, according to room, act accordingly //
-if place_meeting(x,y,obj_level_complete) {
-    if room = /*room_tutorial*/ room_feature_test {
-        global.fadein = 1;
-        instance_create(0,0,obj_fade);
-    }
-    if room = room_level1 {
-        global.fadein = 1;
-        instance_create(0,0,obj_fade);    
-    }
-}
-
-/// level completion end ///
 </string>
           </argument>
         </arguments>
@@ -375,6 +340,41 @@ if recording = false and playback = false {
 }
 
 /// ghost playback end ///
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// level completion start ///
+
+// if player past top of room, according to room, act accordingly //
+if place_meeting(x,y,obj_level_complete) {
+    if room = /*room_tutorial*/ room_feature_test {
+        global.fadein = 1;
+        instance_create(0,0,obj_fade);
+    }
+    if room = room_level1 {
+        global.fadein = 1;
+        instance_create(0,0,obj_fade);    
+    }
+}
+
+/// level completion end ///
 </string>
           </argument>
         </arguments>
