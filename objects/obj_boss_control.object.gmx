@@ -137,7 +137,7 @@ if global.bosswave = 1 {
        
         if spawntimer &gt;= 50 {
             
-            scr_enemy_spawn();
+            scr_enemy_spawn_pos();
             
             enemyspawn = irandom_range(1,2);
             
@@ -187,27 +187,57 @@ if global.bosswave = 2 {
        
         if spawntimer &gt;= 50 {
             
-            scr_enemy_spawn();
+            scr_enemy_spawn_pos();
             
             enemyspawn = irandom_range(1,3);
             
-            if global.enemies1 = 10 {
-                while enemyspawn = 1 {
-                    irandom_range(1,3);
-                }
-            }
+            scr_random_enemy(10,5,2);
             
-            if global.enemies2 = 5 {
-                while enemyspawn = 2 {
-                    irandom_range(1,3);
-                }
-            }
+            if enemyspawn = 1 {
+                instance_create(chosenx,choseny,obj_enemy1);
+            } else if enemyspawn = 2 {
+                instance_create(chosenx,choseny,obj_enemy2);
+            } else if enemyspawn = 3 {
+                instance_create(chosenx,choseny,obj_enemy3);
+            } 
             
-            if global.enemies3 = 3 {
-                while enemyspawn = 3 {
-                    irandom_range(1,3);
-                }
-            }
+            spawntimer = 0;
+            rownum = 0;
+       }
+   }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// enemy spawning wave3 ///
+if global.bosswave = 3 {
+    if maxspawned = false {
+       spawntimer += irandom_range(1,2)
+       
+        if spawntimer &gt;= 50 {
+            
+            scr_enemy_spawn_pos();
+            
+            enemyspawn = irandom_range(1,3);
+            
+            scr_random_enemy(13,8,6);
             
             if enemyspawn = 1 {
                 instance_create(chosenx,choseny,obj_enemy1);
@@ -288,9 +318,25 @@ if global.bosswave = 2 {
     }
 }
 
-
-
-/// wave control end ///
+if global.bosswave = 3 {
+    if global.enemies1 = 13 and global.enemies2 = 8 and global.enemies3 = 6 {
+        maxspawned = true;
+        
+        if fighting = false {
+            wavetimer ++;
+            
+            if wavetimer &gt;= 300 {
+                global.enemies1 = 0;
+                global.enemies2 = 0;
+                global.enemies3 = 0;
+            
+                global.bosswave = -1;
+                maxspawned = false;
+                wavetimer = 0;
+            }
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

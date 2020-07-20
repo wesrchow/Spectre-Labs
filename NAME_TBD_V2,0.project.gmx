@@ -177,6 +177,7 @@
       <sprite>sprites\spr_main_boss</sprite>
       <sprite>sprites\spr_enemy1</sprite>
       <sprite>sprites\spr_enemy2</sprite>
+      <sprite>sprites\spr_enemy3</sprite>
       <sprite>sprites\spr_enemy_laser</sprite>
     </sprites>
     <sprites name="other">
@@ -189,7 +190,13 @@
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\scr_enemy_spawn.gml</script>
+    <script>scripts\scr_movement_sliding.gml</script>
+    <script>scripts\scr_enemy_spawn_pos.gml</script>
+    <script>scripts\scr_random_enemy.gml</script>
+    <script>scripts\scr_enemy_stalled_movement.gml</script>
+    <script>scripts\scr_enemy_collision_test.gml</script>
+    <script>scripts\scr_enemy_movement.gml</script>
+    <script>scripts\scr_randomdir_along_object.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_startscreen</font>

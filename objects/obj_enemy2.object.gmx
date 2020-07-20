@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// setup start ///
+            <string>/// setup ///
 
 movement = 1; // 0 disabled // 1 enabled //
 movetimer = 0; // to stall player movement //
@@ -42,7 +42,6 @@ changedir = false; // false = do nothing // true = change direction //
 global.enemies2 += 1;
 
 randomdir = irandom_range(1,4)
-/// setup end ///
 </string>
           </argument>
         </arguments>
@@ -65,34 +64,7 @@ randomdir = irandom_range(1,4)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// sliding effect start ///
-
-// according to direction, add onto position //
-if direction = 0 {
-    x+=2;   
-}
-
-if direction = 90 {
-    y-=2;
-}
-
-if direction = 180 {
-    x-=2;
-}
-
-if direction = 270 {
-    y+=2;
-}
-
-// increase slidetimer //
-slidetimer += 1;
-
-// if slidetimer &lt; 16, restart alarm //
-if slidetimer &lt; 16 {
-    alarm[0] = 1;
-}
-
-/// sliding effect end ///
+            <string>scr_movement_sliding(2,16);
 </string>
           </argument>
         </arguments>
@@ -115,45 +87,7 @@ if slidetimer &lt; 16 {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// random movement ///
-
-if movement = 1 {
-    if randomdir = 1 {
-        direction = 0;
-        
-        slidetimer = 0;
-        alarm[0] = 1;
-        movement = 0;
-        movetimer = 16;
-    }
-    
-    if randomdir = 2 {
-        direction = 90;
-        
-        slidetimer = 0;
-        alarm[0] = 1;
-        movement = 0;
-        movetimer = 16;
-    }
-    
-    if randomdir = 3 {
-        direction = 180;
-        
-        slidetimer = 0;
-        alarm[0] = 1;
-        movement = 0;
-        movetimer = 16;
-    }
-    
-    if randomdir = 4 {
-        direction = 270;
-        
-        slidetimer = 0;
-        alarm[0] = 1;
-        movement = 0;
-        movetimer = 16;
-    }
-}
+            <string>scr_enemy_collision_test();
 </string>
           </argument>
         </arguments>
@@ -174,18 +108,7 @@ if movement = 1 {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// stalled movement ///
-
-// if disabled movement, decrease movetimer //
-if movement = 0 {
-    movetimer -= 1;
-}
-
-// if movetimer &lt;= 0, enable movement //
-if movetimer &lt;= 0 {
-    movement = 1
-    movefinished = true
-}
+            <string>scr_enemy_movement(16);
 </string>
           </argument>
         </arguments>
@@ -206,47 +129,7 @@ if movetimer &lt;= 0 {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// random direction along wall or server ///
-
-if direction = 90 or direction = 270 {
-    if place_meeting(x+32,y,obj_metal_wall_r1) or place_meeting(x+32,y,obj_server){
-        randomdirtimer += irandom_range(1,3);
-        
-        if randomdirtimer &gt;= 220 {
-            randomdir = 3
-            randomdirtimer  = 0;
-        }
-    }
-    
-    if place_meeting(x-32,y,obj_metal_wall_l1) or place_meeting(x-32,y,obj_server) {
-        randomdirtimer += irandom_range(1,3);
-        
-        if randomdirtimer &gt;= 220 {
-            randomdir = 1
-            randomdirtimer  = 0;
-        }
-    }
-}
-
-if direction = 180 or direction = 0 {
-    if place_meeting(x,y-32,obj_metal_wall_bk1) or place_meeting(x,y-32,obj_server) {
-        randomdirtimer += irandom_range(1,3);
-        
-        if randomdirtimer &gt;= 220 {
-            randomdir = 4
-            randomdirtimer  = 0;
-        }
-    }
-    
-    if place_meeting(x,y+32,obj_metal_wall_fr1) or place_meeting(x,y+32,obj_server) {
-        randomdirtimer += irandom_range(1,3);
-        
-        if randomdirtimer &gt;= 220 {
-            randomdir = 2
-            randomdirtimer  = 0;
-        }
-    }
-}
+            <string>scr_enemy_stalled_movement();
 </string>
           </argument>
         </arguments>
@@ -267,71 +150,7 @@ if direction = 180 or direction = 0 {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// collision testing ///
-if movefinished = true {
-    if randomdir = 1 {
-        if place_meeting(x+32,y,obj_metal_wall_r1) or place_meeting(x+32,y,obj_server) {
-            changedir = true;
-        }
-    }
-    
-    if randomdir = 2 {
-        if place_meeting(x,y-32,obj_metal_wall_bk1) or place_meeting(x,y-32,obj_server) {
-            changedir = true;
-        }
-    }
-    
-    if randomdir = 3 {
-        if place_meeting(x-32,y,obj_metal_wall_l1) or place_meeting(x-32,y,obj_server) {
-            changedir = true;
-        }
-    }
-    
-    if randomdir = 4 {
-        if place_meeting(x,y+32,obj_metal_wall_fr1) or place_meeting(x,y+32,obj_server) {
-            changedir = true;
-        }
-    }
-}
-
-if changedir = true {
-    randomdir = irandom_range(1,4)
-    changedir = false;
-    
-    while dirchosen = false {
-        if randomdir = 1 {
-            if place_meeting(x+32,y,obj_metal_wall_r1) or place_meeting(x+32,y,obj_server) {
-                randomdir = irandom_range(1,4)
-            } else {
-                dirchosen = true;
-            }
-        }
-    
-        if randomdir = 2 {
-            if place_meeting(x,y-32,obj_metal_wall_bk1) or place_meeting(x,y-32,obj_server) {
-                randomdir = irandom_range(1,4)
-            } else {
-                dirchosen = true;
-            }
-        }
-        
-        if randomdir = 3 {
-            if place_meeting(x-32,y,obj_metal_wall_l1) or place_meeting(x-32,y,obj_server) {
-                randomdir = irandom_range(1,4)
-            } else {
-                dirchosen = true;
-            }
-        }
-        
-        if randomdir = 4 {
-            if place_meeting(x,y+32,obj_metal_wall_fr1) or place_meeting(x,y+32,obj_server) {
-                randomdir = irandom_range(1,4)
-            } else {
-                dirchosen = true;
-            }
-        }
-    }
-}
+            <string>scr_randomdir_along_object();
 </string>
           </argument>
         </arguments>
@@ -353,7 +172,7 @@ if changedir = true {
           <argument>
             <kind>1</kind>
             <string>/// kill check ///
-if place_meeting(x,y,obj_player) {
+if place_meeting(x,y,obj_player) or place_meeting(x,y,obj_player_laser) {
     instance_destroy();
 }
 </string>
