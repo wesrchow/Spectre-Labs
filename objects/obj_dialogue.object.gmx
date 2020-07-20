@@ -64,24 +64,30 @@ if room = room_control_room {
 
     box[2] = "Speaker: H-hey why are you in there?? Get out and go back into the #puzzle rooms! This isn't some place for you to be snooping around."
     
-    box[3] = "Hey, what's this? *picks up laser gun* Why would people need a gun in #this secured control room..." 
+    box[3] = "Hey, what's this? *picks up laser gun* Why would people need a gun in #this secured control room...     (use arrow keys to shoot)" 
     
     box[4] = "Oh? It seems someone recorded a journal on this computer. Let's have a #listen..."
     
     box[5] = "Log \#1: This job is great, I get to work on cutting edge technology #like artificial intelligence. The program we're working on is..."
     
-    box[6] = "...now able to move robots on its own! - Log \#10: The AI seems to be #getting restless, but no one else seems..."
+    box[6] = "...now able to move robots on its own! - Log \#10: The AI seems to be #getting restless, but no one else seems to have noticed..."
     
-    box[7] = "... to have noticed. I hope things will be alright - Log \#23: The AI #has gone rogue. This is the end. The AI's robots are breaking..."
+    box[7] = "...I hope things will be alright - Log \#23: The AI has gone rogue. #This is the end. The AI's robots are breaking in the control..."
     
-    box[8] = "... into the control room as we speak. We don't have time to destroy #the servers, I pray that if anyone finds this, they..."
+    box[8] = "...room as we speak. We don't have time to destroy the servers. I pray #that if anyone finds this, they end this terrible monster of..."
     
-    box[9] = "... end this terrible AI.. AHHHH! NOOO STOPP WHAT DID WE EVER DO TO #YOU!??!?!......................................."
+    box[9] = "...a progr-- AHHHH! NOOO STOPP! WHAT DID WE EVER DO TO YOU!??!?!....... #.........................................................."
+    
+    box[10] = "................................................................... #..........................................................."
+    
+    box[11] = "This isn't good, I've been playing into their hands the entire time. #I noticed another doorway in the room, hopefully that leads to..."
+    
+    box[12] =  "...the servers the person was talking about. Maybe I'll need this gun #after all..."
 }
 if room = room_boss {
-    box[1] = "So you figured out the big secret huh? Guess we'll just have to get rid #of you. Minions, kill this uselss creature!"
+    box[1] = "So you figured out the big secret huh? Guess we'll just have to get rid #of you. Minions, kill him!"
     
-    box[2] = "You killed them all. No problem, we have parts to spare. Bring in #another wave! End him quickly, we have things to do."
+    box[2] = "You killed them all. No problem, there's plenty more where that came #from. Bring in another wave!"
     
     box[3] = "You are getting very annoying. Can you please just stop struggling and #die? Just send a bunch more."
     
@@ -90,6 +96,10 @@ if room = room_boss {
     box[5] = "Boss: even my clones???"
     
     box[6] = "Boss: Agh!! You've made me use up all my energy, I can't maintain my #forcefield. Fine, then I'll do it myself..."
+    
+    box[7] = "Boss: How could a measly human like you kill me!? No matter, it's too #late, I've already finished uploading myself to computers across..."
+    
+    box[8] = "... the world. Even if you destroy"
 }
 
 printedline = 0;
@@ -152,36 +162,40 @@ if keyboard_check(ord('C')) {
           <argument>
             <kind>1</kind>
             <string>/// control room control ///
-if room = room_control_room and printedline &lt; 2 or printedline &gt;= 3 {
-    if holdingdialogue = false {
-        controlroomtimer ++;
+if room = room_control_room  {
+    if printedline &lt; 2 or printedline &gt;= 3 {
+        if holdingdialogue = false {
+            controlroomtimer ++;
+            
+            if printedline &lt; 2 {
+                if controlroomtimer = 120 {
+                    instance_create(obj_player.x,obj_player.y,obj_trigger);
+                    
+                    controlroomtimer = 0;
+                }
+            } else if printedline &gt;= 3 and printedline &lt; 12 {
+                if controlroomtimer = 15 {
+                    instance_create(obj_player.x,obj_player.y,obj_trigger);
+                    
+                    controlroomtimer = 0;
+                }
+            }
+        }
         
-        if printedline &lt; 2 {
-            if controlroomtimer = 120 {
-                instance_create(obj_player.x,obj_player.y,obj_trigger);
-                
-                controlroomtimer = 0;
-            }
-        } else if printedline &gt;= 3 {
-            if controlroomtimer = 15 {
-                instance_create(obj_player.x,obj_player.y,obj_trigger);
-                
-                controlroomtimer = 0;
+        // removing barrier block to exit room
+        
+        if printedline = 12 {
+            global.lasergun = true;
+            with obj_barrier_block2 {
+                if y &lt; 432 {
+                    instance_destroy();
+                }
             }
         }
     }
 }
 
-// removing barrier block to exit room
 
-if printedline = 3 {
-    global.lasergun = true;
-    with obj_barrier_block2 {
-        if y &lt; 432 {
-            instance_destroy();
-        }
-    }
-}
 </string>
           </argument>
         </arguments>

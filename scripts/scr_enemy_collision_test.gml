@@ -21,7 +21,7 @@ if movefinished = true {
     }
     
     if randomdir = 4 {
-        if place_meeting(x,y+32,obj_metal_wall_fr1) or place_meeting(x,y+32,obj_barrier_block) {
+        if place_meeting(x,y+32,obj_metal_wall_fr1) or place_meeting(x,y+32,obj_barrier_block) or place_meeting(x,y+32,obj_barrier_block2) {
             changedir = true;
         }
     }
@@ -57,7 +57,7 @@ if changedir = true {
         }
         
         if randomdir = 4 {
-            if place_meeting(x,y+32,obj_metal_wall_fr1) or place_meeting(x,y+32,obj_barrier_block) {
+            if place_meeting(x,y+32,obj_metal_wall_fr1) or place_meeting(x,y+32,obj_barrier_block) or place_meeting(x,y+32,obj_barrier_block2) {
                 randomdir = irandom_range(1,4)
             } else {
                 dirchosen = true;
