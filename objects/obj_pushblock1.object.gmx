@@ -81,40 +81,50 @@ slidetimer = 0; // smooth animation sliding of block //
 
 // global.block1stuck = false
 
-global.block1stuckdir = 0;
 
-if place_meeting(x+32,y,obj_metal_floor) and place_meeting(x-32,y,obj_player) {
 
-    global.block1stuckdir = 1
-
+if place_meeting(x-32,y,obj_player) {
+show_debug_message('player');
+    if place_meeting(x+32,y,obj_metal_floor) {
+    show_debug_message('blockstuck set1');
+        global.block1stuckdir = 1
+        
+    }
 }
 
-if place_meeting(x,y+32,obj_player) {
+else if place_meeting(x,y+32,obj_player) {
+show_debug_message('player');
     if place_meeting(x,y-32,obj_metal_floor)
     or place_meeting(x,y-32,obj_door_left_red)
     or place_meeting(x,y+32,obj_door_right_red){
-        
+        show_debug_message('blockstuck set2');
         global.block1stuckdir = 2
     
     }
 } 
 
-if place_meeting(x-32,y,obj_metal_floor) and place_meeting(x+32,y,obj_player) {
-
-    global.block1stuckdir = 3
-    
+else if place_meeting(x+32,y,obj_player) {
+show_debug_message('player');
+    if place_meeting(x-32,y,obj_metal_floor) {
+    show_debug_message('blockstuck set3');
+        global.block1stuckdir = 3
+        
+    }
 }
 
-if place_meeting(x,y-32,obj_player) {
+else if place_meeting(x,y-32,obj_player) {
+show_debug_message('player');
     if place_meeting(x,y+32,obj_metal_floor)
     or place_meeting(x,y+32,obj_door_left_red)
     or place_meeting(x,y+32,obj_door_right_red) {
-        
+        show_debug_message('blockstuck set4');
         global.block1stuckdir = 4
     
-    }
-    
-} 
+    }   
+} else {
+    show_debug_message('why tf here')
+    global.block1stuckdir = 0;
+}
 </string>
           </argument>
         </arguments>
@@ -149,7 +159,8 @@ with obj_player {
 // sets alarm, slidetimer, movement, movetimer //
 if global.blockmovelock = false {
 
-if place_meeting(x-2,y,obj_player) or place_meeting(x-2,y,obj_ghost) {
+if place_meeting(x,y,obj_player) and obj_player.direction = 0 
+or place_meeting(x-1,y,obj_ghost) {
     if movement = 1 {
         direction = 0;
         
@@ -165,7 +176,8 @@ if place_meeting(x-2,y,obj_player) or place_meeting(x-2,y,obj_ghost) {
     }
 }
 
-if place_meeting(x+2,y,obj_player) or place_meeting(x+2,y,obj_ghost) {
+if place_meeting(x,y,obj_player) and obj_player.direction = 180 
+or place_meeting(x+1,y,obj_ghost) {
     if movement = 1 {
         direction = 180;
         
@@ -181,7 +193,8 @@ if place_meeting(x+2,y,obj_player) or place_meeting(x+2,y,obj_ghost) {
     }
 }
 
-if place_meeting(x,y-2,obj_player) or place_meeting(x,y-2,obj_ghost){
+if place_meeting(x,y,obj_player) and obj_player.direction = 270
+or place_meeting(x,y-32,obj_ghost){
     if movement = 1 {
         direction = 270;
         
@@ -199,7 +212,8 @@ if place_meeting(x,y-2,obj_player) or place_meeting(x,y-2,obj_ghost){
     }
 }
 
-if place_meeting(x,y+2,obj_player) or place_meeting(x,y+2,obj_ghost){
+if place_meeting(x,y,obj_player) and obj_player.direction = 90
+or place_meeting(x,y+32,obj_ghost){
     if movement = 1 {
         direction = 90;
         

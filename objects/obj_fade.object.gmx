@@ -94,7 +94,7 @@ if global.fadein = 1 {
                 room_goto(room_start_cut);
             }
             if global.startselection = 1 {
-                room_goto(room_level1);
+                room_goto(room_level2);
             }
         }
 
@@ -107,18 +107,18 @@ if global.fadein = 1 {
         }
         
         if room = room_level2 {
-            room_goto(room_level3);
+            room_goto(room_vent);
         }
         
         if room = room_level3 {
-            room_goto(room_control_room);
-        }
-        
-        if room = room_control_room {
             room_goto(room_vent);
         }
         
         if room = room_vent {
+            room_goto(room_control_room);
+        }
+        
+        if room = room_control_room {
             room_goto(room_boss);
         }
         

@@ -140,7 +140,6 @@
     <instance objName="obj_metal_floor" x="624" y="752" name="inst_27B2902C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="592" y="752" name="inst_401BE1DA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="720" y="592" name="inst_0BA02CFC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_player" x="304" y="784" name="inst_4BF6F76C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_bk1" x="848" y="400" name="inst_29BD8152" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_bk1" x="624" y="400" name="inst_E506CC8A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_bk1" x="368" y="176" name="inst_5AFD237A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -524,7 +523,7 @@
     <instance objName="obj_button5_n2" x="592" y="336" name="inst_1ED416D6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="464" y="208" name="inst_A87C449F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="496" y="208" name="inst_BB3B5E23" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_level_complete" x="480" y="146" name="inst_B091C4D8" locked="0" code="" scaleX="2" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_level_complete" x="480" y="144" name="inst_B091C4D8" locked="0" code="" scaleX="2" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="1136" y="496" name="inst_E989384D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_floor" x="1104" y="496" name="inst_88463DB6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_door_right_green" x="1136" y="560" name="inst_842EED56" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -545,6 +544,7 @@
     <instance objName="obj_metal_wall_bk1" x="464" y="720" name="inst_97858D40" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_metal_wall_bk1" x="496" y="720" name="inst_FCEBEF11" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_music" x="192" y="736" name="inst_A8B00669" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_player" x="304" y="784" name="inst_4BF6F76C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

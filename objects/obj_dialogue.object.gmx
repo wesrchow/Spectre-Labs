@@ -63,9 +63,11 @@ if room = room_boss {
     
     box[3] = "You are getting very annoying. Can you please just stop struggling and #die? Just send a bunch more."
     
-    box[4] = "Boss: What!? You killed all my minions!? Fine, then I'll do it myself..." 
+    box[4] = "Boss: What!? You killed all my minions!? Alright clones, go." 
     
     box[5] = "Boss: even my clones???"
+    
+    box[6] = "Boss: Agh!! You've made me use up all my energy, I can't maintain my #forcefield. Fine, then I'll do it myself..."
 }
 
 printedline = 0;

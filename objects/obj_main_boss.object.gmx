@@ -3,7 +3,7 @@
   <spriteName>spr_main_boss</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-10</depth>
+  <depth>-9</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -248,10 +248,10 @@ if global.bosswave = 4 {
           <argument>
             <kind>1</kind>
             <string>/// sprite control ///
-if place_meeting(x,y-32,obj_server) {
+if place_meeting(x,y-24,obj_server) {
     depth = -13;
 } else {
-    depth = -11;
+    depth = -9;
 }
 </string>
           </argument>

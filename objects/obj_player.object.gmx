@@ -47,13 +47,16 @@ recordstartingx = 0;
 recordstartingy = 0;
 snaptimer = 0; // timer to wait to snap to grid //
 
+footstep1 = 0;
+footstep2 = 0;
+footsteporder = 1;
+footsteptimer = 0;
+
 image_speed = 0.2;
 //image_xscale = 1.5;
 //image_yscale = 1.5;
 
 global.playingback = false
-
-/// setup end ///
 </string>
           </argument>
         </arguments>
@@ -214,9 +217,59 @@ if global.movecontrollock = false {
 }
 
 if place_meeting(x,y-32,obj_server) {
-    depth = -13;
+    depth = -14;
 } else {
     depth = -11;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// sound control
+if global.movecontrollock = false {
+    if keyboard_check(ord('A')) or keyboard_check(ord('D')) or keyboard_check(ord('W')) or keyboard_check(ord('S')) {
+        
+        footsteptimer ++;
+        
+        footstep1 = choose(1,2);
+        footstep2 = choose(1,2);
+        
+        if footsteptimer &gt;= 20 {
+            if footsteporder = 1 {
+                if footstep1 = 1 {
+                    audio_play_sound(snd_metal_footstep1,1,false);
+                } else {
+                    audio_play_sound(snd_metal_footstep2,1,false);
+                }
+                footsteporder = 2;
+            } else {
+                if footstep2 =  1 {
+                    audio_play_sound(snd_metal_footstep3,1,false);
+                } else {
+                    audio_play_sound(snd_metal_footstep4,1,false);
+                }
+                footsteporder = 1;
+            }
+            
+            footsteptimer = 0;
+        }
+    }
 }
 </string>
           </argument>
@@ -248,12 +301,13 @@ if global.movecontrollock = false {
         if keyboard_check(ord('A')) {
             if movement = 1 {
                 direction = 180;
-        
+            
                 if !place_meeting(x-32,y,obj_metal_wall_l1)
                 and !place_meeting(x-32,y,obj_metal_wall_l5)
                 and !place_meeting(x-32,y,obj_metal_wall_bk1)
                 and !place_meeting(x-32,y,obj_metal_floor_oneway_left)
                 and !place_meeting(x-32,y,obj_barrier_block)
+                and !place_meeting(x-32,y,obj_barrier_block2)
                 and !place_meeting(x-32,y,obj_door_bot_green)
                 and !place_meeting(x-32,y,obj_door_top_green)
                 and !place_meeting(x-32,y,obj_door_bot_red)
@@ -286,6 +340,7 @@ if global.movecontrollock = false {
                 and !place_meeting(x+32,y,obj_metal_wall_bk1)
                 and !place_meeting(x+32,y,obj_metal_floor_oneway_right)
                 and !place_meeting(x+32,y,obj_barrier_block)
+                and !place_meeting(x+32,y,obj_barrier_block2)
                 and !place_meeting(x+32,y,obj_door_bot_green)
                 and !place_meeting(x+32,y,obj_door_top_green)
                 and !place_meeting(x+32,y,obj_door_bot_red)
@@ -314,8 +369,10 @@ if global.movecontrollock = false {
                 direction = 90;
             
                 if !place_meeting(x,y-32,obj_metal_wall_bk1)
+                and !place_meeting(x,y-32,obj_metal_wall_bk2)
                 and !place_meeting(x,y-32,obj_metal_floor_oneway_top)
                 and !place_meeting(x,y-32,obj_barrier_block)
+                and !place_meeting(x,y-32,obj_barrier_block2)
                 and !place_meeting(x,y-32,obj_door_left_green) 
                 and !place_meeting(x,y-32,obj_door_right_green)
                 and !place_meeting(x,y-32,obj_door_left_red)
@@ -344,12 +401,14 @@ if global.movecontrollock = false {
                 direction = 270;
             
                     if !place_meeting(x,y+32,obj_metal_wall_fr1)
+                    and !place_meeting(x,y+32,obj_metal_wall_fr3)
                     and !place_meeting(x,y+32,obj_metal_wall_fr1_door)
                     and !place_meeting(x,y+32,obj_metal_wall_fr2)
                     and !place_meeting(x,y+32,obj_metal_wall_r5)
                     and !place_meeting(x,y+32,obj_metal_wall_l5)
                     and !place_meeting(x,y+32,obj_metal_floor_oneway_bot)
                     and !place_meeting(x,y+32,obj_barrier_block)
+                    and !place_meeting(x,y+32,obj_barrier_block2)
                     and !place_meeting(x,y+32,obj_door_left_green)
                     and !place_meeting(x,y+32,obj_door_right_green)
                     and !place_meeting(x,y+32,obj_door_left_red)
@@ -433,17 +492,9 @@ if movetimer &lt;= 0 {
 
 // if player past top of room, according to room, act accordingly //
 if place_meeting(x,y,obj_level_complete) {
-    if room = /*room_tutorial*/ room_feature_test {
         global.fadein = 1;
         instance_create(0,0,obj_fade);
-    }
-    if room = room_level1 {
-        global.fadein = 1;
-        instance_create(0,0,obj_fade);    
-    }
 }
-
-/// level completion end ///
 </string>
           </argument>
         </arguments>

@@ -441,7 +441,7 @@ if started = true {
 }
 
 if global.bosswave = 1 {
-    if global.enemies1 = 7 and global.enemies2 = 4 {
+    if global.enemies1 = 5 and global.enemies2 = 3 {
         if fighting = false {
             draw_set_halign(fa_center);
             draw_set_valign(fa_center);
@@ -454,7 +454,7 @@ if global.bosswave = 1 {
 }
 
 if global.bosswave = 2 {
-    if global.enemies1 = 9 and global.enemies2 = 5 and global.enemies3 = 2 {
+    if global.enemies1 = 6 and global.enemies2 = 4 and global.enemies3 = 2 {
         if fighting = false {
             draw_set_halign(fa_center);
             draw_set_valign(fa_center);
@@ -467,7 +467,7 @@ if global.bosswave = 2 {
 }
 
 if global.bosswave = 3 {
-    if global.enemies1 = 12 and global.enemies2 = 7 and global.enemies3 = 5 {
+    if global.enemies1 = 7 and global.enemies2 = 5 and global.enemies3 = 4 {
         if fighting = false {
             draw_set_halign(fa_center);
             draw_set_valign(fa_center);

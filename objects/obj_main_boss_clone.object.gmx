@@ -3,7 +3,7 @@
   <spriteName>spr_main_boss</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-10</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,9 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>depth = -10;
-
-enemyhealth = 10; // enemy health //
+            <string>enemyhealth = 10; // enemy health //
 
 shoottimer = 0; // timing of firing laser objects
 firingratetimer = 0; // firing rate timer //
@@ -64,25 +62,55 @@ if global.bosswave = 4 {
             shoottimer ++;
             
             if shoottimer = 10 {
-                laser = instance_create(x,y,obj_enemy_laser2)
+                laser = instance_create(x,y,obj_enemy_laser2);
+                laser2 = instance_create(x,y,obj_enemy_laser2);
+                laser3 = instance_create(x,y,obj_enemy_laser2);
+                
                 laser.speed = 5;
+                laser2.speed = 5;
+                laser3.speed = 5;
                 
                 if x &gt; 608 {
                     laser.direction = 180;
-                    laser.image_xscale = -1;
+                    laser2.direction = 90;
+                    laser3.direction = 270;
+                    
+                    laser.image_angle = 180;
+                    laser2.image_angle = 90;
+                    laser3.image_angle = 270;
                 } else {
                     laser.direction = 0;
+                    laser2.direction = 90;
+                    laser3.direction = 270;
+                    
+                    laser2.image_angle = 90;
+                    laser3.image_angle = 270;
                 }
             } 
             
             if shoottimer &gt;= 15 {
-                laser = instance_create(x,y,obj_enemy_laser2_beam)
+                laser = instance_create(x,y,obj_enemy_laser2_beam);
+                laser2 = instance_create(x,y,obj_enemy_laser2_beam);
+                laser3 = instance_create(x,y,obj_enemy_laser2_beam);
+                
                 laser.speed = 5;
+                laser2.speed = 5;
+                laser3.speed = 5;
                 
                 if x &gt; 608 {
                     laser.direction = 180;
+                    laser2.direction = 90;
+                    laser3.direction = 270;
+                    
+                    laser2.image_angle = 90;
+                    laser3.image_angle = 270;
                 } else {
                     laser.direction = 0;
+                    laser2.direction = 90;
+                    laser3.direction = 270;
+                    
+                    laser2.image_angle = 90;
+                    laser3.image_angle = 270;
                 }
                 
                 shoottimer = 11;
