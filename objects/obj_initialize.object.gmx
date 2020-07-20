@@ -78,12 +78,40 @@ if room = room_start_cut {
     
     // create lists of text by letter for each line //
     
-    page1 = "&gt;  Welcome, to _________.
-    #You've signed up to be a test subject for an obscure
-    #company you've never heard of before, but the pay was
-    #good, so you decided to go for it. They picked you up
-    #in a military grade car with tinted windows and drive
-    #you off to an unknown location. "
+    page1 = "&gt;  Welcome to Spectre Labs.
+    #     
+    #You've signed up to be a prototype tester for an
+    #obscure company you've never heard of before, but
+    #the pay was good, so you decided to go for it. They
+    #picked you up in a military grade car with tinted
+    #windows and drove you off to an unknown location.
+    #You were escorted through the maze-like building by
+    #speakers hidden in the walls. You now find yourself
+    #in an enclosed, clean looking facility, surrounded
+    #by thick metal walls..."
+    
+    page2 = "You find an advanced looking device on the
+    #floor in front of you and decide to take a look.
+    #The multiple straps on the gadget suggested it was
+    #meant to be worn. When you put it on your arm, the
+    #straps automatically tightened and the device is
+    #now secured to yourself.
+    #     
+    #Voice from speaker: So you figured out how to put it
+    #on? Very nice. A lot of people mess that up. That
+    #device you're wearing bridges the gap between our
+    #'regular' world and the spectral world."
+    
+    page3 = "Speaker: You're able to control your spectral
+    #counterpart of yourself with that. To activate and
+    #record your movements in spectral form press 'Q'. The
+    #device allows you to record for five seconds before
+    #automatically returning yourself to your original
+    #body. To playback your recording in the form of your
+    #spectral body press 'E'. Your recording will be
+    #saved in the device to play as many times as you like
+    #until you create a new recording. Now enough talk
+    #from me, go ahead and try it out!"
 
     printedline = page1; // set the current printing line
 }
@@ -113,6 +141,7 @@ if room = room_start_cut {
 
 with obj_player {
     if recording = true {
+        draw_set_colour(c_white);
         draw_set_alpha(0.2)
         draw_sprite(spr_record_overlay,-1,0,0);
         draw_set_alpha(1)
@@ -122,6 +151,7 @@ with obj_player {
     }  
     
     if global.playingback = true {
+        draw_set_colour(c_white);
         draw_set_font(fnt_start_cut)
         draw_text(10,10,"playing...")
     }
@@ -148,33 +178,33 @@ with obj_player {
             <kind>1</kind>
             <string>/// draw player healthbar ///
 
-var drawinghealth = global.playerhealth * 3
-
-show_debug_message(drawinghealth);
-
-if room = room_boss {
-    draw_sprite(spr_player_health_bar_bg,-1,10,640);
+if global.bosswave &gt;= 1 {
+    var drawinghealth = global.playerhealth * 3
     
-    if global.playerhealth &gt;= 57 {
-        draw_set_colour(make_colour_rgb(101, 205, 41))
-    } else if global.playerhealth &lt; 57 and global.playerhealth &gt;= 30 {
-        draw_set_colour(make_colour_rgb(204, 206, 24))
-    } else if global.playerhealth &lt; 30 {
-        draw_set_colour(make_colour_rgb(155, 8, 58))
-    }
-    
-    if drawinghealth &gt;= 172 {
-    
-        draw_rectangle(20,650,drawinghealth+19,657,false);
-        draw_rectangle(20,650,190,664,false);
+    if room = room_boss {
+        draw_sprite(spr_player_health_bar_bg,-1,10,640);
         
-    } else if drawinghealth &lt; 172 {
-    
-        draw_rectangle(20,650,drawinghealth+19,664,false);
+        if global.playerhealth &gt;= 57 {
+            draw_set_colour(make_colour_rgb(101, 205, 41))
+        } else if global.playerhealth &lt; 57 and global.playerhealth &gt;= 30 {
+            draw_set_colour(make_colour_rgb(204, 206, 24))
+        } else if global.playerhealth &lt; 30 {
+            draw_set_colour(make_colour_rgb(155, 8, 58))
+        }
         
+        if drawinghealth &gt;= 172 {
+        
+            draw_rectangle(20,650,drawinghealth+19,657,false);
+            draw_rectangle(20,650,190,664,false);
+            
+        } else if drawinghealth &lt; 172 {
+        
+            draw_rectangle(20,650,drawinghealth+19,664,false);
+            
+        }
+    
+        draw_sprite(spr_player_health_bar,-1,17,647);
     }
-
-    draw_sprite(spr_player_health_bar,-1,17,647);
 }
 </string>
           </argument>
@@ -250,18 +280,20 @@ if room = room_title_screen {
 // if room is start cut //
 if room = room_start_cut {
 
+show_debug_message(scrolltimer);
+
     // if starttext enabled, draw starting text //
     if starttext = true {
-        draw_text(128,128,printed);
+        draw_text(128,100,printed);
     }
     
     // if movecontrollock is unlocked //
-    if global.movecontrollock = 1 {
+    if global.movecontrollock = true {
 
         scrolltimer ++;        
         
         // if scrolltimer &gt;= 50, disables one time code and holding text, set scrolltimer to 0 //
-        if scrolltimer &gt;= 50 {
+        if scrolltimer &gt;= 50 and starttext = true {
             starthold = false;
             starttext = false;
             scrolltimer = 0;
@@ -285,19 +317,32 @@ if room = room_start_cut {
         // if list position &gt;= size of printing list, printing line = script start lines //
         if strcharpos &gt;= string_length(printedline) {
             starthold = true
-                            
-            if scrolltimer &gt;= 45 {
-                room_goto(room_level1);
+            
+            if scrolltimer &gt;= 240 and printedline = page1 {
+                printedline = page2
+                scrolltimer = 0;
+                starthold = false;
+                strcharpos = 0;
             }
-        //printedline = scr_start_lines();
+            
+            if scrolltimer &gt;= 240 and printedline = page2 {
+                printedline = page3
+                scrolltimer = 0;
+                starthold = false;
+                strcharpos = 0;
+            }
+            
+            if scrolltimer &gt;= 240 and printedline = page3 {
+                global.fadein = 1;
+                instance_create(0,0,obj_fade);
+            }
         }
                  
-        // draw printed string with y + amount depending on printing line number //
-        draw_text(128,128,printed);
+        // draw printed //
+        draw_text(128,100,printed);
     
     }
 }
-/// start game cut end ///
 </string>
           </argument>
         </arguments>

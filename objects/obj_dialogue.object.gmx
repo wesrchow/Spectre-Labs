@@ -41,7 +41,7 @@ closemessage = "'C' to exit"
 closemessageprint = ""
 
 if room = room_level1 {
-    box[1] = "Voice from speaker: Oh? We have our test subj- I mean our valued #prototype tester! How exciting it is to see you."
+    box[1] = "Speaker: So, have you figured out how to use the device? Make sure you're #comfortable with it before you move on."
     
     box[2] = "Voice from speaker: I assume my colleagues have already filled you in. #Try and get through the puzzle rooms."
     

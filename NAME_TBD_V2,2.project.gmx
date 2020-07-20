@@ -180,7 +180,7 @@
       <sprite>sprites\spr_enemy1</sprite>
       <sprite>sprites\spr_enemy2</sprite>
       <sprite>sprites\spr_enemy3</sprite>
-      <sprite>sprites\spr_enemy_laser</sprite>
+      <sprite>sprites\spr_enemy_laser1</sprite>
       <sprite>sprites\spr_enemy_laser2</sprite>
     </sprites>
     <sprites name="other">
@@ -200,6 +200,7 @@
     <script>scripts\scr_enemy_collision_test.gml</script>
     <script>scripts\scr_enemy_movement.gml</script>
     <script>scripts\scr_randomdir_along_object.gml</script>
+    <script>scripts\scr_enemy_shooting.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_startscreen</font>
@@ -328,7 +329,8 @@
       <object>objects\obj_enemy1</object>
       <object>objects\obj_enemy2</object>
       <object>objects\obj_enemy3</object>
-      <object>objects\obj_enemy_laser</object>
+      <object>objects\obj_enemy_laser1</object>
+      <object>objects\obj_enemy_laser2</object>
     </objects>
   </objects>
   <rooms name="rooms">

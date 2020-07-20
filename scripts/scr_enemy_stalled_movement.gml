@@ -11,4 +11,3 @@ if movetimer <= 0 {
     movement = 1
     movefinished = true
 }
-
